@@ -1,0 +1,446 @@
+{
+  "users": [
+    {
+      "id": "admin-1",
+      "email": "admin@poshpoule.com",
+      "password": "DemoPass123!",
+      "name": "Admin User",
+      "role": "admin",
+      "createdAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "staff-1",
+      "email": "staff@poshpoule.com",
+      "password": "StaffPass123!",
+      "name": "Staff User",
+      "role": "staff",
+      "createdAt": "2024-01-01T00:00:00.000Z"
+    }
+  ],
+  "products": [
+    {
+      "id": "fresh-organic-eggs",
+      "name": "Fresh Organic Eggs",
+      "slug": "fresh-organic-eggs",
+      "description": "PoshPOULE organic eggs are produced from free-range, naturally fed hens. They're rich in nutrients, chemical-free, and come fresh from farm to table.",
+      "priceNaira": 5700,
+      "basePriceNaira": 5700,
+      "category": "Poultry Produce",
+      "stock": 100,
+      "image": "/images/products/eggs/farmFreshEggs.PNG",
+      "images": ["/images/products/eggs/farmFreshEggs.PNG", "/images/products/eggs/OrganicEggs.JPG"],
+      "featured": true,
+      "available": true,
+      "features": ["Organic feed", "Rich in protein and omega-3", "Farm-fresh delivery", "Affordable in bulk"],
+      "createdAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "broiler-chicken",
+      "name": "Broiler Chicken",
+      "slug": "broiler-chicken",
+      "description": "Healthy, naturally raised broilers with tender meat and great taste. Sourced from organic feed and raised in clean farm conditions.",
+      "priceNaira": 12000,
+      "basePriceNaira": 12000,
+      "category": "Poultry Produce",
+      "stock": 50,
+      "image": "/images/products/chicken/GrowingBroilers.JPG",
+      "images": ["/images/products/chicken/GrowingBroilers.JPG", "/images/products/chicken/LocalChickens.jpg"],
+      "featured": true,
+      "available": true,
+      "features": ["Hormone-free growth", "High yield per bird", "Delivery or pickup options", "Ideal for family meals & restaurants"],
+      "createdAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "organic-vegetables-pack",
+      "name": "Organic Vegetables Pack",
+      "slug": "organic-vegetables-pack",
+      "description": "A mix of fresh, seasonal vegetables including spinach, ugu, tomatoes, and peppers. Perfect for households seeking healthy organic food.",
+      "priceNaira": 5000,
+      "basePriceNaira": 5000,
+      "category": "Crops & Vegetables",
+      "stock": 30,
+      "image": "/images/products/vegetables/OrganicVegetablePack.jpg",
+      "images": ["/images/products/vegetables/OrganicVegetablePack.jpg", "/images/products/vegetables/vegetableGarden.jpg"],
+      "featured": true,
+      "available": true,
+      "features": ["Locally grown", "Chemical-free farming", "Rich in vitamins and minerals", "Farm-to-table freshness"],
+      "createdAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "organic-fruits-pack",
+      "name": "Organic Fruits Pack",
+      "slug": "organic-fruits-pack",
+      "description": "Seasonal selection of fruits such as pineapple, mango, watermelon, and oranges. Nutritious, juicy, and organically cultivated.",
+      "priceNaira": 6000,
+      "basePriceNaira": 6000,
+      "category": "Fruits",
+      "stock": 25,
+      "image": "/images/products/fruits/fruitsTableReady.jpg",
+      "images": ["/images/products/fruits/fruitsTableReady.jpg", "/images/products/fruits/fruitsSalad.jpg"],
+      "featured": true,
+      "available": true,
+      "features": ["Naturally sweet", "Pesticide-free", "Vitamin-rich", "Family & bulk packs available"],
+      "createdAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "crop-box-subscription",
+      "name": "Crop Box Subscription (Monthly)",
+      "slug": "crop-box-subscription",
+      "description": "A curated monthly box containing a mix of seasonal farm produce (vegetables, fruits, grains). Designed for consistent supply of organic food for households.",
+      "priceNaira": 15000,
+      "basePriceNaira": 15000,
+      "category": "Subscription",
+      "stock": 20,
+      "image": "/images/products/subscription/vegetableCropsBasketOfFood.jpg",
+      "images": ["/images/products/subscription/vegetableCropsBasketOfFood.jpg"],
+      "featured": true,
+      "available": true,
+      "features": ["Variety pack delivered monthly", "Discounted subscription rate", "Supports healthy eating habits", "Ideal for families & meal preps"],
+      "createdAt": "2024-01-01T00:00:00.000Z"
+    }
+  ],
+  "orders": [
+    {
+      "id": "order-1",
+      "customerName": "John Doe",
+      "customerEmail": "john@example.com",
+      "customerPhone": "+2348012345678",
+      "products": [
+        {
+          "productId": "fresh-organic-eggs",
+          "name": "Fresh Organic Eggs",
+          "quantity": 2,
+          "priceNaira": 5700
+        }
+      ],
+      "totalAmount": 11400,
+      "currency": "NGN",
+      "status": "confirmed",
+      "orderType": "pickup",
+      "scheduledDate": "2024-01-15T10:00:00.000Z",
+      "notes": "Please have ready by 10 AM",
+      "createdAt": "2024-01-10T08:00:00.000Z"
+    },
+    {
+      "id": "order-2",
+      "customerName": "Jane Smith",
+      "customerEmail": "jane@example.com",
+      "customerPhone": "+2348098765432",
+      "products": [
+        {
+          "productId": "broiler-chicken",
+          "name": "Broiler Chicken",
+          "quantity": 1,
+          "priceNaira": 12000
+        },
+        {
+          "productId": "organic-vegetables-pack",
+          "name": "Organic Vegetables Pack",
+          "quantity": 1,
+          "priceNaira": 5000
+        }
+      ],
+      "totalAmount": 17000,
+      "currency": "NGN",
+      "status": "ready",
+      "orderType": "delivery",
+      "deliveryAddress": "123 Main Street, Lagos",
+      "scheduledDate": "2024-01-16T14:00:00.000Z",
+      "notes": "Ring the bell twice",
+      "createdAt": "2024-01-11T09:30:00.000Z"
+    }
+  ],
+  "leads": [],
+  "testimonials": [
+    {
+      "id": "testimonial-1",
+      "name": "Rose N.",
+      "location": "Enugu, Nigeria",
+      "role": "Regular Customer",
+      "content": "I pre-order eggs and vegetables every week. The produce is always fresh, organic, and worth the price. PoshPOULE has won my trust.",
+      "rating": 5,
+      "image": "/images/testimonials/testimonal1.png",
+      "featured": true,
+      "createdAt": "2024-01-05T00:00:00.000Z"
+    },
+    {
+      "id": "testimonial-2",
+      "name": "Adaeze N.",
+      "location": "Enugu, Nigeria",
+      "role": "Regular Customer",
+      "content": "PoshPOULE eggs are the freshest I've ever tasted. You can tell they care about quality and health. My family won't buy from anywhere else.",
+      "rating": 5,
+      "image": "/images/testimonials/testimonial2.jpg",
+      "featured": true,
+      "createdAt": "2024-01-06T00:00:00.000Z"
+    },
+    {
+      "id": "testimonial-3",
+      "name": "Michael C.",
+      "location": "Abuja, Nigeria",
+      "role": "Regular Customer",
+      "content": "Their broiler chickens are consistently premium and well-fed. Delivery was smooth and professional. Highly recommended.",
+      "rating": 4,
+      "image": "/images/testimonials/Testimoniaal3.jpg",
+      "featured": true,
+      "createdAt": "2024-01-07T00:00:00.000Z"
+    },
+    {
+      "id": "testimonial-4",
+      "name": "Josh O.",
+      "location": "Enugu, Nigeria",
+      "role": "Regular Customer",
+      "content": "The eggs from PoshPOULE are the freshest I've ever had. Truly organic!",
+      "rating": 5,
+      "image": "/images/testimonials/testimonial4.png",
+      "featured": true,
+      "createdAt": "2024-01-08T00:00:00.000Z"
+    },
+    {
+      "id": "testimonial-5",
+      "name": "Abdul",
+      "location": "Abuja, Nigeria",
+      "role": "Regular Customer",
+      "content": "Their broilers taste different – healthy, juicy, no chemicals!",
+      "rating": 4,
+      "image": "/images/testimonials/Testimonal5.jpg",
+      "featured": true,
+      "createdAt": "2024-01-09T00:00:00.000Z"
+    }
+  ],
+  "blogPosts": [
+    {
+      "id": "blog-1",
+      "title": "5 Benefits of Eating Organic Eggs",
+      "slug": "benefits-organic-eggs",
+      "excerpt": "Learn why organic eggs are healthier, tastier, and better for the environment.",
+      "content": "Organic eggs offer numerous benefits for your health and the environment. They're free from harmful chemicals, contain higher levels of omega-3 fatty acids, and support sustainable farming practices. At PoshPOULE, we ensure every egg meets the highest organic standards.",
+      "image": "/images/blog/organic-eggs.jpg",
+      "author": "Emmanuel Ogugua",
+      "published": true,
+      "createdAt": "2025-03-15T00:00:00.000Z",
+      "category": "Farming Tips"
+    },
+    {
+      "id": "blog-2",
+      "title": "How Sustainable Poultry Farming Protects Our Future",
+      "slug": "sustainable-poultry-farming",
+      "excerpt": "At PoshPOULE, we use eco-friendly practices that safeguard soil, water, and communities.",
+      "content": "Sustainable poultry farming is essential for protecting our environment and ensuring food security for future generations. Our practices include natural feed, free-range environments, and water conservation methods that benefit both our chickens and the planet.",
+      "image": "/images/blog/sustainable-farming.jpg",
+      "author": "Chidera Ogugua",
+      "published": true,
+      "createdAt": "2025-04-02T00:00:00.000Z",
+      "category": "Sustainability"
+    },
+    {
+      "id": "blog-3",
+      "title": "Behind the Scenes: A Day on PoshPOULE Farms",
+      "slug": "day-on-poshpoule-farms",
+      "excerpt": "From sunrise feedings to harvest, take a look at how we produce healthy food with care.",
+      "content": "Every day at PoshPOULE Farms starts with the sunrise and our commitment to quality. From feeding our free-range chickens to harvesting fresh vegetables, every step is guided by our dedication to organic, sustainable farming practices.",
+      "image": "/images/blog/farm-day.jpg",
+      "author": "Chikwado Ezike",
+      "published": true,
+      "createdAt": "2025-04-18T00:00:00.000Z",
+      "category": "Farm Life"
+    },
+    {
+      "id": "blog-4",
+      "title": "5 Benefits of Organic Eggs You Didn't Know",
+      "slug": "benefits-organic-eggs-hidden",
+      "excerpt": "Discover hidden benefits of organic eggs for your health and the environment.",
+      "content": "Beyond the obvious health benefits, organic eggs offer surprising advantages including better taste, higher nutrient density, and environmental benefits. Learn about these hidden gems that make organic eggs worth every penny.",
+      "image": "/images/blog/eggs-benefits.jpg",
+      "author": "Emmanuel Ogugua",
+      "published": true,
+      "createdAt": "2025-02-20T00:00:00.000Z",
+      "category": "Health & Nutrition"
+    },
+    {
+      "id": "blog-5",
+      "title": "Why Choose Organic Poultry for Your Family",
+      "slug": "organic-poultry-family",
+      "excerpt": "Learn why organic poultry is the healthier choice for your family's meals.",
+      "content": "Choosing organic poultry means choosing healthier, more nutritious food for your family. Free from hormones and antibiotics, our organic chickens provide better nutrition and peace of mind for health-conscious families.",
+      "image": "/images/blog/organic-poultry.jpg",
+      "author": "Chidera Ogugua",
+      "published": true,
+      "createdAt": "2025-03-10T00:00:00.000Z",
+      "category": "Health & Nutrition"
+    },
+    {
+      "id": "blog-6",
+      "title": "How We Farm Sustainably at PoshPOULE",
+      "slug": "sustainable-farming-poshpoule",
+      "excerpt": "Take a deep dive into our sustainable farming practices and their impact.",
+      "content": "Our sustainable farming practices are designed to protect the environment while producing the highest quality organic food. From crop rotation to water conservation, learn how we're building a sustainable future.",
+      "image": "/images/blog/sustainability-practices.jpg",
+      "author": "Chikwado Ezike",
+      "published": true,
+      "createdAt": "2025-04-05T00:00:00.000Z",
+      "category": "Sustainability"
+    }
+  ],
+  "galleryImages": [
+    {
+      "id": "farm-1",
+      "title": "From farm to table",
+      "image": "/images/gallery/farm-1.jpg",
+      "category": "Farm Life"
+    },
+    {
+      "id": "farm-2",
+      "title": "Sustainable practices in action",
+      "image": "/images/gallery/farm-2.jpg",
+      "category": "Sustainability"
+    },
+    {
+      "id": "chickens-1",
+      "title": "Healthy free-range chickens",
+      "image": "/images/gallery/chickens-1.jpg",
+      "category": "Poultry"
+    },
+    {
+      "id": "harvest-1",
+      "title": "Fresh harvest ready for market",
+      "image": "/images/gallery/harvest-1.jpg",
+      "category": "Harvest"
+    },
+    {
+      "id": "sustainability-1",
+      "title": "Green farming practices",
+      "image": "/images/gallery/sustainability-1.jpg",
+      "category": "Sustainability"
+    },
+    {
+      "id": "team-1",
+      "title": "Our dedicated farm team",
+      "image": "/images/gallery/team-1.jpg",
+      "category": "Team"
+    }
+  ],
+  "teamMembers": [
+    {
+      "id": "team-1",
+      "name": "Emmanuel Chukwuka Ogugua",
+      "position": "Executive Director",
+      "bio": "Founder of PoshPOULE Farms Ltd, Emmanuel combines a background in Information Technology and entrepreneurship with a deep passion for sustainable agriculture. He has over 10 years of experience in business development and farm management.",
+      "expertise": ["Agribusiness strategy", "technology integration", "project management"],
+      "yearsExperience": 10,
+      "image": "/images/team/EmmanuelTeam1-CEO.png",
+      "featured": true,
+      "createdAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "team-2",
+      "name": "Joshua O. Ogugua",
+      "position": "Administration Director",
+      "bio": "Joshua oversees administration and operations at PoshPOULE® Farms. With a background in Psychology and Marketing, he combines people management skills with market insight to strengthen the farm's processes, customer relations, and brand presence.",
+      "expertise": ["Organizational management", "strategic marketing", "team development", "customer relations"],
+      "yearsExperience": 7,
+      "image": "/images/team/JoshuaTeam2.jpg",
+      "featured": true,
+      "createdAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "team-3",
+      "name": "Chidera Lois Ogugua",
+      "position": "Operations Manager",
+      "bio": "Skilled in operations and supply chain management, Chidera oversees farm production, quality control, and customer fulfillment. With 7 years of hands-on experience, she ensures every product meets PoshPOULE's premium standards.",
+      "expertise": ["Operations", "logistics", "customer relations"],
+      "yearsExperience": 7,
+      "image": "/images/team/ChideraTeam3.JPG",
+      "featured": true,
+      "createdAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "team-4",
+      "name": "Chikwado Ezike",
+      "position": "Farm Supervisor",
+      "bio": "Chikwado manages the daily farm activities, from poultry health to crop cycles. With 5 years in organic farming, he ensures best practices are followed on the ground.",
+      "expertise": ["Poultry rearing", "organic crop production", "staff training"],
+      "yearsExperience": 5,
+      "image": "/images/team/ChikwadoTeam4.jpg",
+      "featured": true,
+      "createdAt": "2024-01-01T00:00:00.000Z"
+    }
+  ],
+  "pickupSlots": [
+    {
+      "id": "slot-1",
+      "date": "2024-01-15",
+      "time": "10:00",
+      "available": true,
+      "maxOrders": 10
+    },
+    {
+      "id": "slot-2",
+      "date": "2024-01-15",
+      "time": "14:00",
+      "available": true,
+      "maxOrders": 10
+    },
+    {
+      "id": "slot-3",
+      "date": "2024-01-16",
+      "time": "10:00",
+      "available": true,
+      "maxOrders": 10
+    }
+  ],
+  "currencyRates": {
+    "NGN": 1,
+    "USD": 0.0012,
+    "GBP": 0.00095
+  },
+  "settings": {
+    "siteName": "PoshPOULE Farms Ltd",
+    "slogan": "Pure Goodness — eat fresh, eat healthy",
+    "altSlogan": "Discover Excellence in Organic Living",
+    "mission": "At PoshPOULE® Farms Ltd, our mission is to provide healthy, organic poultry and farm produce through sustainable practices while empowering communities with trusted agribusiness solutions. We combine traditional farming wisdom with modern sustainable methods to ensure that healthy, nutritious food is accessible to everyone. Every egg, every vegetable, every piece of fruit that leaves our farm carries our promise of quality, sustainability, and care — for our consumers, our communities, and our planet.",
+    "story": "PoshPOULE® Farms Ltd was founded in 2015 out of a deep passion for healthy living and food security. What began as a small family homestead with a few chickens and a vegetable patch has grown into a diversified organic agribusiness. Rooted in our tradition of growing what we eat the purest way possible, we now produce premium poultry, fresh eggs, vegetables, fruits, and crops through sustainable and transparent farming practices. From humble beginnings to serving hundreds of families, our journey has always been guided by trust, innovation, and care for both people and the planet. Today, PoshPOULE is proud to be a leading organic farm brand—nourishing communities with pure goodness while building a resilient agribusiness for the future.",
+    "values": ["Integrity and transparency", "Commitment to health and sustainability", "Innovation in agribusiness", "Community empowerment", "Excellence in quality"],
+    "yearFounded": 2015,
+    "primaryColor": "#1F6E3A",
+    "accentColor": "#D4AF37",
+    "highlightColor": "#FFD44D",
+    "neutralColor": "#F6F7F9",
+    "neutralDarkColor": "#64748B",
+    "contactEmail": "poshpoulefarms@gmail.com",
+    "contactPhone": "+234 812 239 4397 | 08064508595",
+    "address": "Farm Location, Enugu State, Nigeria",
+    "businessHours": {
+      "Monday - Friday": "8:00 AM – 6:00 PM",
+      "Saturday": "9:00 AM – 4:00 PM",
+      "Sunday": "Closed"
+    },
+    "socialMedia": {
+      "facebook": "https://web.facebook.com/poshpoulefarms",
+      "instagram": "https://instagram.com/poshpoule",
+      "twitter": "https://x.com/poshpoulefarms"
+    }
+  },
+  "whyChooseUs": [
+    {
+      "icon": "🥬",
+      "title": "100% Organic",
+      "description": "No chemicals, no shortcuts."
+    },
+    {
+      "icon": "🐓",
+      "title": "Healthy Poultry",
+      "description": "Naturally raised, free-range."
+    },
+    {
+      "icon": "🚚",
+      "title": "Reliable Delivery",
+      "description": "Farm-fresh, straight to you."
+    },
+    {
+      "icon": "🌍",
+      "title": "Sustainable Farming",
+      "description": "Building a greener future."
+    }
+  ]
+}
