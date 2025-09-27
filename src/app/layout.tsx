@@ -1,5 +1,12 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import dynamic from 'next/dynamic';
+
+// Dynamically import the CurrencyProviderWrapper with SSR disabled
+const CurrencyProviderWrapper = dynamic(
+  () => import('@/providers/CurrencyProviderWrapper'),
+  { ssr: false }
+);
 
 export const metadata: Metadata = {
   title: 'PoshPOULE Farms Ltd - Pure Goodness, Eat Fresh, Eat Healthy',
@@ -17,7 +24,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="font-body text-body bg-white">
-        {children}
+        <CurrencyProviderWrapper>
+          {children}
+        </CurrencyProviderWrapper>
       </body>
     </html>
   )

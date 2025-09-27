@@ -6,6 +6,7 @@ import { Footer } from '@/components/Footer';
 import Link from 'next/link';
 import { Minus, Plus, ShoppingCart, CheckCircle2 } from 'lucide-react';
 import Image from 'next/image';
+import { usePriceFormatter } from '@/utils/currency';
 
 interface Product {
   id: string;
@@ -31,6 +32,7 @@ export default function ProductPage({ params }: ProductPageProps) {
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const { format, convert } = usePriceFormatter();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -89,7 +91,7 @@ export default function ProductPage({ params }: ProductPageProps) {
     );
   }
 
-  const totalPrice = product.priceNaira * quantity;
+  const totalPrice = convert(product.priceNaira * quantity);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -164,7 +166,7 @@ export default function ProductPage({ params }: ProductPageProps) {
               <div className="mb-8">
                 <div className="flex items-center justify-between mb-4">
                   <span className="font-bold text-2xl text-primary">
-                    ₦{product.priceNaira.toLocaleString()}
+                    {format(product.priceNaira)}
                   </span>
                   <span className={`px-3 py-1 rounded-full text-sm font-medium ${
                     product.stock > 10
@@ -197,7 +199,7 @@ export default function ProductPage({ params }: ProductPageProps) {
                 </div>
 
                 <div className="text-lg font-semibold mb-6">
-                  Total: ₦{totalPrice.toLocaleString()}
+                  Total: {format(totalPrice)}
                 </div>
 
                 <div className="flex space-x-4">

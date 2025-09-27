@@ -5,6 +5,7 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import Link from 'next/link';
 import { Calendar, Clock, MapPin, User, Phone, Mail } from 'lucide-react';
+import { usePriceFormatter } from '@/utils/currency';
 
 interface Product {
   id: string;
@@ -48,6 +49,7 @@ export default function PreorderPage({
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
   const [products, setProducts] = useState<Product[]>([]);
+  const { format } = usePriceFormatter();
   const [isLoading, setIsLoading] = useState(true);
 
   // Sample product data to use when API is not available
@@ -355,7 +357,7 @@ export default function PreorderPage({
                   <div key={product.id} className="flex items-center justify-between p-4 border rounded-lg">
                     <div className="flex-1">
                       <h3 className="font-medium">{product.name}</h3>
-                      <p className="text-sm text-neutral-600">₦{product.priceNaira.toLocaleString()}</p>
+                      <p className="text-sm text-neutral-600">{format(product.priceNaira)}</p>
                     </div>
                     <div className="flex items-center space-x-2">
                       <button
@@ -387,12 +389,12 @@ export default function PreorderPage({
                     {selectedProducts.map((product) => (
                       <div key={product.id} className="flex justify-between">
                         <span>{product.name} × {product.quantity}</span>
-                        <span>₦{product.totalPrice.toLocaleString()}</span>
+                        <span>{format(product.totalPrice)}</span>
                       </div>
                     ))}
                     <div className="border-t pt-2 flex justify-between font-bold text-lg">
                       <span>Total</span>
-                      <span>₦{totalAmount.toLocaleString()}</span>
+                      <span>{format(totalAmount)}</span>
                     </div>
                   </div>
                 </div>

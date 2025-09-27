@@ -1,10 +1,34 @@
+'use client';
+
+import React, { useState, useEffect } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { readDatabase } from '@/lib/database-server';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePriceFormatter } from '@/utils/currency';
+
+interface Product {
+  id: string;
+  name: string;
+  slug: string;
+  description: string;
+  priceNaira: number;
+  category: string;
+  image: string;
+  images: string[];
+  featured: boolean;
+  available: boolean;
+  stock: number;
+  basePriceNaira: number;
+  createdAt: string;
+}
 
 function ProductCard({ product }: { product: any }) {
+  const { formatPrice, currency } = usePriceFormatter();
+  
+  // This component will automatically re-render when currency changes
+  // because it's using the currency value from context
+  
   return (
     <div className="card p-6">
       <div className="relative w-full h-48 mb-4">
@@ -12,6 +36,7 @@ function ProductCard({ product }: { product: any }) {
           src={product.image}
           alt={product.name}
           fill
+          priority
           className="object-cover rounded-lg"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
@@ -19,7 +44,7 @@ function ProductCard({ product }: { product: any }) {
       <h3 className="font-heading text-xl font-heading-semibold mb-2">{product.name}</h3>
       <p className="text-body mb-4 line-clamp-2">{product.description}</p>
       <div className="flex items-center justify-between mb-4">
-        <span className="font-bold text-primary text-lg">₦{product.priceNaira.toLocaleString()}</span>
+        <span className="font-bold text-primary text-lg">{formatPrice(product.priceNaira)}</span>
         <span className="text-sm text-neutral-500 capitalize">{product.category}</span>
       </div>
       <div className="flex space-x-2">
@@ -77,13 +102,35 @@ export default function ProductsPage({
 }: {
   searchParams: { category?: string }
 }) {
-  const data = readDatabase();
+  const [products, setProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const selectedCategory = searchParams.category || null;
 
-  const categories = Array.from(new Set(data.products.map(p => p.category)));
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('/api/products');
+        if (!response.ok) {
+          throw new Error('Failed to fetch products');
+        }
+        const data = await response.json();
+        setProducts(data);
+      } catch (err) {
+        console.error('Error fetching products:', err);
+        setError('Failed to load products. Please try again later.');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  const categories = Array.from(new Set(products.map(p => p.category)));
   const filteredProducts = selectedCategory
-    ? data.products.filter(p => p.category === selectedCategory)
-    : data.products;
+    ? products.filter(p => p.category === selectedCategory)
+    : products;
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -97,12 +144,13 @@ export default function ProductsPage({
               src="/images/farm/farmFreshEggs.PNG"
               alt="PoshPOULE Farm Products"
               fill
+              priority
               className="object-cover opacity-20"
               sizes="100vw"
             />
           </div>
           <div className="relative container mx-auto px-4 text-center py-16">
-            <h1 className="font-heading text-4xl md:text-5xl font-heading-bold mb-4">
+            <h1 className="text-4xl md:text-5xl font-heading-bold mb-4">
               Our Products
             </h1>
             <p className="text-xl opacity-90">
@@ -116,19 +164,37 @@ export default function ProductsPage({
           <div className="container mx-auto px-4">
             <CategoryFilter categories={categories} selectedCategory={selectedCategory} />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredProducts.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
-
-            {filteredProducts.length === 0 && (
-              <div className="text-center py-12">
-                <p className="text-neutral-500 text-lg">No products found in this category.</p>
-                <Link href="/products" className="btn-primary mt-4">
-                  View All Products
-                </Link>
+            {isLoading ? (
+              <div className="flex justify-center items-center py-12">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
               </div>
+            ) : error ? (
+              <div className="text-center py-12">
+                <p className="text-red-500 text-lg mb-4">{error}</p>
+                <button 
+                  onClick={() => window.location.reload()}
+                  className="btn-primary"
+                >
+                  Retry
+                </button>
+              </div>
+            ) : (
+              <>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {filteredProducts.map((product) => (
+                    <ProductCard key={product.id} product={product} />
+                  ))}
+                </div>
+
+                {filteredProducts.length === 0 && (
+                  <div className="text-center py-12">
+                    <p className="text-neutral-500 text-lg">No products found in this category.</p>
+                    <Link href="/products" className="btn-primary mt-4">
+                      View All Products
+                    </Link>
+                  </div>
+                )}
+              </>
             )}
           </div>
         </div>
