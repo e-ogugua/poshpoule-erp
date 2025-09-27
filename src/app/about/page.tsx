@@ -146,16 +146,18 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {teamMembers.map((member: any, index: number) => (
-                <div key={member.id || index} className="card p-6 text-center">
-                  <div className="relative w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              {teamMembers.slice(0, 4).map((member: any, index: number) => (
+                <div key={member.id || index} className="card p-8 text-center hover:shadow-lg transition-shadow duration-300">
+                  <div className="relative w-40 h-40 mx-auto mb-6 rounded-full overflow-hidden border-4 border-primary/10 shadow-md">
                     <Image
                       src={member.image}
                       alt={member.name}
                       fill
                       className="object-cover"
-                      sizes="96px"
+                      sizes="(max-width: 768px) 160px, 200px"
+                      quality={90}
+                      priority={index < 4} // Load first 4 images with higher priority
                     />
                   </div>
                   <h3 className="font-heading text-xl font-heading-semibold mb-2">{member.name}</h3>

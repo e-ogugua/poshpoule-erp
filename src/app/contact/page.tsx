@@ -142,7 +142,7 @@ export default function ContactPage() {
               <ContactCard icon={MapPin} title="Our Location">
                 <p className="text-gray-600">{contactInfo.address}</p>
                 <a 
-                  href="https://maps.google.com/maps?q=123+Farm+Road,+Agricultural+Zone,+Enugu,+Nigeria" 
+                  href="https://www.google.com/maps?q=6.463083,7.547944" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="mt-2 inline-flex items-center text-primary hover:underline text-sm font-medium"
@@ -319,6 +319,16 @@ export default function ContactPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="bg-primary/5 rounded-2xl overflow-hidden shadow-xl">
               <div className="grid grid-cols-1 lg:grid-cols-2">
+                <div className="relative h-64 lg:h-auto">
+                  <Image
+                    src="/images/farm/GardenBeds.jpg"
+                    alt="PoshPOULE Farm - Visit Us"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                </div>
                 <div className="p-8 sm:p-12">
                   <h2 className="text-3xl font-bold text-gray-900 mb-6 font-heading">Visit Our Farm</h2>
                   <p className="text-gray-600 mb-8">
@@ -383,7 +393,7 @@ export default function ContactPage() {
                     sizes="(max-width: 1024px) 100vw, 50vw"
                   />
                   <a 
-                    href="https://www.google.com/maps/place/Enugu,+Nigeria/@6.458985,7.546303,12z/data=!3m1!4b1!4m6!3m5!1s0x1044b3991c3c6f29:0x21a8a3a1c2b2b2b2b!8m2!3d6.458985!4d7.546303!16zL20vMGZ4M2M?entry=ttu"
+                    href="https://www.google.com/maps?q=6.463083,7.547944"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="absolute bottom-4 right-4 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-shadow"

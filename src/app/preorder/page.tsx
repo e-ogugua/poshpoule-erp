@@ -29,6 +29,10 @@ export default function PreorderPage({
 }: {
   searchParams: { product?: string; quantity?: string }
 }) {
+  // Add error boundary
+  if (typeof window === 'undefined') {
+    return null; // Return null during SSR
+  }
   const [formData, setFormData] = useState<OrderFormData>({
     customerName: '',
     customerEmail: '',
@@ -44,24 +48,41 @@ export default function PreorderPage({
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
   const [products, setProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Sample product data to use when API is not available
+  const sampleProducts: Product[] = [
+    { id: '1', name: 'Fresh Eggs (Tray of 30)', priceNaira: 3000, category: 'Eggs' },
+    { id: '2', name: 'Organic Chicken (Whole)', priceNaira: 8000, category: 'Poultry' },
+    { id: '3', name: 'Fresh Vegetables (Seasonal)', priceNaira: 2000, category: 'Vegetables' },
+    { id: '4', name: 'Farm Fresh Fruits', priceNaira: 2500, category: 'Fruits' }
+  ];
 
   useEffect(() => {
-    // Fetch products from API
+    // Try to fetch products from API, fallback to sample data if it fails
     const fetchProducts = async () => {
       try {
         const response = await fetch('/api/products');
         if (response.ok) {
           const data = await response.json();
           setProducts(data);
+        } else {
+          // If API call fails, use sample data
+          setProducts(sampleProducts);
         }
       } catch (error) {
-        console.error('Failed to fetch products:', error);
+        console.error('Failed to fetch products, using sample data:', error);
+        setProducts(sampleProducts);
+      } finally {
+        setIsLoading(false);
       }
     };
 
     fetchProducts();
+  }, []);
 
-    // Handle URL parameters for pre-selected products
+  // Handle URL parameters for pre-selected products
+  useEffect(() => {
     if (searchParams.product && products.length > 0) {
       const product = products.find(p => p.id === searchParams.product);
       if (product) {
@@ -424,8 +445,8 @@ export default function PreorderPage({
           </form>
         </div>
       </main>
-
-{{ ... }}
+      
+      <Footer />
     </div>
   );
 }

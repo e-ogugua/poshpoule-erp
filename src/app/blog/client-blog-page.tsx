@@ -102,7 +102,7 @@ export function ClientBlogPage({ blogPosts: initialBlogPosts }: ClientBlogPagePr
               {/* Image - Right Side */}
               <div className="w-full md:w-1/2 h-64 md:h-96 relative rounded-xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-transform duration-500">
                 <Image
-                  src="/images/farm/GardenBeds.jpg"
+                  src="/optimized-images/blog/farm-fresh-insight.webp"
                   alt="PoshPOULE Farm Blog"
                   fill
                   className="object-cover"

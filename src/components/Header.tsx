@@ -65,14 +65,20 @@ export function Header() {
           <div className="flex items-center justify-between py-4 md:py-5">
             {/* Logo */}
             <Link href="/">
-              <div className="relative w-24 h-24 md:w-28 md:h-28 rounded-[32px] overflow-hidden bg-white shadow-xl shadow-primary/20 ring-2 ring-primary/10 transition-transform duration-200 hover:-translate-y-1">
-                <Image
-                  src="/logo.png"
-                  alt="PoshPOULE Farms Logo"
-                  fill
-                  className="object-contain"
-                  sizes="(max-width: 768px) 96px, 128px"
-                />
+              <div className="relative w-24 h-24 md:w-28 md:h-28 rounded-[32px] overflow-hidden bg-white shadow-xl shadow-primary/20 ring-2 ring-primary/10 transition-transform duration-200 hover:-translate-y-1 flex items-center justify-center p-2">
+                <div className="relative w-full h-full">
+                  <Image
+                    src="/optimized-images/logo.webp"
+                    alt="PoshPOULE Farms Logo"
+                    fill
+                    className="object-contain drop-shadow-md"
+                    style={{
+                      filter: 'contrast(1.1) drop-shadow(0 2px 2px rgba(0,0,0,0.1))',
+                    }}
+                    priority
+                    sizes="(max-width: 768px) 96px, 128px"
+                  />
+                </div>
               </div>
             </Link>
 
