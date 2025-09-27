@@ -1,5 +1,4 @@
 import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
 import { readDatabase } from '@/lib/database-server';
 import Link from 'next/link';
 import {
@@ -34,15 +33,6 @@ export default function AdminDashboard() {
     pendingOrders,
     totalProducts,
     totalRevenue,
-  };
-
-  const handleLogout = async () => {
-    try {
-      await fetch('/api/auth/logout', { method: 'POST' });
-      window.location.href = '/';
-    } catch (error) {
-      console.error('Logout failed:', error);
-    }
   };
 
   const menuItems = [
@@ -121,13 +111,13 @@ export default function AdminDashboard() {
             </nav>
 
             <div className="mt-8 pt-4 border-t">
-              <button
-                onClick={handleLogout}
+              <Link
+                href="/"
                 className="flex items-center space-x-3 px-4 py-3 text-neutral-600 hover:bg-neutral-100 rounded-lg transition-colors w-full"
               >
                 <LogOut className="h-5 w-5" />
                 <span>Logout</span>
-              </button>
+              </Link>
             </div>
           </div>
         </div>

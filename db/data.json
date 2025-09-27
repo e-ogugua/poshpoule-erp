@@ -28,26 +28,52 @@
       "category": "Poultry Produce",
       "stock": 100,
       "image": "/images/products/eggs/farmFreshEggs.PNG",
-      "images": ["/images/products/eggs/farmFreshEggs.PNG", "/images/products/eggs/OrganicEggs.JPG"],
+      "images": [
+        "/images/products/eggs/farmFreshEggs.PNG",
+        "/images/gallery/freshEggs.JPG",
+        "/images/farm/FarmFreshLayedEggs.JPG",
+        "/images/farm/handGrown.png",
+        "/images/farm/ILoveOrganicFarming.png",
+        "/images/gallery/hero2.png"
+      ],
       "featured": true,
       "available": true,
-      "features": ["Organic feed", "Rich in protein and omega-3", "Farm-fresh delivery", "Affordable in bulk"],
+      "features": [
+        "Organic feed",
+        "Rich in protein and omega-3",
+        "Farm-fresh delivery",
+        "Affordable in bulk"
+      ],
       "createdAt": "2024-01-01T00:00:00.000Z"
     },
     {
       "id": "broiler-chicken",
-      "name": "Broiler Chicken",
+      "name": "Broiler & Meat Chickens",
       "slug": "broiler-chicken",
-      "description": "Healthy, naturally raised broilers with tender meat and great taste. Sourced from organic feed and raised in clean farm conditions.",
+      "description": "A premium selection of fast-growing broilers and hearty meat chickens raised on organic feed. Perfect for restaurants, retailers, and families seeking flavorful, protein-rich poultry.",
       "priceNaira": 12000,
       "basePriceNaira": 12000,
       "category": "Poultry Produce",
       "stock": 50,
       "image": "/images/products/chicken/GrowingBroilers.JPG",
-      "images": ["/images/products/chicken/GrowingBroilers.JPG", "/images/products/chicken/LocalChickens.jpg"],
+      "images": [
+        "/images/products/chicken/GrowingBroilers.JPG",
+        "/images/poultry/broodingChickens.JPG",
+        "/images/poultry/LocalChickenandyoungs.JPG",
+        "/images/poultry/NoilerChickensFreeRangers.JPG",
+        "/images/poultry/MorningRangersChickens.JPG",
+        "/images/poultry/freeRangeChickens.jpg",
+        "/images/gallery/chickens-1.jpg",
+        "/images/poultry/ChickenFeedingFrency.JPG"
+      ],
       "featured": true,
       "available": true,
-      "features": ["Hormone-free growth", "High yield per bird", "Delivery or pickup options", "Ideal for family meals & restaurants"],
+      "features": [
+        "Hormone-free growth",
+        "High yield per bird",
+        "Free-range and intensive options",
+        "Ready for bulk or custom orders"
+      ],
       "createdAt": "2024-01-01T00:00:00.000Z"
     },
     {
@@ -60,10 +86,22 @@
       "category": "Crops & Vegetables",
       "stock": 30,
       "image": "/images/products/vegetables/OrganicVegetablePack.jpg",
-      "images": ["/images/products/vegetables/OrganicVegetablePack.jpg", "/images/products/vegetables/vegetableGarden.jpg"],
+      "images": [
+        "/images/products/vegetables/OrganicVegetablePack.jpg",
+        "/images/products/vegetables/vegetableGarden.jpg",
+        "/images/farm/CucumberAndUguGarden.JPG",
+        "/images/farm/PotatoPatchRaisedGarden.JPG",
+        "/images/farm/UguBucketFarming.JPG",
+        "/images/farm/VegetableHavest.jpg"
+      ],
       "featured": true,
       "available": true,
-      "features": ["Locally grown", "Chemical-free farming", "Rich in vitamins and minerals", "Farm-to-table freshness"],
+      "features": [
+        "Locally grown",
+        "Chemical-free farming",
+        "Rich in vitamins and minerals",
+        "Farm-to-table freshness"
+      ],
       "createdAt": "2024-01-01T00:00:00.000Z"
     },
     {
@@ -76,10 +114,22 @@
       "category": "Fruits",
       "stock": 25,
       "image": "/images/products/fruits/fruitsTableReady.jpg",
-      "images": ["/images/products/fruits/fruitsTableReady.jpg", "/images/products/fruits/fruitsSalad.jpg"],
+      "images": [
+        "/images/products/fruits/fruitsTableReady.jpg",
+        "/images/products/fruits/fruitsSalad.jpg",
+        "/images/products/fruits/FruitsCrops.jpg",
+        "/images/farm/FreshCornReadyToEat.JPG",
+        "/images/farm/HowIeatWatermelonPlanningPoshPOULE.JPG",
+        "/images/gallery/FarmToTable.png"
+      ],
       "featured": true,
       "available": true,
-      "features": ["Naturally sweet", "Pesticide-free", "Vitamin-rich", "Family & bulk packs available"],
+      "features": [
+        "Naturally sweet",
+        "Pesticide-free",
+        "Vitamin-rich",
+        "Family & bulk packs available"
+      ],
       "createdAt": "2024-01-01T00:00:00.000Z"
     },
     {
@@ -92,11 +142,51 @@
       "category": "Subscription",
       "stock": 20,
       "image": "/images/products/subscription/vegetableCropsBasketOfFood.jpg",
-      "images": ["/images/products/subscription/vegetableCropsBasketOfFood.jpg"],
+      "images": [
+        "/images/products/subscription/vegetableCropsBasketOfFood.jpg",
+        "/images/farm/MixedFarmingCornAndUgu.JPG",
+        "/images/farm/GardenBeds.jpg",
+        "/images/farm/CornFarmBackyard.JPG",
+        "/images/farm/PotGardeningCucumbers.JPG",
+        "/images/gallery/sustainability-1.jpg"
+      ],
       "featured": true,
       "available": true,
-      "features": ["Variety pack delivered monthly", "Discounted subscription rate", "Supports healthy eating habits", "Ideal for families & meal preps"],
+      "features": [
+        "Variety pack delivered monthly",
+        "Discounted subscription rate",
+        "Supports healthy eating habits",
+        "Ideal for families & meal preps"
+      ],
       "createdAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "premium-organic-snack-pack",
+      "name": "Premium Organic Snack Pack",
+      "slug": "premium-organic-snack-pack",
+      "description": "A curated selection of dried fruits, nuts, and handmade treats sourced directly from PoshPOULE's trusted partners. Perfect for healthy snacking and gifting.",
+      "priceNaira": 9500,
+      "basePriceNaira": 9500,
+      "category": "Organic Pantry",
+      "stock": 40,
+      "image": "/images/products/organicFoodSales.jpg",
+      "images": [
+        "/images/products/organicFoodSales.jpg",
+        "/images/products/OrganicShopShelve.jpg",
+        "/images/products/Organicbusiness-growth.png",
+        "/images/products/WhyOrganic.png",
+        "/images/gallery/allNatural1.png",
+        "/images/gallery/hero1.png"
+      ],
+      "featured": true,
+      "available": true,
+      "features": [
+        "Handpicked organic ingredients",
+        "Zero preservatives",
+        "Eco-friendly packaging",
+        "Ideal for families and corporate gifts"
+      ],
+      "createdAt": "2024-01-02T00:00:00.000Z"
     }
   ],
   "orders": [
@@ -206,9 +296,92 @@
       "image": "/images/testimonials/Testimonal5.jpg",
       "featured": true,
       "createdAt": "2024-01-09T00:00:00.000Z"
+    },
+    {
+      "id": "testimonial-6",
+      "name": "Kemi O.",
+      "location": "Lagos, Nigeria",
+      "role": "Restaurant Owner",
+      "content": "Our restaurant relies on PoshPOULE for consistent, premium produce. The quality keeps our customers coming back.",
+      "rating": 5,
+      "image": "/images/testimonials/testimonial6.jpg",
+      "featured": true,
+      "createdAt": "2024-01-10T00:00:00.000Z"
     }
   ],
   "blogPosts": [
+    {
+      "id": "blog-8",
+      "title": "The Golden Grain: Exploring the Journey of Corn from Seed to Harvest",
+      "slug": "golden-grain-corn-journey",
+      "excerpt": "Discover the fascinating journey of corn cultivation at PoshPOULE Farms and its vital role in our organic farming practices.",
+      "content": "## The Golden Grain: Exploring the Journey of Corn from Seed to Harvest\n\nAt PoshPOULE Farms, corn is more than just a crop—it's a cornerstone of our sustainable agriculture practices. Join us as we explore the complete lifecycle of this golden grain, from planting the first seed to harvesting the mature ears.\n\n### Our Corn Varieties\nWe cultivate several heirloom and hybrid varieties, each selected for its unique qualities:\n- **Golden Bantam**: An heirloom variety known for its rich, sweet flavor\n- **Pioneer P1197**: A high-yielding hybrid with excellent disease resistance\n- **Country Gentleman**: A shoepeg variety perfect for canning and freezing\n- **Glass Gem**: A stunning ornamental variety with multi-colored kernels\n\n### The Growth Journey\n1. **Planting (Week 1-2)**\n   - Direct seeding when soil reaches 60°F (15.5°C)\n   - Spacing: 9-12 inches apart in rows 30 inches apart\n   - Depth: 1.5-2 inches\n\n2. **Germination (Week 2-3)**\n   - First sprouts emerge, showing the characteristic grass-like leaves\n   - Critical weed control period begins\n\n3. **Vegetative Growth (Week 3-8)**\n   - Rapid leaf and stalk development\n   - Regular monitoring for pests and diseases\n   - Side-dressing with organic compost\n\n4. **Tasseling and Silking (Week 8-10)**\n   - Male flowers (tassels) release pollen\n   - Silks emerge to catch pollen for kernel development\n   - Critical watering period begins\n\n5. **Maturation (Week 10-14)**\n   - Kernels progress from milky to dough stage\n   - Starch content increases as ears mature\n   - Regular testing for optimal harvest time\n\n### Sustainable Practices\n- **Crop Rotation**: Corn follows legumes to benefit from nitrogen fixation\n- **Companion Planting**: Grown with beans and squash in the Three Sisters tradition\n- **Natural Pest Control**: Beneficial insects and organic treatments\n- **Soil Health**: Annual soil testing and organic amendments\n\n### Harvest and Beyond\n- Hand-harvested at peak ripeness\n- Immediate cooling to preserve sweetness\n- Multiple uses: fresh eating, drying, grinding, and livestock feed\n\nJoin us for our annual Corn Festival to see the harvest in action and taste the difference of truly fresh, organic corn!",
+      "image": "/images/farm/corn-field.jpg",
+      "author": "PoshPOULE Team",
+      "published": true,
+      "createdAt": "2025-08-15T00:00:00.000Z",
+      "category": "Crop Cultivation"
+    },
+    {
+      "id": "blog-9",
+      "title": "Raised Bed Gardening: Maximizing Yields in Minimal Space",
+      "slug": "raised-bed-gardening",
+      "excerpt": "Learn how raised bed gardening can transform your backyard into a productive, sustainable food source with our comprehensive guide.",
+      "content": "# Raised Bed Gardening: Maximizing Yields in Minimal Space\n\nRaised bed gardening is revolutionizing how we grow food in both urban and rural settings. At PoshPOULE Farms, we've perfected the art of intensive, sustainable gardening using raised beds. Here's how you can too!\n\n## Why Choose Raised Beds?\n\n### 1. Superior Soil Quality\n- Complete control over soil composition\n- Better drainage and aeration\n- Warmer soil for extended growing seasons\n\n### 2. Space Efficiency\n- Grow up to 4 times more in the same space\n- Intensive planting techniques\n- No wasted space for walking paths\n\n### 3. Easier Maintenance\n- Reduced weeding\n- Better pest control\n- Accessible gardening (less bending and kneeling)\n\n## Creating Your Raised Bed System\n\n### Step 1: Design and Layout\n- Ideal width: 3-4 feet (reachable from both sides)\n- Length: As space allows\n- Depth: Minimum 12 inches (deeper for root crops)\n- Orientation: North-south for maximum sun exposure\n\n### Step 2: Building Materials\n- **Wood**: Cedar or redwood (naturally rot-resistant)\n- **Stone/Brick**: Permanent and attractive\n- **Galvanized Metal**: Long-lasting and modern look\n- **Concrete Blocks**: Inexpensive and durable\n\n### Step 3: Soil Mix Formula\n- 60% topsoil\n- 30% compost\n- 10% organic matter (peat moss, coconut coir, or leaf mold)\n- Amendments based on soil test results\n\n## Integrating Livestock for Sustainability\n\n### Chicken Tractor System\n- Mobile coops that follow garden beds\n- Chickens till, fertilize, and control pests\n- Rotate between beds to prevent overgrazing\n\n### Compost Production\n- Kitchen scraps + chicken manure = black gold\n- 3-bin compost system for continuous production\n- Vermicomposting with red wigglers\n\n### Manure Tea\n- Steep aged manure in water\n- Nutrient-rich liquid fertilizer\n- Apply during critical growth stages\n\n## Our Favorite Crops for Raised Beds\n\n### High-Value Vegetables\n- Leafy greens (kale, spinach, lettuce)\n- Root crops (carrots, radishes, beets)\n- Alliums (onions, garlic, leeks)\n\n### Space-Saving Varieties\n- Bush beans instead of pole beans\n- Dwarf fruit trees\n- Vertical-growing crops (peas, cucumbers, tomatoes)\n\n## Seasonal Planning\n\n### Spring\n- Cool-weather crops (peas, lettuce, radishes)\n- Start warm-weather seedlings indoors\n\n### Summer\n- Heat-loving plants (tomatoes, peppers, eggplants)\n- Succession planting for continuous harvest\n\n### Fall\n- Second planting of cool-weather crops\n- Garlic planting for next year\n\n### Winter\n- Cold frames and row covers\n- Planning next year's garden\n\n## Visit Our Demonstration Garden\nCome see our raised bed systems in action! We offer workshops and hands-on training throughout the growing season.",
+      "image": "/images/farm/raised-beds.jpg",
+      "author": "PoshPOULE Team",
+      "published": true,
+      "createdAt": "2025-07-22T00:00:00.000Z",
+      "category": "Gardening Techniques"
+    },
+    {
+      "id": "blog-10",
+      "title": "Container Gardening: Growing Abundance in Buckets and Pots",
+      "slug": "container-gardening",
+      "excerpt": "No yard? No problem! Discover how to create a thriving edible garden in containers, perfect for urban spaces and small areas.",
+      "content": "# Container Gardening: Growing Abundance in Buckets and Pots\n\nUrban living doesn't mean you can't grow your own food. Container gardening brings the farm to your balcony, patio, or windowsill. Here's how to get started!\n\n## Why Container Gardening?\n- Perfect for small spaces\n- Control over growing conditions\n- Mobility to chase the sun\n- Fewer weed and pest problems\n\n## Getting Started\n\n### Container Selection\n- **Size Matters**: Bigger is usually better\n- **Drainage is Key**: Must have drainage holes\n- **Material Choices**:\n  - Plastic: Lightweight and affordable\n  - Terracotta: Breathable but dries quickly\n  - Fabric: Excellent aeration for roots\n  - Wood: Natural look, insulates roots\n\n### Soil Mix\n- Don't use garden soil\n- Light, well-draining mix\n- Add compost for nutrients\n- Consider water-retaining crystals for hot climates\n\n## Best Crops for Containers\n\n### Vegetables\n- Cherry tomatoes\n- Peppers\n- Lettuce and greens\n- Radishes and carrots (deep containers)\n- Bush beans\n\n### Herbs\n- Basil\n- Thyme\n- Rosemary\n- Mint (contain to prevent spreading)\n- Chives\n\n### Fruits\n- Strawberries\n- Dwarf citrus trees\n- Blueberries (acidic soil mix)\n- Figs (in large containers)\n\n## Care and Maintenance\n\n### Watering\n- Check daily in hot weather\n- Water until it runs out the bottom\n- Consider self-watering containers\n\n### Fertilizing\n- Liquid fertilizer every 2-4 weeks\n- Organic options: fish emulsion, compost tea\n- Slow-release organic fertilizers\n\n### Pest Control\n- Handpick pests\n- Neem oil for common problems\n- Companion planting in containers\n\n## Creative Container Ideas\n- Repurposed buckets\n- Hanging baskets\n- Vertical planters\n- Window boxes\n- Grow bags\n\n## Seasonal Tips\n- Rotate crops\n- Refresh soil annually\n- Move plants as seasons change\n- Overwinter tender perennials indoors\n\nJoin our urban gardening workshop to see these techniques in action!",
+      "image": "/images/garden/container-garden.jpg",
+      "author": "PoshPOULE Team",
+      "published": true,
+      "createdAt": "2025-06-10T00:00:00.000Z",
+      "category": "Urban Farming"
+    },
+    {
+      "id": "blog-11",
+      "title": "Why Organic? The Benefits of Choosing Chemical-Free Produce",
+      "slug": "why-organic",
+      "excerpt": "Discover the compelling reasons to choose organic produce for your health, your family, and the planet.",
+      "content": "# Why Organic? The Benefits of Choosing Chemical-Free Produce\n\nAt PoshPOULE Farms, we're passionate about organic agriculture. But what does \"organic\" really mean, and why does it matter? Let's explore the many benefits of choosing organic produce.\n\n## Health Benefits\n\n### 1. More Nutritious Food\n- Higher levels of antioxidants\n- More vitamins and minerals\n- Better flavor and freshness\n\n### 2. No Harmful Chemicals\n- No synthetic pesticides\n- No chemical fertilizers\n- No GMOs\n- No artificial preservatives\n\n### 3. Better for Children\n- Lower pesticide exposure\n- Reduced risk of developmental issues\n- Healthier eating habits\n\n## Environmental Impact\n\n### 1. Soil Health\n- Builds organic matter\n- Prevents erosion\n- Supports beneficial microorganisms\n\n### 2. Water Conservation\n- Reduces water pollution\n- Improves water retention\n- Protects aquatic life\n\n### 3. Biodiversity\n- Supports pollinators\n- Protects wildlife\n- Maintains ecosystem balance\n\n## Our Organic Practices\n\n### Regenerative Agriculture\n- Cover cropping\n- Crop rotation\n- No-till methods\n- Compost and green manure\n\n### Natural Pest Control\n- Beneficial insects\n- Companion planting\n- Physical barriers\n- Organic pest deterrents\n\n### Animal Welfare\n- Free-range practices\n- Natural diets\n- Humane treatment\n- No antibiotics or hormones\n\n## Making the Switch to Organic\n\n### Start Small\n- The \"Dirty Dozen\" (most contaminated produce)\n- Staples you eat daily\n- Foods with edible skins\n\n### Shop Smart\n- Local farmers' markets\n- CSAs (Community Supported Agriculture)\n- Look for certifications\n- Grow your own\n\n### Budget-Friendly Tips\n- Buy in season\n- Preserve the harvest\n- Join a buying club\n- Focus on value, not just price\n\nVisit our farm to see organic practices in action and taste the difference for yourself!",
+      "image": "/images/farm/organic-produce.jpg",
+      "author": "PoshPOULE Team",
+      "published": true,
+      "createdAt": "2025-05-05T00:00:00.000Z",
+      "category": "Organic Living"
+    },
+    {
+      "id": "blog-12",
+      "title": "Rooted in Tradition: The Heritage Crops of West Africa",
+      "slug": "heritage-crops-west-africa",
+      "excerpt": "Celebrating the cultural and nutritional heritage of traditional West African crops and their role in sustainable agriculture.",
+      "content": "# Rooted in Tradition: The Heritage Crops of West Africa\n\nAt PoshPOULE Farms, we honor the agricultural wisdom of our ancestors by preserving and promoting traditional West African crops. These nutrient-dense staples have sustained communities for generations and hold the key to food security in a changing climate.\n\n## Cassava: The Resilient Staple\n\n### Cultural Significance\n- Staple food for over 500 million people\n- Deep roots in West African cuisine\n- Used in dishes like gari, fufu, and tapioca\n\n### Growing Practices\n- Drought-resistant and low-maintenance\n- Thrives in poor soils\n- 8-24 month growing cycle\n- Propagated from stem cuttings\n\n### Nutritional Benefits\n- High in carbohydrates\n- Gluten-free\n- Good source of vitamin C and manganese\n- Contains resistant starch (a prebiotic)\n\n## The Mighty Yam\n\n### Varieties We Grow\n- White Yam (Dioscorea rotundata)\n- Water Yam (Dioscorea alata)\n- Bitter Yam (Dioscorea dumetorum)\n\n### Traditional Uses\n- Pounded yam (iyan)\n- Yam porridge\n- Roasted and fried preparations\n- Medicinal uses in traditional healing\n\n## Cocoyam: The Underrated Superfood\n\n### Types in Our Fields\n- Taro (Colocasia esculenta)\n- Tannia (Xanthosoma sagittifolium)\n\n### Culinary Versatility\n- Boiled, fried, or roasted\n- Thickens soups and stews\n- Leaves used like spinach (kontomire)\n\n### Health Benefits\n- Easily digestible starch\n- Rich in fiber\n- Good source of vitamins A and C\n- Contains beneficial antioxidants\n\n## Akidi: The Protein-Powered Bean\n\n### Traditional Importance\n- Indigenous to West Africa\n- Drought-resistant legume\n- Important protein source\n\n### Culinary Uses\n- Cooked with palm oil and spices\n- Added to soups and stews\n- Ground into flour\n\n### Nutritional Profile\n- 20-25% protein\n- Rich in B-vitamins\n- Good source of iron and zinc\n- High in dietary fiber\n\n## Ginger and Turmeric: The Healing Rhizomes\n\n### Growing Conditions\n- Thrives in warm, humid climates\n- Requires well-drained soil\n- 8-10 month growing season\n\n### Health Benefits\n- Anti-inflammatory properties\n- Aids digestion\n- Boosts immunity\n- Rich in antioxidants\n\n## Preserving Agricultural Heritage\n\n### Seed Saving\n- Maintaining genetic diversity\n- Preserving heirloom varieties\n- Community seed banks\n\n### Sustainable Practices\n- Intercropping systems\n- Organic fertilization\n- Water conservation techniques\n\n### Cultural Education\n- Farm tours and workshops\n- Cooking demonstrations\n- School programs\n\n## Visit Our Heritage Garden\nExperience these traditional crops firsthand in our demonstration garden, where we showcase sustainable growing methods and share recipes that have been passed down through generations.",
+      "image": "/images/farm/heritage-crops.jpg",
+      "author": "PoshPOULE Team",
+      "published": true,
+      "createdAt": "2025-04-15T00:00:00.000Z",
+      "category": "Traditional Crops"
+    },
+    {
+      "id": "blog-7",
+      "title": "Harmony with Nature: Fulani Herders and the Future of Sustainable Grazing",
+      "slug": "fulani-herders-sustainable-grazing",
+      "excerpt": "Exploring the symbiotic relationship between Fulani herders and local farmers in sustainable land management.",
+      "content": "## A Time-Honored Tradition Meets Modern Sustainability\n\nFor generations, Fulani herders have practiced transhumance - the seasonal movement of livestock between grazing grounds. This ancient practice, often misunderstood, holds valuable lessons for sustainable land management. As we face climate change and land degradation, understanding this relationship becomes crucial.\n\n## The Ecological Benefits of Traditional Herding\n\n1. **Natural Fertilization**: As cattle graze, their manure enriches the soil with essential nutrients, reducing the need for chemical fertilizers.\n2. **Weed Control**: Selective grazing helps control invasive plant species that might otherwise dominate local ecosystems.\n3. **Seed Dispersal**: Animals spread seeds through their droppings, promoting biodiversity and natural reforestation.\n\n## Building Bridges Between Communities\n\nAt PoshPOULE, we've witnessed firsthand how collaboration between herders and farmers can lead to mutual benefits. By establishing designated grazing corridors and seasonal grazing agreements, both communities can thrive while preserving the land.\n\n## The Path Forward\n\nSustainable grazing isn't just about managing livestock - it's about fostering understanding between different land users. Through dialogue and shared knowledge, we can develop practices that benefit both herders and farmers while protecting our environment for future generations.",
+      "image": "/images/farm/CowPasture2.jpg",
+      "author": "PoshPOULE Team",
+      "published": true,
+      "createdAt": "2025-09-27T00:00:00.000Z",
+      "category": "Sustainability"
+    },
     {
       "id": "blog-1",
       "title": "5 Benefits of Eating Organic Eggs",
@@ -326,7 +499,11 @@
       "name": "Emmanuel Chukwuka Ogugua",
       "position": "Executive Director",
       "bio": "Founder of PoshPOULE Farms Ltd, Emmanuel combines a background in Information Technology and entrepreneurship with a deep passion for sustainable agriculture. He has over 10 years of experience in business development and farm management.",
-      "expertise": ["Agribusiness strategy", "technology integration", "project management"],
+      "expertise": [
+        "Agribusiness strategy",
+        "technology integration",
+        "project management"
+      ],
       "yearsExperience": 10,
       "image": "/images/team/EmmanuelTeam1-CEO.png",
       "featured": true,
@@ -337,7 +514,12 @@
       "name": "Joshua O. Ogugua",
       "position": "Administration Director",
       "bio": "Joshua oversees administration and operations at PoshPOULE® Farms. With a background in Psychology and Marketing, he combines people management skills with market insight to strengthen the farm's processes, customer relations, and brand presence.",
-      "expertise": ["Organizational management", "strategic marketing", "team development", "customer relations"],
+      "expertise": [
+        "Organizational management",
+        "strategic marketing",
+        "team development",
+        "customer relations"
+      ],
       "yearsExperience": 7,
       "image": "/images/team/JoshuaTeam2.jpg",
       "featured": true,
@@ -348,7 +530,11 @@
       "name": "Chidera Lois Ogugua",
       "position": "Operations Manager",
       "bio": "Skilled in operations and supply chain management, Chidera oversees farm production, quality control, and customer fulfillment. With 7 years of hands-on experience, she ensures every product meets PoshPOULE's premium standards.",
-      "expertise": ["Operations", "logistics", "customer relations"],
+      "expertise": [
+        "Operations",
+        "logistics",
+        "customer relations"
+      ],
       "yearsExperience": 7,
       "image": "/images/team/ChideraTeam3.JPG",
       "featured": true,
@@ -359,7 +545,11 @@
       "name": "Chikwado Ezike",
       "position": "Farm Supervisor",
       "bio": "Chikwado manages the daily farm activities, from poultry health to crop cycles. With 5 years in organic farming, he ensures best practices are followed on the ground.",
-      "expertise": ["Poultry rearing", "organic crop production", "staff training"],
+      "expertise": [
+        "Poultry rearing",
+        "organic crop production",
+        "staff training"
+      ],
       "yearsExperience": 5,
       "image": "/images/team/ChikwadoTeam4.jpg",
       "featured": true,
@@ -400,7 +590,13 @@
     "altSlogan": "Discover Excellence in Organic Living",
     "mission": "At PoshPOULE® Farms Ltd, our mission is to provide healthy, organic poultry and farm produce through sustainable practices while empowering communities with trusted agribusiness solutions. We combine traditional farming wisdom with modern sustainable methods to ensure that healthy, nutritious food is accessible to everyone. Every egg, every vegetable, every piece of fruit that leaves our farm carries our promise of quality, sustainability, and care — for our consumers, our communities, and our planet.",
     "story": "PoshPOULE® Farms Ltd was founded in 2015 out of a deep passion for healthy living and food security. What began as a small family homestead with a few chickens and a vegetable patch has grown into a diversified organic agribusiness. Rooted in our tradition of growing what we eat the purest way possible, we now produce premium poultry, fresh eggs, vegetables, fruits, and crops through sustainable and transparent farming practices. From humble beginnings to serving hundreds of families, our journey has always been guided by trust, innovation, and care for both people and the planet. Today, PoshPOULE is proud to be a leading organic farm brand—nourishing communities with pure goodness while building a resilient agribusiness for the future.",
-    "values": ["Integrity and transparency", "Commitment to health and sustainability", "Innovation in agribusiness", "Community empowerment", "Excellence in quality"],
+    "values": [
+      "Integrity and transparency",
+      "Commitment to health and sustainability",
+      "Innovation in agribusiness",
+      "Community empowerment",
+      "Excellence in quality"
+    ],
     "yearFounded": 2015,
     "primaryColor": "#1F6E3A",
     "accentColor": "#D4AF37",

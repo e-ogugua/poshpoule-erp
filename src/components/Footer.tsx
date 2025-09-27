@@ -41,19 +41,19 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Company Info */}
           <div className="lg:col-span-2">
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="relative w-12 h-12">
+            <div className="flex items-center space-x-5 mb-6">
+              <div className="relative w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden bg-white shadow-xl shadow-primary/20 ring-4 ring-white/80">
                 <Image
                   src="/logo.png"
                   alt="PoshPOULE Farms Logo"
                   fill
                   className="object-contain"
-                  sizes="48px"
+                  sizes="(max-width: 768px) 120px, 140px"
                 />
               </div>
-              <span className="font-heading font-semibold text-lg">{settings.siteName}</span>
+              <span className="font-heading font-bold text-3xl md:text-4xl tracking-wide">{settings.siteName}</span>
             </div>
-            <p className="text-neutral-300 mb-6">
+            <p className="text-neutral-300 mb-6 text-lg">
               {settings.slogan}
             </p>
             <div className="space-y-2">

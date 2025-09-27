@@ -46,6 +46,7 @@ export interface Order {
   status: 'new' | 'confirmed' | 'ready' | 'completed' | 'cancelled';
   orderType: 'pickup' | 'delivery';
   scheduledDate: string;
+  scheduledTime?: string;
   deliveryAddress?: string;
   notes?: string;
   createdAt: string;

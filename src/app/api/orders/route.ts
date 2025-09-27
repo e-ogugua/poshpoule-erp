@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { readDatabase, writeDatabase, Order, getNextId } from '@/lib/database';
+import { sendOrderNotificationEmail } from '@/lib/email';
 
 export async function GET() {
   try {
@@ -35,6 +36,12 @@ export async function POST(request: NextRequest) {
     // Add to database
     data.orders.push(newOrder);
     writeDatabase(data);
+
+    try {
+      await sendOrderNotificationEmail(newOrder);
+    } catch (emailError) {
+      console.error('Order created but failed to send notification email:', emailError);
+    }
 
     return NextResponse.json(newOrder, { status: 201 });
   } catch (error) {

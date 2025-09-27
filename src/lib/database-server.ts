@@ -72,6 +72,7 @@ export interface BlogPost {
   author: string;
   published: boolean;
   createdAt: string;
+  category: string;
 }
 
 export interface GalleryImage {

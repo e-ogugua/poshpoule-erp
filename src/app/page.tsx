@@ -5,6 +5,7 @@ import { readDatabase } from '@/lib/database-server';
 import { ArrowRight } from 'lucide-react';
 import { Metadata } from 'next';
 import Image from 'next/image';
+import { HeroCarousel } from '@/components/HeroCarousel';
 
 export const metadata: Metadata = {
   title: 'PoshPOULE Farms Ltd - Premium Organic Poultry & Farm Produce',
@@ -84,6 +85,20 @@ export default function Home() {
   const featuredProducts = data.products.filter(product => product.featured);
   const testimonials = data.testimonials.filter(testimonial => testimonial.featured);
   const settings = data.settings;
+  const heroSlides = [
+    {
+      src: '/images/products/OrganicShopShelve.jpg',
+      alt: 'Organic shop display at PoshPOULE',
+    },
+    {
+      src: '/images/farm/farmFreshEggs.PNG',
+      alt: 'Freshly collected organic eggs from PoshPOULE',
+    },
+    {
+      src: '/images/gallery/HowToFarmSustainably.png',
+      alt: 'Sustainable farming practices at PoshPOULE',
+    },
+  ];
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -91,35 +106,21 @@ export default function Home() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-primary to-green-700 text-white overflow-hidden">
-          <div className="absolute inset-0">
-            <Image
-              src="/images/farm/GrowingBroilers.JPG"
-              alt="PoshPOULE Farm Hero"
-              fill
-              className="object-cover opacity-20"
-              sizes="100vw"
-            />
-          </div>
-          <div className="relative container mx-auto px-4 py-16">
-            <div className="text-center">
-              <h1 className="font-heading text-5xl md:text-7xl font-heading-bold mb-6">
+        <HeroCarousel slides={heroSlides} />
+
+        {/* Introductory Copy */}
+        <section className="py-12 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto text-center space-y-6">
+              <h1 className="font-heading text-4xl md:text-5xl font-heading-bold">
                 {settings.siteName}
               </h1>
-              <p className="font-heading text-2xl md:text-3xl font-heading-medium mb-8">
+              <p className="font-heading text-xl md:text-2xl font-heading-medium text-primary">
                 {settings.slogan}
               </p>
-              <p className="text-lg md:text-xl opacity-90 mb-8 max-w-3xl mx-auto">
+              <p className="text-lg text-neutral-700">
                 At PoshPOULE® Farms Ltd, our mission is to provide healthy, organic poultry and farm produce through sustainable practices while empowering communities with trusted agribusiness solutions.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/preorder" className="btn-secondary">
-                  Pre-Order Now
-                </Link>
-                <Link href="/products" className="bg-white text-primary px-8 py-3 rounded-lg font-medium hover:bg-neutral-100 transition-colors">
-                  Shop Products
-                </Link>
-              </div>
             </div>
           </div>
         </section>
@@ -163,9 +164,12 @@ export default function Home() {
             </div>
 
             <div className="text-center">
-              <Link href="/products" className="btn-primary">
+              <Link
+                href="/products"
+                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary to-emerald-600 px-8 py-3 font-semibold text-white shadow-lg shadow-primary/20 transition-all hover:from-primary/90 hover:to-emerald-700"
+              >
                 View All Products
-                <ArrowRight className="h-4 w-4 ml-2" />
+                <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
           </div>
