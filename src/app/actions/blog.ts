@@ -19,8 +19,11 @@ async function readDatabase() {
 export async function getBlogPosts(): Promise<BlogPost[]> {
   try {
     const data = await readDatabase();
-    // Return all blog posts, regardless of published status
-    return data.blogPosts || [];
+    // Return all blog posts, sorted by date (newest first)
+    const posts = data.blogPosts || [];
+    return posts.sort((a: BlogPost, b: BlogPost) => 
+      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
   } catch (error) {
     console.error('Error getting blog posts:', error);
     return [];
