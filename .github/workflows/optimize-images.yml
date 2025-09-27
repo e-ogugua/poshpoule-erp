@@ -1,0 +1,59 @@
+name: Optimize Images
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'public/images/**'
+      - '.github/workflows/optimize-images.yml'
+      - 'package.json'
+  workflow_dispatch:
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm install -g sharp-cli
+
+    - name: Install project dependencies
+      run: npm install
+
+    - name: Optimize images
+      run: |
+        # Create optimized directory
+        mkdir -p public/optimized/images/
+        
+        # Install ImageMagick
+        sudo apt-get update
+        sudo apt-get install -y imagemagick
+        
+        # Run optimization script
+        chmod +x optimize_images.sh
+        ./optimize_images.sh
+
+    - name: Commit changes
+      run: |
+        git config --global user.name 'GitHub Actions'
+        git config --global user.email 'actions@github.com'
+        
+        # Check if there are changes to commit
+        if [ -n "$(git status --porcelain)" ]; then
+          git add public/optimized/
+          git add db/data.json
+          git commit -m "chore: auto-optimize images [skip ci]"
+          git push
+        else
+          echo "No changes to commit"
+        fi
