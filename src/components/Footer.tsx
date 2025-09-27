@@ -41,38 +41,44 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Company Info */}
           <div className="lg:col-span-2">
-            <div className="flex flex-col md:flex-row items-center md:items-end space-y-4 md:space-y-0 md:space-x-5 mb-6">
-              <div className="relative w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden bg-white shadow-xl shadow-primary/20 ring-4 ring-white/80 flex items-center justify-center p-2">
+            <div className="flex items-start space-x-6">
+              <div className="relative w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden bg-white shadow-xl shadow-primary/20 ring-2 ring-white/80 flex-shrink-0">
                 <div className="relative w-full h-full">
                   <Image
                     src="/optimized-images/logo.webp"
                     alt="PoshPOULE Farms Logo"
                     fill
-                    className="object-contain drop-shadow-md"
+                    className="object-contain p-2"
                     style={{
-                      filter: 'contrast(1.1) drop-shadow(0 2px 2px rgba(0,0,0,0.1))',
+                      filter: 'contrast(1.15) drop-shadow(0 1px 2px rgba(0,0,0,0.1))',
+                      imageRendering: '-webkit-optimize-contrast',
+                      transform: 'translateZ(0)',
+                      backfaceVisibility: 'hidden',
+                      WebkitBackfaceVisibility: 'hidden',
+                      WebkitFontSmoothing: 'subpixel-antialiased',
                     }}
-                    sizes="(max-width: 768px) 96px, 128px"
+                    sizes="(max-width: 768px) 112px, 144px"
+                    quality={100}
                   />
                 </div>
               </div>
-              <span className="font-heading font-bold text-3xl md:text-4xl tracking-wide text-center md:text-left">{settings.siteName}</span>
-            </div>
-            <p className="text-neutral-300 mb-6 text-lg">
-              {settings.slogan}
-            </p>
-            <div className="space-y-2">
-              <div className="flex items-center space-x-2 text-neutral-300">
-                <Mail className="h-4 w-4" />
-                <span>{settings.contactEmail}</span>
-              </div>
-              <div className="flex items-center space-x-2 text-neutral-300">
-                <Phone className="h-4 w-4" />
-                <span>{settings.contactPhone}</span>
-              </div>
-              <div className="flex items-center space-x-2 text-neutral-300">
-                <MapPin className="h-4 w-4" />
-                <span>{settings.address}</span>
+              <div className="pt-1">
+                <h2 className="font-heading font-bold text-xl md:text-2xl mb-2">{settings.siteName}</h2>
+                <p className="text-neutral-300 text-sm mb-4">{settings.slogan}</p>
+                <div className="space-y-1.5 text-sm">
+                  <div className="flex items-center space-x-2 text-neutral-300">
+                    <Mail className="h-4 w-4 flex-shrink-0" />
+                    <span>{settings.contactEmail}</span>
+                  </div>
+                  <div className="flex items-center space-x-2 text-neutral-300">
+                    <Phone className="h-4 w-4 flex-shrink-0" />
+                    <span>{settings.contactPhone}</span>
+                  </div>
+                  <div className="flex items-center space-x-2 text-neutral-300">
+                    <MapPin className="h-4 w-4 flex-shrink-0" />
+                    <span>{settings.address}</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

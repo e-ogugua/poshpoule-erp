@@ -65,18 +65,24 @@ export function Header() {
           <div className="flex items-center justify-between py-4 md:py-5">
             {/* Logo */}
             <Link href="/">
-              <div className="relative w-24 h-24 md:w-28 md:h-28 rounded-[32px] overflow-hidden bg-white shadow-xl shadow-primary/20 ring-2 ring-primary/10 transition-transform duration-200 hover:-translate-y-1 flex items-center justify-center p-2">
+              <div className="relative w-32 h-32 md:w-36 md:h-36 rounded-[32px] overflow-hidden bg-white shadow-xl shadow-primary/20 ring-2 ring-primary/10 transition-transform duration-200 hover:-translate-y-1">
                 <div className="relative w-full h-full">
                   <Image
                     src="/optimized-images/logo.webp"
                     alt="PoshPOULE Farms Logo"
                     fill
-                    className="object-contain drop-shadow-md"
+                    className="object-contain p-2"
                     style={{
-                      filter: 'contrast(1.1) drop-shadow(0 2px 2px rgba(0,0,0,0.1))',
+                      filter: 'contrast(1.15) drop-shadow(0 1px 2px rgba(0,0,0,0.1))',
+                      imageRendering: '-webkit-optimize-contrast',
+                      transform: 'translateZ(0)',
+                      backfaceVisibility: 'hidden',
+                      WebkitBackfaceVisibility: 'hidden',
+                      WebkitFontSmoothing: 'subpixel-antialiased',
                     }}
                     priority
-                    sizes="(max-width: 768px) 96px, 128px"
+                    sizes="(max-width: 768px) 128px, 144px"
+                    quality={100}
                   />
                 </div>
               </div>
