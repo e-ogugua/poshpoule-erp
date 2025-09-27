@@ -4,24 +4,25 @@ import { sendOrderNotificationEmail } from '@/lib/email';
 export async function GET() {
   try {
     const testOrder = {
-      id: 999,
+      id: 'test-order-999',
       customerName: 'Test Customer',
       customerEmail: 'test@example.com',
       customerPhone: '08012345678',
-      orderType: 'pickup',
+      orderType: 'pickup' as const,
       scheduledDate: '2023-12-31',
       scheduledTime: '14:00',
       notes: 'This is a test order',
       products: [
         {
-          id: '1',
+          productId: 'test-product-1',
           name: 'Test Product',
           quantity: 1,
           priceNaira: 10000
         }
       ],
       totalAmount: 10000,
-      status: 'new',
+      currency: 'NGN',
+      status: 'new' as const,
       createdAt: new Date().toISOString(),
     };
 
