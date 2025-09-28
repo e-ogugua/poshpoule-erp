@@ -1,25 +1,11 @@
 {
-  "timestamp": "2025-09-27T10:02:22.554Z",
-  "totalImages": 157,
-  "totalOriginalSize": 122557482,
-  "totalOptimizedSize": 27618780,
-  "totalSaved": 94938702,
-  "percentageSaved": "77.46%",
+  "timestamp": "2025-09-28T00:03:42.149Z",
+  "totalImages": 160,
+  "totalOriginalSize": 132676097,
+  "totalOptimizedSize": 28562708,
+  "totalSaved": 104113389,
+  "percentageSaved": "78.47%",
   "optimizedImages": [
-    {
-      "original": "public/images/blog/eggs-benefits.jpg",
-      "optimized": "public/optimized-images/blog/eggs-benefits.webp",
-      "originalSize": 728249,
-      "optimizedSize": 68824,
-      "saved": 659425
-    },
-    {
-      "original": "public/images/blog/farm-day.jpg",
-      "optimized": "public/optimized-images/blog/farm-day.webp",
-      "originalSize": 253088,
-      "optimizedSize": 13822,
-      "saved": 239266
-    },
     {
       "original": "public/images/blog/organic-eggs.jpg",
       "optimized": "public/optimized-images/blog/organic-eggs.webp",
@@ -609,6 +595,13 @@
       "saved": 224046
     },
     {
+      "original": "public/images/products/eggs/FreshEgg3.JPG",
+      "optimized": "public/optimized-images/products/eggs/FreshEgg3.JPG.webp",
+      "originalSize": 2376341,
+      "optimizedSize": 249458,
+      "saved": 2126883
+    },
+    {
       "original": "public/images/products/eggs/OrganicEggs.JPG",
       "optimized": "public/optimized-images/products/eggs/OrganicEggs.JPG.webp",
       "originalSize": 1134212,
@@ -621,6 +614,34 @@
       "originalSize": 728249,
       "optimizedSize": 68824,
       "saved": 659425
+    },
+    {
+      "original": "public/images/products/eggs/freeEggsDelivery.JPG",
+      "optimized": "public/optimized-images/products/eggs/freeEggsDelivery.JPG.webp",
+      "originalSize": 2263286,
+      "optimizedSize": 221298,
+      "saved": 2041988
+    },
+    {
+      "original": "public/images/products/eggs/freshEgg2.JPG",
+      "optimized": "public/optimized-images/products/eggs/freshEgg2.JPG.webp",
+      "originalSize": 1962458,
+      "optimizedSize": 183594,
+      "saved": 1778864
+    },
+    {
+      "original": "public/images/products/eggs/freshegg1.JPG",
+      "optimized": "public/optimized-images/products/eggs/freshegg1.JPG.webp",
+      "originalSize": 2166869,
+      "optimizedSize": 206078,
+      "saved": 1960791
+    },
+    {
+      "original": "public/images/products/eggs/organicFarmEggs.JPG",
+      "optimized": "public/optimized-images/products/eggs/organicFarmEggs.JPG.webp",
+      "originalSize": 2111723,
+      "optimizedSize": 209372,
+      "saved": 1902351
     },
     {
       "original": "public/images/products/fruits/FruitsCrops.jpg",
@@ -700,11 +721,11 @@
       "saved": 351638
     },
     {
-      "original": "public/images/team/ChikwadoTeam4.jpg",
+      "original": "public/images/team/ChikwadoTeam4.png",
       "optimized": "public/optimized-images/team/ChikwadoTeam4.webp",
-      "originalSize": 109426,
-      "optimizedSize": 72004,
-      "saved": 37422
+      "originalSize": 328701,
+      "optimizedSize": 28778,
+      "saved": 299923
     },
     {
       "original": "public/images/team/EmmanuelTeam1-CEO.png",

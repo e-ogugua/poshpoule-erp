@@ -1,33 +1,15 @@
-# PoshPOULE Farms Ltd - Website & Admin Dashboard
+# PoshPOULE Farms Ltd
 
-A complete, production-ready website and admin dashboard for PoshPOULE Farms Ltd, featuring organic poultry, fresh eggs, vegetables, and farm-fresh produce.
+A modern, responsive website for PoshPOULE Farms Ltd, showcasing organic poultry, fresh eggs, and farm-fresh produce with multi-currency support.
 
-## 🌟 Features
+## 🌟 Key Features
 
-### Public Website
-- **Responsive Design**: Mobile-first design with TailwindCSS
-- **Product Catalog**: Showcase of organic products with pricing
-- **Currency Switcher**: Support for NGN, USD, and GBP with live conversion
-- **Pre-Order System**: Complete order flow with form validation
-- **Blog System**: Farm updates and educational content
-- **Gallery**: Photo showcase of the farm and products
-- **Contact Forms**: Customer inquiry handling
-- **SEO Optimized**: Meta tags, structured data, and performance optimization
-
-### Admin Dashboard
-- **Order Management**: View, update, and manage customer orders
-- **Product CRUD**: Add, edit, and manage product inventory
-- **Customer Management**: Customer database and order history
-- **Schedule Management**: Pickup and delivery slot management
-- **Blog Management**: Create and manage blog posts
-- **Site Settings**: Configure branding, pricing, and content
-
-### Technical Features
-- **File-Based Database**: JSON storage with backup system
-- **No External APIs**: Works completely offline with no API keys required
-- **TypeScript**: Full type safety throughout the application
-- **Next.js App Router**: Modern React framework with server components
-- **Authentication**: Simple session-based auth for admin access
+- **Multi-Currency Support**: Seamlessly switch between NGN, USD, and GBP with static conversion rates
+- **Responsive Design**: Mobile-first approach with TailwindCSS
+- **Product Showcase**: Beautiful display of farm products with pricing
+- **Contact Forms**: Easy customer inquiries
+- **Performance Optimized**: Fast loading with Next.js static generation
+- **No External Dependencies**: Works without API keys or external services
 
 ## 🚀 Quick Start
 
@@ -35,9 +17,13 @@ A complete, production-ready website and admin dashboard for PoshPOULE Farms Ltd
 - Node.js 18+ 
 - npm or yarn
 
-### Installation
+### Local Development
 
-1. **Clone or download** the project files
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/yourusername/poshpoule-farms.git
+   cd poshpoule-farms
+   ```
 
 2. **Install dependencies**:
    ```bash
@@ -48,15 +34,33 @@ A complete, production-ready website and admin dashboard for PoshPOULE Farms Ltd
    ```bash
    npm run dev
    ```
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-4. **Open your browser** and visit `http://localhost:3000`
+## 🚀 Deployment
 
-### Admin Access
+### Vercel (Recommended)
 
-- **Admin Email**: `admin@poshpoule.com`
-- **Admin Password**: `DemoPass123!`
-- **Staff Email**: `staff@poshpoule.com` 
-- **Staff Password**: `StaffPass123!`
+1. Push your code to a GitHub repository
+2. Import the repository to Vercel
+3. Deploy! No environment variables needed for the demo
+
+### Other Platforms
+Build the project and deploy the static files:
+```bash
+npm run build
+```
+
+## 💰 Currency System
+- Supports NGN (₦), USD ($), and GBP (£)
+- Static conversion rates for demo purposes
+- Currency preference is saved in local storage
+
+## 📦 Dependencies
+- Next.js 14
+- React 18
+- TypeScript
+- TailwindCSS
+- Framer Motion (for animations)
 
 Visit `/admin` to access the admin dashboard.
 
