@@ -2,9 +2,12 @@
   "name": "poshpoule-farms-website",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "dev": "next dev",
-    "build": "npm run optimize-images && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "optimize-images": "node scripts/optimize-images.js"

@@ -13,7 +13,11 @@ export const metadata: Metadata = {
   description: 'Premium organic poultry, fresh eggs, vegetables, and farm-fresh produce. Experience the taste of pure, healthy goodness from our sustainable farm.',
   keywords: 'organic farm, poultry, fresh eggs, vegetables, sustainable farming, healthy food',
   authors: [{ name: 'PoshPOULE Farms Ltd' }],
-  viewport: 'width=device-width, initial-scale=1',
+}
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
 }
 
 export default function RootLayout({

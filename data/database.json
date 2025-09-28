@@ -1,0 +1,146 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Fresh Organic Eggs (6 Pack)",
+      "slug": "fresh-organic-eggs-6-pack",
+      "description": "Farm-fresh organic eggs from free-range chickens. Rich in protein and essential nutrients.",
+      "priceNaira": 2500,
+      "category": "eggs",
+      "image": "/images/products/eggs.jpg",
+      "images": [
+        "/images/products/eggs.jpg"
+      ],
+      "featured": true,
+      "available": true,
+      "stock": 100,
+      "basePriceNaira": 2000,
+      "createdAt": "2025-09-28T15:45:47.455Z"
+    },
+    {
+      "id": 2,
+      "name": "Organic Chicken (Whole)",
+      "slug": "organic-chicken-whole",
+      "description": "Free-range, organically raised chicken, processed fresh for optimal taste and nutrition.",
+      "priceNaira": 6500,
+      "category": "poultry",
+      "image": "/images/products/chicken-whole.jpg",
+      "images": [
+        "/images/products/chicken-whole.jpg"
+      ],
+      "featured": true,
+      "available": true,
+      "stock": 50,
+      "basePriceNaira": 6000,
+      "createdAt": "2025-09-28T15:45:47.455Z"
+    },
+    {
+      "id": 3,
+      "name": "Fresh Turkey (Whole)",
+      "slug": "fresh-turkey-whole",
+      "description": "Premium free-range turkey, perfect for special occasions and family dinners.",
+      "priceNaira": 25000,
+      "category": "poultry",
+      "image": "/images/products/turkey.jpg",
+      "images": [
+        "/images/products/turkey.jpg"
+      ],
+      "featured": true,
+      "available": true,
+      "stock": 20,
+      "basePriceNaira": 23000,
+      "createdAt": "2025-09-28T15:45:47.455Z"
+    },
+    {
+      "id": 4,
+      "name": "Organic Chicken Wings",
+      "slug": "organic-chicken-wings",
+      "description": "Juicy and tender chicken wings, perfect for grilling or frying.",
+      "priceNaira": 3500,
+      "category": "poultry",
+      "image": "/images/products/chicken-wings.jpg",
+      "images": [
+        "/images/products/chicken-wings.jpg"
+      ],
+      "featured": false,
+      "available": true,
+      "stock": 75,
+      "basePriceNaira": 3000,
+      "createdAt": "2025-09-28T15:45:47.455Z"
+    },
+    {
+      "id": 5,
+      "name": "Organic Chicken Drumsticks",
+      "slug": "organic-chicken-drumsticks",
+      "description": "Tender and flavorful chicken drumsticks, great for grilling or baking.",
+      "priceNaira": 3800,
+      "category": "poultry",
+      "image": "/images/products/chicken-drumsticks.jpg",
+      "images": [
+        "/images/products/chicken-drumsticks.jpg"
+      ],
+      "featured": false,
+      "available": true,
+      "stock": 60,
+      "basePriceNaira": 3500,
+      "createdAt": "2025-09-28T15:45:47.455Z"
+    },
+    {
+      "id": 6,
+      "name": "Organic Chicken Breast",
+      "slug": "organic-chicken-breast",
+      "description": "Lean and protein-rich chicken breast, perfect for healthy meals.",
+      "priceNaira": 4500,
+      "category": "poultry",
+      "image": "/images/products/chicken-breast.jpg",
+      "images": [
+        "/images/products/chicken-breast.jpg"
+      ],
+      "featured": true,
+      "available": true,
+      "stock": 40,
+      "basePriceNaira": 4000,
+      "createdAt": "2025-09-28T15:45:47.455Z"
+    },
+    {
+      "id": 7,
+      "name": "Free-Range Duck",
+      "slug": "free-range-duck",
+      "description": "Rich and flavorful duck meat, perfect for special occasions.",
+      "priceNaira": 12000,
+      "category": "poultry",
+      "image": "/images/products/duck.jpg",
+      "images": [
+        "/images/products/duck.jpg"
+      ],
+      "featured": false,
+      "available": true,
+      "stock": 15,
+      "basePriceNaira": 11000,
+      "createdAt": "2025-09-28T15:45:47.455Z"
+    },
+    {
+      "id": 8,
+      "name": "Quail Eggs (Tray of 30)",
+      "slug": "quail-eggs-tray",
+      "description": "Nutrient-rich quail eggs, packed with vitamins and minerals.",
+      "priceNaira": 3500,
+      "category": "eggs",
+      "image": "/images/products/quail-eggs.jpg",
+      "images": [
+        "/images/products/quail-eggs.jpg"
+      ],
+      "featured": false,
+      "available": true,
+      "stock": 30,
+      "basePriceNaira": 3000,
+      "createdAt": "2025-09-28T15:45:47.455Z"
+    }
+  ],
+  "categories": [
+    "eggs",
+    "poultry"
+  ],
+  "orders": [],
+  "users": []
+}
