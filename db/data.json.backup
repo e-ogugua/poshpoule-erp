@@ -357,29 +357,6 @@
       "scheduledDate": "2024-01-16T14:00:00.000Z",
       "notes": "Ring the bell twice",
       "createdAt": "2024-01-11T09:30:00.000Z"
-    },
-    {
-      "id": "order-3",
-      "customerName": "Emmanuel Ogugua",
-      "customerEmail": "emmachuka@gmail.com",
-      "customerPhone": "08064508595",
-      "orderType": "pickup",
-      "deliveryAddress": "",
-      "scheduledDate": "2025-09-30",
-      "scheduledTime": "09:00",
-      "notes": "jj",
-      "products": [
-        {
-          "productId": "fresh-organic-eggs",
-          "name": "Fresh Organic Eggs",
-          "quantity": 1,
-          "priceNaira": 5700
-        }
-      ],
-      "totalAmount": 5700,
-      "currency": "NGN",
-      "status": "new",
-      "createdAt": "2025-09-29T14:48:55.161Z"
     }
   ],
   "leads": [],
