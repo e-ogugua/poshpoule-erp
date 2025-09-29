@@ -1,112 +1,115 @@
 'use client';
 
 import React, { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react';
+import { debugLogger } from '@/utils/debug';
 
 type Currency = 'NGN' | 'USD' | 'GBP';
-
-// Static exchange rates (NGN is the base currency)
-const STATIC_RATES = {
-  NGN: 1,
-  USD: 0.00065,  // 1 NGN = 0.00065 USD
-  GBP: 0.00050,  // 1 NGN = 0.00050 GBP
-} as const;
-
-const CURRENCY_FORMATS = {
-  NGN: { symbol: '₦', locale: 'en-NG' },
-  USD: { symbol: '$', locale: 'en-US' },
-  GBP: { symbol: '£', locale: 'en-GB' },
-} as const;
 
 interface CurrencyContextType {
   currency: Currency;
   setCurrency: (currency: Currency) => void;
-  convert: (priceNaira: number) => number;
-  convertPrice: (priceNaira: number) => number;
+  rates: Record<string, number>;
   formatPrice: (priceNaira: number) => string;
-  getCurrencySymbol: () => string;
+  isLoading: boolean;
+  error: string | null;
 }
 
 const CurrencyContext = createContext<CurrencyContextType | undefined>(undefined);
 
-// Check if we're on the client side
-const isBrowser = typeof window !== 'undefined';
-
-// Default currency
-const DEFAULT_CURRENCY = 'NGN';
-
 export function CurrencyProvider({ children }: { children: React.ReactNode }) {
-  const [currency, setCurrencyState] = useState<Currency>(DEFAULT_CURRENCY);
-  const [isMounted, setIsMounted] = useState(false);
-  const [version, setVersion] = useState(0);
+  const [currency, setCurrencyState] = useState<Currency>('NGN');
+  const [rates, setRates] = useState<Record<string, number>>({ 
+    NGN: 1, 
+    USD: 0.0013, 
+    GBP: 0.00105 
+  });
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  // Load saved currency preference from localStorage on mount
   useEffect(() => {
-    setIsMounted(true);
+    debugLogger.info('CurrencyProvider initializing');
     
-    if (isBrowser) {
-      try {
-        const savedCurrency = localStorage.getItem('poshpoule-currency') as Currency;
-        if (savedCurrency && STATIC_RATES[savedCurrency as keyof typeof STATIC_RATES]) {
-          setCurrencyState(savedCurrency);
-        }
-      } catch (error) {
-        console.error('Failed to load currency preference:', error);
+    try {
+      // Load currency from localStorage
+      const savedCurrency = localStorage.getItem('poshpoule-currency') as Currency;
+      if (savedCurrency && ['NGN', 'USD', 'GBP'].includes(savedCurrency)) {
+        setCurrencyState(savedCurrency);
+        debugLogger.info('Loaded saved currency preference', { currency: savedCurrency });
       }
+
+      // Load rates from database (this would need to be fetched from API in real app)
+      const defaultRates = { 
+        NGN: 1, 
+        USD: 0.0013, 
+        GBP: 0.00105 
+      };
+      setRates(defaultRates);
+      localStorage.setItem('poshpoule-rates', JSON.stringify(defaultRates));
+      
+      setIsLoading(false);
+      debugLogger.info('CurrencyProvider initialized successfully');
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+      setError(errorMessage);
+      debugLogger.error('CurrencyProvider initialization failed', err);
+      setIsLoading(false);
     }
   }, []);
 
   const setCurrency = useCallback((newCurrency: Currency) => {
-    if (newCurrency !== currency) {
-      setCurrencyState(newCurrency);
-      setVersion(v => v + 1); // Force update all consumers
-      
-      if (isBrowser) {
-        try {
-          localStorage.setItem('poshpoule-currency', newCurrency);
-        } catch (error) {
-          console.error('Failed to save currency preference:', error);
+    try {
+      if (newCurrency !== currency) {
+        setCurrencyState(newCurrency);
+        debugLogger.info('Currency changed', { from: currency, to: newCurrency });
+        
+        if (typeof window !== 'undefined') {
+          try {
+            localStorage.setItem('poshpoule-currency', newCurrency);
+          } catch (err) {
+            debugLogger.error('Failed to save currency preference', err);
+          }
         }
       }
+    } catch (err) {
+      debugLogger.error('Failed to set currency', err);
     }
-  }, [currency, isBrowser]);
-
-  // Memoize all derived values with proper dependencies
-  const convertPrice = useCallback((priceNaira: number): number => {
-    const rate = STATIC_RATES[currency] || 1;
-    return priceNaira * rate;
   }, [currency]);
 
   const formatPrice = useCallback((priceNaira: number): string => {
-    const converted = convertPrice(priceNaira);
-    const format = CURRENCY_FORMATS[currency] || CURRENCY_FORMATS.NGN;
-    const { symbol, locale } = format;
-    
-    if (currency === 'NGN') {
-      return `${symbol}${Math.round(converted).toLocaleString(locale)}`;
+    try {
+      const rate = rates[currency] || 1;
+      const convertedPrice = priceNaira * rate;
+      
+      switch (currency) {
+        case 'NGN':
+          return `₦${convertedPrice.toLocaleString()}`;
+        case 'USD':
+          return `$${convertedPrice.toFixed(2)}`;
+        case 'GBP':
+          return `£${convertedPrice.toFixed(2)}`;
+        default:
+          return `₦${priceNaira.toLocaleString()}`;
+      }
+    } catch (err) {
+      debugLogger.error('Failed to format price', { priceNaira, currency, error: err });
+      return `₦${priceNaira.toLocaleString()}`;
     }
-    
-    return new Intl.NumberFormat(locale, {
-      style: 'currency',
-      currency,
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    }).format(converted);
-  }, [currency, convertPrice]);
+  }, [currency, rates]);
 
-  const getCurrencySymbol = useCallback((): string => {
-    return (CURRENCY_FORMATS[currency] || CURRENCY_FORMATS.NGN).symbol;
-  }, [currency]);
-
-  // Create a stable context value
   const contextValue = useMemo(() => ({
     currency,
     setCurrency,
-    convert: convertPrice,
-    convertPrice,
+    rates,
     formatPrice,
-    getCurrencySymbol,
-    _version: version, // Include version to force updates
-  }), [currency, setCurrency, convertPrice, formatPrice, getCurrencySymbol, version]);
+    isLoading,
+    error,
+  }), [currency, setCurrency, rates, formatPrice, isLoading, error]);
+
+  debugLogger.info('CurrencyProvider rendering', { 
+    currency, 
+    isLoading, 
+    error: error ? 'has error' : 'no error' 
+  });
 
   return (
     <CurrencyContext.Provider value={contextValue}>
@@ -115,10 +118,12 @@ export function CurrencyProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
-export const useCurrency = (): CurrencyContextType => {
+export function useCurrency() {
   const context = useContext(CurrencyContext);
   if (context === undefined) {
-    throw new Error('useCurrency must be used within a CurrencyProvider');
+    const error = new Error('useCurrency must be used within a CurrencyProvider');
+    debugLogger.error('useCurrency hook used outside provider', { error: error.message });
+    throw error;
   }
   return context;
-};
+}
