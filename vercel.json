@@ -8,10 +8,13 @@
   ],
   "build": {
     "env": {
-      "NEXT_TELEMETRY_DISABLED": "1"
+      "NEXT_TELEMETRY_DISABLED": "1",
+      "NODE_OPTIONS": "--max-old-space-size=4096"
     }
   },
-  "crons": [],
+  "buildCommand": "npm run build",
+  "installCommand": "npm install --legacy-peer-deps",
+  "outputDirectory": ".next",
   "regions": ["iad1"],
   "public": true,
   "cleanUrls": true,
