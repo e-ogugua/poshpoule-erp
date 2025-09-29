@@ -34,9 +34,13 @@ const CurrencyProviderWrapper = dynamic(
 );
 
 export const metadata: Metadata = {
-  title: 'PoshPOULE Farms Ltd - Pure Goodness, Eat Fresh, Eat Healthy',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://poshpoule-farms.vercel.app'),
+  title: {
+    default: 'PoshPOULE Farms - Organic Poultry & Fresh Produce',
+    template: '%s | PoshPOULE Farms'
+  },
   description: 'Premium organic poultry, fresh eggs, vegetables, and farm-fresh produce. Experience the taste of pure, healthy goodness from our sustainable farm.',
-  keywords: 'organic farm, poultry, fresh eggs, vegetables, sustainable farming, healthy food',
+  keywords: 'organic farm, poultry, fresh eggs, vegetables, sustainable farmer, healthy food',
   authors: [{ name: 'PoshPOULE Farms Ltd' }],
 };
 

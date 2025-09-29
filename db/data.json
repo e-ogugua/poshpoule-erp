@@ -20,21 +20,21 @@
   "products": [
     {
       "id": "fresh-organic-eggs",
-      "name": "Fresh Organic Eggs",
       "slug": "fresh-organic-eggs",
+      "name": "Fresh Organic Eggs",
       "description": "PoshPOULE organic eggs are produced from free-range, naturally fed hens. They're rich in nutrients, chemical-free, and come fresh from farm to table.",
       "priceNaira": 5700,
       "basePriceNaira": 5700,
       "category": "Poultry Produce",
       "stock": 100,
-      "image": "/images/products/eggs/farmFreshEggs.PNG",
+      "image": "/optimized/images/products/eggs/organicFarmEggs.webp",
       "images": [
-        "/images/products/eggs/farmFreshEggs.PNG",
-        "/images/gallery/freshEggs.JPG",
-        "/images/farm/FarmFreshLayedEggs.JPG",
+        "/optimized/images/products/eggs/organicFarmEggs.webp",
+        "/optimized/images/products/eggs/FreshEgg3.webp",
+        "/optimized/images/products/eggs/freshEgg2.webp",
         "/images/farm/handGrown.png",
         "/images/farm/ILoveOrganicFarming.png",
-        "/images/gallery/hero2.png"
+        "/images/farm/OrganicFarmProduce.jpg"
       ],
       "featured": true,
       "available": true,

@@ -85,7 +85,7 @@ export async function POST(request: NextRequest) {
       id: getNextId(data.products),
       ...productData,
       basePriceNaira: productData.priceNaira,
-      image: productData.image || '/images/farm/farmFreshEggs.PNG',
+      image: productData.image || '/optimized/images/products/eggs/organicFarmEggs.webp',
       images: productData.images || [],
       featured: productData.featured || false,
       available: productData.available !== false,
