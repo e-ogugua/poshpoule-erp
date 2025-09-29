@@ -75,19 +75,40 @@ const nextConfig = {
       // Disable source maps in production to reduce memory usage
       config.devtool = false;
       
-      // Disable the default webpack minifier to use swcMinify
-      config.optimization.minimizer = [];
+      // Configure minimizers for production
+      config.optimization.minimizer = [
+        new (require('terser-webpack-plugin'))({
+          parallel: true,
+          terserOptions: {
+            parse: { ecma: 8 },
+            compress: {
+              ecma: 5,
+              warnings: false,
+              comparisons: false,
+              inline: 2,
+            },
+            mangle: { safari10: true },
+            output: {
+              ecma: 5,
+              comments: false,
+              ascii_only: true,
+            },
+          },
+        }),
+        new (require('css-minimizer-webpack-plugin'))({
+          minimizerOptions: {
+            preset: [
+              'default',
+              {
+                discardComments: { removeAll: true },
+              },
+            ],
+          },
+        }),
+      ];
       
-      // Only add CSS minimizer if not already present
-      if (Array.isArray(config.optimization.minimizer)) {
-        try {
-          config.optimization.minimizer.push(
-            new (require('css-minimizer-webpack-plugin'))()
-          );
-        } catch (e) {
-          console.warn('css-minimizer-webpack-plugin not found, skipping CSS optimization');
-        }
-      }
+      // Enable minification
+      config.optimization.minimize = true;
     }
     
     // Important: return the modified config
@@ -96,15 +117,8 @@ const nextConfig = {
   
   // Experimental features
   experimental: {
-    // Disable features that might cause issues
-    optimizeCss: false, // Disable as we're handling it in webpack
+    // Enable scroll restoration
     scrollRestoration: true,
-    // Disable the new React compiler as it might cause issues
-    reactCompiler: false,
-    // Disable the new React server components as they might cause issues
-    serverComponents: false,
-    // Disable webpack's cache to prevent memory issues
-    webpackBuildWorker: false,
   },
   
   // Compiler options
