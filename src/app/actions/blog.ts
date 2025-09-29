@@ -4,7 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import { BlogPost } from '@/lib/database-server';
 
-const DB_PATH = path.join(process.cwd(), 'db', 'data.json');
+const DB_PATH = path.join(process.cwd(), 'public', 'data.json');
 
 async function readDatabase() {
   try {
