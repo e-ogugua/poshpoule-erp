@@ -7,13 +7,73 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import { HeroCarousel } from '@/components/HeroCarousel';
 
+type Product = {
+  id: string;
+  name: string;
+  description: string;
+  priceNaira: number;
+  image: string;
+  slug: string;
+  featured?: boolean;
+};
+
+type Testimonial = {
+  id: string;
+  name: string;
+  role?: string;
+  content: string;
+  rating: number;
+  image?: string;
+  location?: string;
+  featured?: boolean;
+};
+
+type Settings = {
+  siteName: string;
+  slogan: string;
+};
+
+type WhyChooseUsItem = {
+  icon: string;
+  title: string;
+  description: string;
+};
+
+type HomePageData = {
+  products: Product[];
+  testimonials: Testimonial[];
+  settings: Settings;
+  whyChooseUs: WhyChooseUsItem[];
+};
+
 export const metadata: Metadata = {
   title: 'PoshPOULE Farms Ltd - Premium Organic Poultry & Farm Produce',
   description: 'PoshPOULE Farms Ltd – Premium organic poultry, eggs, vegetables, and agribusiness solutions in Nigeria. Pure, healthy, and sustainable food for families and businesses.',
   keywords: 'Organic eggs Nigeria, poultry farm Enugu, buy fresh chicken Nigeria, organic vegetables Enugu, PoshPOULE Farms, sustainable farming Nigeria, healthy farm produce',
+  openGraph: {
+    title: 'PoshPOULE Farms - Premium Organic Farm Produce',
+    description: 'Fresh, organic, and sustainably grown produce from our farm to your table.',
+    type: 'website',
+    locale: 'en_NG',
+    siteName: 'PoshPOULE Farms',
+  },
 };
 
-function ProductCard({ product }: { product: any }) {
+// Revalidate every 1 hour (3600 seconds)
+export const revalidate = 3600;
+
+async function getHomePageData(): Promise<HomePageData> {
+  const data = readDatabase();
+  
+  return {
+    products: data.products || [],
+    testimonials: data.testimonials?.filter(t => t.featured) || [],
+    settings: data.settings || { siteName: 'PoshPOULE Farms', slogan: 'Pure. Healthy. Sustainable.' },
+    whyChooseUs: data.whyChooseUs || []
+  };
+}
+
+function ProductCard({ product }: { product: Product }) {
   return (
     <div className="card p-6">
       <div className="relative w-full h-48 mb-4">
@@ -40,7 +100,7 @@ function ProductCard({ product }: { product: any }) {
   );
 }
 
-function TestimonialCard({ testimonial }: { testimonial: any }) {
+function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
     <div className="card p-6">
       <div className="flex items-center mb-4">
@@ -51,26 +111,32 @@ function TestimonialCard({ testimonial }: { testimonial: any }) {
         ))}
       </div>
       <p className="text-body mb-4 italic">"{testimonial.content}"</p>
-      <div className="flex items-center">
-        <div className="relative w-12 h-12 mr-4 rounded-full overflow-hidden">
-          <Image
-            src={testimonial.image}
-            alt={testimonial.name}
-            fill
-            className="object-cover"
-            sizes="48px"
-          />
-        </div>
+      <div className="flex items-center mt-4">
+        {testimonial.image && (
+          <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
+            <Image
+              src={testimonial.image}
+              alt={testimonial.name}
+              width={48}
+              height={48}
+              className="object-cover w-full h-full"
+            />
+          </div>
+        )}
         <div>
           <p className="font-semibold">{testimonial.name}</p>
-          <p className="text-sm text-neutral-600">{testimonial.location}</p>
+          {testimonial.location && (
+            <p className="text-sm text-neutral-600">{testimonial.location}</p>
+          )}
+          {testimonial.role && (
+            <p className="text-sm text-neutral-600">{testimonial.role}</p>
+          )}
         </div>
       </div>
     </div>
   );
 }
-
-function WhyChooseUsCard({ item }: { item: { icon: string; title: string; description: string } }) {
+function WhyChooseUsCard({ item }: { item: WhyChooseUsItem }) {
   return (
     <div className="text-center">
       <div className="text-4xl mb-4">{item.icon}</div>
@@ -80,11 +146,9 @@ function WhyChooseUsCard({ item }: { item: { icon: string; title: string; descri
   );
 }
 
-export default function Home() {
-  const data = readDatabase();
-  const featuredProducts = data.products.filter(product => product.featured);
-  const testimonials = data.testimonials.filter(testimonial => testimonial.featured);
-  const settings = data.settings;
+export default async function Home() {
+  const { products, testimonials, settings, whyChooseUs } = await getHomePageData();
+  const featuredProducts = products.filter(product => product.featured);
   const heroSlides = [
     {
       src: '/images/products/OrganicShopShelve.jpg',
@@ -138,7 +202,7 @@ export default function Home() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {(data as any).whyChooseUs.map((item: { icon: string; title: string; description: string }, index: number) => (
+              {whyChooseUs.map((item, index) => (
                 <WhyChooseUsCard key={index} item={item} />
               ))}
             </div>
