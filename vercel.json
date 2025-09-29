@@ -12,8 +12,8 @@
       "NODE_OPTIONS": "--max-old-space-size=4096"
     }
   },
-  "buildCommand": "npm run build",
-  "installCommand": "npm install --legacy-peer-deps",
+  "buildCommand": "pnpm run build",
+  "installCommand": "pnpm install",
   "outputDirectory": ".next",
   "regions": ["iad1"],
   "public": true,
