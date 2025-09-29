@@ -1,11 +1,11 @@
 'use client';
 
 import React, { Component, ReactNode } from 'react';
+import { debugLogger } from '@/utils/debug';
 
 interface ErrorBoundaryProps {
   children: ReactNode;
   fallback?: ReactNode;
-  onError?: (error: Error, errorInfo: React.ErrorInfo) => void;
 }
 
 interface ErrorBoundaryState {
@@ -21,6 +21,10 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
 
   static getDerivedStateFromError(error: Error): ErrorBoundaryState {
     console.error('ErrorBoundary caught an error:', error);
+    debugLogger.error('ErrorBoundary caught error', { 
+      message: error.message,
+      stack: error.stack 
+    });
     return { hasError: true, error };
   }
 
@@ -31,10 +35,10 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
       componentStack: errorInfo.componentStack,
     });
     
-    // Call custom error handler if provided
-    if (this.props.onError) {
-      this.props.onError(error, errorInfo);
-    }
+    debugLogger.error('ErrorBoundary component error', {
+      error: error.message,
+      componentStack: errorInfo.componentStack,
+    });
   }
 
   render() {

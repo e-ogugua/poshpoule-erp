@@ -69,14 +69,7 @@ export default function CurrencyProviderWrapper({
   debugLogger.info('CurrencyProviderWrapper rendering provider');
   
   return (
-    <ErrorBoundary
-      onError={(error, errorInfo) => {
-        debugLogger.error('CurrencyProvider ErrorBoundary caught error', {
-          error: error.message,
-          componentStack: errorInfo.componentStack
-        });
-      }}
-    >
+    <ErrorBoundary>
       <CurrencyProvider>{children}</CurrencyProvider>
     </ErrorBoundary>
   );

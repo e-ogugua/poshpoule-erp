@@ -33,14 +33,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
       </head>
       <body className={inter.className}>
-        <ErrorBoundary
-          onError={(error, errorInfo) => {
-            debugLogger.error('Root ErrorBoundary caught error', { 
-              error: error.message,
-              componentStack: errorInfo.componentStack 
-            });
-          }}
-        >
+        <ErrorBoundary>
           <CurrencyProviderWrapper>
             {children}
           </CurrencyProviderWrapper>
