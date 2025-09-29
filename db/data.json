@@ -1,48 +1,4 @@
 {
-  "authors": [
-    {
-      "id": "author-emmanuel",
-      "name": "Emmanuel Ogugua",
-      "position": "Founder & CEO",
-      "description": "With over 15 years of experience in sustainable agriculture, Emmanuel leads PoshPOULE's vision for organic farming and community development.",
-      "image": "/images/team/emmanuel-ogugua.jpg"
-    },
-    {
-      "id": "author-chidera",
-      "name": "Chidera Ogugua",
-      "position": "Head of Poultry Operations",
-      "description": "Chidera specializes in organic poultry farming and sustainable livestock management, ensuring our chickens are raised in the healthiest environment.",
-      "image": "/images/team/chidera-ogugua.jpg"
-    },
-    {
-      "id": "author-chikwado",
-      "name": "Chikwado Ezike",
-      "position": "Farm Manager",
-      "description": "With expertise in crop rotation and sustainable farming techniques, Chikwado oversees our day-to-day farming operations.",
-      "image": "/images/team/chikwado-ezike.jpg"
-    },
-    {
-      "id": "team-heritage",
-      "name": "PoshPOULE Heritage Team",
-      "position": "Cultural Preservation",
-      "description": "Our heritage team works to preserve and promote traditional West African farming practices and indigenous crops.",
-      "image": "/images/team/heritage-team.jpg"
-    },
-    {
-      "id": "team-science",
-      "name": "PoshPOULE Science Team",
-      "position": "Research & Development",
-      "description": "Our science team combines traditional knowledge with modern research to improve our farming practices.",
-      "image": "/images/team/science-team.jpg"
-    },
-    {
-      "id": "team-poshpoule",
-      "name": "PoshPOULE Team",
-      "position": "Collective Wisdom",
-      "description": "Our dedicated team of farming experts, agronomists, and sustainability advocates working together to bring you the best organic produce.",
-      "image": "/images/team/poshpoule-team.jpg"
-    }
-  ],
   "users": [
     {
       "id": "admin-1",
@@ -449,9 +405,113 @@
       "currency": "NGN",
       "status": "new",
       "createdAt": "2025-09-29T16:12:45.831Z"
+    },
+    {
+      "id": "order-7",
+      "customerName": "Emmanuel Ogugua",
+      "customerEmail": "emmachuka@gmail.com",
+      "customerPhone": "08064508595",
+      "orderType": "pickup",
+      "deliveryAddress": "",
+      "scheduledDate": "2025-09-30",
+      "scheduledTime": "09:00",
+      "notes": "ss",
+      "products": [
+        {
+          "productId": "organic-vegetables-pack",
+          "name": "Organic Vegetables Pack",
+          "quantity": 1,
+          "priceNaira": 5000
+        }
+      ],
+      "totalAmount": 5000,
+      "currency": "NGN",
+      "status": "new",
+      "createdAt": "2025-09-29T16:33:07.292Z"
+    },
+    {
+      "id": "order-8",
+      "customerName": "Emmanuel Ogugua",
+      "customerEmail": "emmachuka@gmail.com",
+      "customerPhone": "08064508595",
+      "orderType": "pickup",
+      "deliveryAddress": "",
+      "scheduledDate": "2025-10-12",
+      "scheduledTime": "09:00",
+      "notes": "k",
+      "products": [
+        {
+          "productId": "fresh-organic-eggs",
+          "name": "Fresh Organic Eggs",
+          "quantity": 1,
+          "priceNaira": 5700
+        },
+        {
+          "productId": "broiler-chicken",
+          "name": "Broiler & Meat Chickens",
+          "quantity": 1,
+          "priceNaira": 12000
+        },
+        {
+          "productId": "workshop-training",
+          "name": "Workshop & Training (3 Months)",
+          "quantity": 1,
+          "priceNaira": 45000
+        },
+        {
+          "productId": "premium-mentorship",
+          "name": "Premium Mentorship Program (1 Year)",
+          "quantity": 1,
+          "priceNaira": 160000
+        },
+        {
+          "productId": "food-stall-export",
+          "name": "Food Stall Export Link & TasteBox Subscription",
+          "quantity": 1,
+          "priceNaira": 75000
+        }
+      ],
+      "totalAmount": 297700,
+      "currency": "NGN",
+      "status": "new",
+      "createdAt": "2025-09-29T16:46:10.491Z"
+    },
+    {
+      "id": "order-9",
+      "customerName": "Emmanuel Ogugua",
+      "customerEmail": "emmachuka@gmail.com",
+      "customerPhone": "08064508595",
+      "orderType": "pickup",
+      "deliveryAddress": "",
+      "scheduledDate": "2025-09-30",
+      "scheduledTime": "09:00",
+      "notes": "dd",
+      "products": [
+        {
+          "productId": "organic-fruits-pack",
+          "name": "Organic Fruits Pack",
+          "quantity": 1,
+          "priceNaira": 6000
+        },
+        {
+          "productId": "workshop-training",
+          "name": "Workshop & Training (3 Months)",
+          "quantity": 1,
+          "priceNaira": 45000
+        },
+        {
+          "productId": "food-stall-export",
+          "name": "Food Stall Export Link & TasteBox Subscription",
+          "quantity": 1,
+          "priceNaira": 75000
+        }
+      ],
+      "totalAmount": 126000,
+      "currency": "NGN",
+      "status": "new",
+      "createdAt": "2025-09-29T17:02:19.737Z"
     }
   ],
-  "leads": [],
   "testimonials": [
     {
       "id": "testimonial-1",
@@ -790,6 +850,29 @@
       "maxOrders": 10
     }
   ],
+  "leads": [],
+  "whyChooseUs": [
+    {
+      "icon": "🥬",
+      "title": "100% Organic",
+      "description": "No chemicals, no shortcuts."
+    },
+    {
+      "icon": "🐓",
+      "title": "Healthy Poultry",
+      "description": "Naturally raised, free-range."
+    },
+    {
+      "icon": "🚚",
+      "title": "Reliable Delivery",
+      "description": "Farm-fresh, straight to you."
+    },
+    {
+      "icon": "🌍",
+      "title": "Sustainable Farming",
+      "description": "Building a greener future."
+    }
+  ],
   "currencyRates": {
     "NGN": 1,
     "USD": 0.0012,
@@ -828,26 +911,48 @@
       "twitter": "https://x.com/poshpoulefarms"
     }
   },
-  "whyChooseUs": [
+  "authors": [
     {
-      "icon": "🥬",
-      "title": "100% Organic",
-      "description": "No chemicals, no shortcuts."
+      "id": "author-emmanuel",
+      "name": "Emmanuel Ogugua",
+      "position": "Founder & CEO",
+      "description": "With over 15 years of experience in sustainable agriculture, Emmanuel leads PoshPOULE's vision for organic farming and community development.",
+      "image": "/images/team/emmanuel-ogugua.jpg"
     },
     {
-      "icon": "🐓",
-      "title": "Healthy Poultry",
-      "description": "Naturally raised, free-range."
+      "id": "author-chidera",
+      "name": "Chidera Ogugua",
+      "position": "Head of Poultry Operations",
+      "description": "Chidera specializes in organic poultry farming and sustainable livestock management, ensuring our chickens are raised in the healthiest environment.",
+      "image": "/images/team/chidera-ogugua.jpg"
     },
     {
-      "icon": "🚚",
-      "title": "Reliable Delivery",
-      "description": "Farm-fresh, straight to you."
+      "id": "author-chikwado",
+      "name": "Chikwado Ezike",
+      "position": "Farm Manager",
+      "description": "With expertise in crop rotation and sustainable farming techniques, Chikwado oversees our day-to-day farming operations.",
+      "image": "/images/team/chikwado-ezike.jpg"
     },
     {
-      "icon": "🌍",
-      "title": "Sustainable Farming",
-      "description": "Building a greener future."
+      "id": "team-heritage",
+      "name": "PoshPOULE Heritage Team",
+      "position": "Cultural Preservation",
+      "description": "Our heritage team works to preserve and promote traditional West African farming practices and indigenous crops.",
+      "image": "/images/team/heritage-team.jpg"
+    },
+    {
+      "id": "team-science",
+      "name": "PoshPOULE Science Team",
+      "position": "Research & Development",
+      "description": "Our science team combines traditional knowledge with modern research to improve our farming practices.",
+      "image": "/images/team/science-team.jpg"
+    },
+    {
+      "id": "team-poshpoule",
+      "name": "PoshPOULE Team",
+      "position": "Collective Wisdom",
+      "description": "Our dedicated team of farming experts, agronomists, and sustainability advocates working together to bring you the best organic produce.",
+      "image": "/images/team/poshpoule-team.jpg"
     }
   ]
 }

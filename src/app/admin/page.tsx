@@ -1,15 +1,23 @@
-import { Header } from '@/components/Header';
-import { readDatabase } from '@/lib/database-server';
+'use client';
+
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState, Suspense } from 'react';
+
+// Components
+import { Sidebar } from '@/components/admin/Sidebar';
+import { AdminLoading } from '@/components/admin/AdminLoading';
+import { MenuItem } from '@/types/menu';
+
+// Icons
 import {
-  Package,
-  ShoppingCart,
-  Users,
-  Calendar,
-  FileText,
-  Settings,
-  LogOut,
-  BarChart3
+  Package as PackageIcon,
+  ShoppingCart as ShoppingCartIcon,
+  Calendar as CalendarIcon,
+  FileText as FileTextIcon,
+  Settings as SettingsIcon,
+  BarChart3 as BarChart3Icon,
+  AlertCircle,
 } from 'lucide-react';
 
 interface AdminStats {
@@ -20,107 +28,111 @@ interface AdminStats {
 }
 
 export default function AdminDashboard() {
-  const data = readDatabase();
-  const totalOrders = data.orders.length;
-  const pendingOrders = data.orders.filter(order => order.status === 'new' || order.status === 'confirmed').length;
-  const totalProducts = data.products.length;
-  const totalRevenue = data.orders
-    .filter(order => order.status === 'completed')
-    .reduce((sum, order) => sum + order.totalAmount, 0);
+  const [stats, setStats] = useState<AdminStats>({
+    totalOrders: 0,
+    pendingOrders: 0,
+    totalProducts: 0,
+    totalRevenue: 0
+  });
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const stats: AdminStats = {
-    totalOrders,
-    pendingOrders,
-    totalProducts,
-    totalRevenue,
+  const handleLogout = () => {
+    // TODO: Implement logout logic
+    router.push('/login');
   };
 
-  const menuItems = [
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch('/api/admin/stats');
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch stats');
+        }
+        
+        const data = await response.json();
+        setStats(data);
+      } catch (err) {
+        console.error('Error fetching stats:', err);
+        setError(err instanceof Error ? err.message : 'An error occurred');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchStats();
+  }, []);
+
+  const menuItems: MenuItem[] = [
     {
       name: 'Dashboard',
       href: '/admin',
-      icon: BarChart3,
+      icon: BarChart3Icon,
       current: true,
     },
     {
       name: 'Orders',
       href: '/admin/orders',
-      icon: ShoppingCart,
-      badge: stats.pendingOrders,
+      icon: ShoppingCartIcon,
+      badge: 0,
     },
     {
       name: 'Products',
       href: '/admin/products',
-      icon: Package,
-    },
-    {
-      name: 'Customers',
-      href: '/admin/customers',
-      icon: Users,
+      icon: PackageIcon,
     },
     {
       name: 'Schedule',
       href: '/admin/schedule',
-      icon: Calendar,
+      icon: CalendarIcon,
     },
     {
       name: 'Blog',
       href: '/admin/blog',
-      icon: FileText,
+      icon: FileTextIcon,
     },
     {
       name: 'Settings',
       href: '/admin/settings',
-      icon: Settings,
-    },
+      icon: SettingsIcon,
+    }
   ];
+
+  if (isLoading) {
+    return <AdminLoading />;
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center p-6 max-w-md mx-auto">
+          <div className="text-red-500 text-2xl mb-4 flex justify-center">
+            <AlertCircle className="h-8 w-8 mr-2" />
+            Error
+          </div>
+          <p className="text-gray-700 mb-6">
+            {error}
+          </p>
+          <button
+            onClick={() => window.location.reload()}
+            className="px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark transition-colors"
+          >
+            Try Again
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-neutral-50">
       <div className="flex">
-        {/* Sidebar */}
-        <div className="w-64 bg-white shadow-sm min-h-screen">
-          <div className="p-6">
-            <div className="flex items-center space-x-2 mb-8">
-              <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                <span className="text-white font-heading font-bold text-sm">PP</span>
-              </div>
-              <span className="font-heading font-semibold text-lg">Admin Panel</span>
-            </div>
-
-            <nav className="space-y-2">
-              {menuItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
-                    item.current
-                      ? 'bg-primary text-white'
-                      : 'text-neutral-600 hover:bg-neutral-100'
-                  }`}
-                >
-                  <item.icon className="h-5 w-5" />
-                  <span className="flex-1">{item.name}</span>
-                  {item.badge && item.badge > 0 && (
-                    <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full">
-                      {item.badge}
-                    </span>
-                  )}
-                </Link>
-              ))}
-            </nav>
-
-            <div className="mt-8 pt-4 border-t">
-              <Link
-                href="/"
-                className="flex items-center space-x-3 px-4 py-3 text-neutral-600 hover:bg-neutral-100 rounded-lg transition-colors w-full"
-              >
-                <LogOut className="h-5 w-5" />
-                <span>Logout</span>
-              </Link>
-            </div>
-          </div>
-        </div>
+        <Suspense fallback={<div className="w-64 bg-white shadow-sm min-h-screen"></div>}>
+          <Sidebar menuItems={menuItems} onLogout={handleLogout} />
+        </Suspense>
 
         {/* Main Content */}
         <div className="flex-1">
@@ -143,7 +155,7 @@ export default function AdminDashboard() {
                     <p className="text-2xl font-bold text-neutral-800">{stats.totalOrders}</p>
                   </div>
                   <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                    <ShoppingCart className="h-6 w-6 text-blue-600" />
+                    <ShoppingCartIcon className="h-6 w-6 text-blue-600" />
                   </div>
                 </div>
               </div>
@@ -155,7 +167,7 @@ export default function AdminDashboard() {
                     <p className="text-2xl font-bold text-orange-600">{stats.pendingOrders}</p>
                   </div>
                   <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
-                    <Package className="h-6 w-6 text-orange-600" />
+                    <PackageIcon className="h-6 w-6 text-orange-600" />
                   </div>
                 </div>
               </div>
@@ -167,7 +179,7 @@ export default function AdminDashboard() {
                     <p className="text-2xl font-bold text-green-600">{stats.totalProducts}</p>
                   </div>
                   <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                    <Package className="h-6 w-6 text-green-600" />
+                    <PackageIcon className="h-6 w-6 text-green-600" />
                   </div>
                 </div>
               </div>
@@ -179,7 +191,7 @@ export default function AdminDashboard() {
                     <p className="text-2xl font-bold text-primary">₦{stats.totalRevenue.toLocaleString()}</p>
                   </div>
                   <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <BarChart3 className="h-6 w-6 text-primary" />
+                    <BarChart3Icon className="h-6 w-6 text-primary" />
                   </div>
                 </div>
               </div>
@@ -193,7 +205,7 @@ export default function AdminDashboard() {
                 </h2>
                 <div className="space-y-4">
                   <div className="text-center py-8 text-neutral-500">
-                    <ShoppingCart className="h-12 w-12 mx-auto mb-4 opacity-50" />
+                    <ShoppingCartIcon className="h-12 w-12 mx-auto mb-4 opacity-50" />
                     <p>No recent orders to display</p>
                     <Link href="/admin/orders" className="btn-primary mt-4">
                       View All Orders
@@ -213,7 +225,7 @@ export default function AdminDashboard() {
                   >
                     <div className="flex items-center justify-between">
                       <span>Manage Orders</span>
-                      <ShoppingCart className="h-5 w-5 text-neutral-400" />
+                      <ShoppingCartIcon className="h-5 w-5 text-neutral-400" />
                     </div>
                   </Link>
                   <Link
@@ -222,7 +234,7 @@ export default function AdminDashboard() {
                   >
                     <div className="flex items-center justify-between">
                       <span>Update Products</span>
-                      <Package className="h-5 w-5 text-neutral-400" />
+                      <PackageIcon className="h-5 w-5 text-neutral-400" />
                     </div>
                   </Link>
                   <Link
@@ -231,7 +243,7 @@ export default function AdminDashboard() {
                   >
                     <div className="flex items-center justify-between">
                       <span>Site Settings</span>
-                      <Settings className="h-5 w-5 text-neutral-400" />
+                      <SettingsIcon className="h-5 w-5 text-neutral-400" />
                     </div>
                   </Link>
                 </div>
