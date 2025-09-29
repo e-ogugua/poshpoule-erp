@@ -929,6 +929,18 @@
       "title": "Lush farm orchard",
       "image": "/images/farm/LushTreesOrchards.jpg",
       "category": "Orchard"
+    },
+    {
+      "id": "fresh-eggs-1",
+      "title": "Fresh Organic Eggs",
+      "image": "/images/products/eggs/freshEgg2.JPG",
+      "category": "Poultry"
+    },
+    {
+      "id": "noiler-chickens-1",
+      "title": "Free-Range Noiler Chickens",
+      "image": "/images/poultry/NoilerChickensFreeRangers.JPG",
+      "category": "Poultry"
     }
   ],
   "teamMembers": [

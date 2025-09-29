@@ -155,7 +155,7 @@ export default async function Home() {
       alt: 'Organic shop display at PoshPOULE',
     },
     {
-      src: '/optimized/images/products/eggs/organicFarmEggs.webp',
+      src: '/images/products/eggs/freshEgg2.JPG',
       alt: 'Freshly collected organic eggs from PoshPOULE',
     },
     {
