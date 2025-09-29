@@ -10,7 +10,11 @@ A complete, production-ready website and admin dashboard for PoshPOULE Farms Ltd
 - **Currency Switcher**: Support for NGN, USD, and GBP with live conversion
 - **Pre-Order System**: Complete order flow with form validation
 - **Blog System**: Farm updates and educational content
-- **Gallery**: Photo showcase of the farm and products
+- **Enhanced Gallery**: 
+  - 19+ farm images across multiple categories
+  - Category filtering and pagination
+  - Optimized image loading with priority for LCP
+  - Mobile-friendly interface with smooth animations
 - **Contact Forms**: Customer inquiry handling
 - **SEO Optimized**: Meta tags, structured data, and performance optimization
 
@@ -24,10 +28,15 @@ A complete, production-ready website and admin dashboard for PoshPOULE Farms Ltd
 
 ### Technical Features
 - **File-Based Database**: JSON storage with backup system
-- **No External APIs**: Works completely offline with no API keys required
+- **API Routes**: Server-side data fetching for optimal performance
 - **TypeScript**: Full type safety throughout the application
 - **Next.js App Router**: Modern React framework with server components
 - **Authentication**: Simple session-based auth for admin access
+- **Performance Optimized**:
+  - Image optimization with Next.js Image component
+  - Lazy loading for non-critical resources
+  - Efficient state management
+  - Server-side rendering for better SEO
 
 ## 🚀 Quick Start
 
