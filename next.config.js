@@ -1,36 +1,23 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: false, // Disabled to prevent double rendering in development
+  // Disable React strict mode in development to prevent double rendering
+  reactStrictMode: false,
+  
+  // Use SWC for minification (faster than Terser)
   swcMinify: true,
+  
   // Disable source maps in production to reduce memory usage
   productionBrowserSourceMaps: false,
-  // Enable React's new streaming server renderer
-  experimental: {
-    optimizeCss: true,
-    scrollRestoration: true,
-    // Disable the new React compiler as it might cause issues
-    reactCompiler: false,
-    // Disable the new React server components as they might cause issues
-    serverComponents: false,
-  },
-  // Enable webpack optimizations
-  webpack: (config, { isServer }) => {
-    // Only run these optimizations in production
-    if (!isServer) {
-      // Disable source maps to reduce memory usage
-      config.devtool = false;
-      
-      // Disable the default webpack minifier to use swcMinify
-      config.optimization.minimizer = [];
-    }
-    return config;
-  },
+  
+  // Configure image optimization
   images: {
     domains: ['localhost', 'poshpoule-farms.vercel.app'],
-    formats: ['image/avif', 'image/webp'],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    formats: ['image/webp'],
+    deviceSizes: [640, 750, 1080, 1200, 1920],
+    imageSizes: [32, 64, 96, 128, 256],
   },
+  
+  // Security headers
   async headers() {
     const securityHeaders = [
       {
@@ -55,22 +42,11 @@ const nextConfig = {
       },
     ];
 
+    // Add CSP header if enabled
     if (process.env.NEXT_PUBLIC_ENABLE_CSP === 'true') {
       securityHeaders.push({
         key: 'Content-Security-Policy',
-        value: `
-          default-src 'self';
-          script-src 'self' 'unsafe-inline' 'unsafe-eval' *.vercel-scripts.com;
-          style-src 'self' 'unsafe-inline' fonts.googleapis.com;
-          img-src 'self' data: blob: https:;
-          font-src 'self' fonts.gstatic.com;
-          connect-src 'self' *.vercel-insights.com;
-          frame-ancestors 'none';
-          form-action 'self';
-          base-uri 'self';
-          object-src 'none';
-          upgrade-insecure-requests;
-        `.replace(/\s+/g, ' ').trim(),
+        value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https:;"
       });
     }
 
@@ -81,6 +57,8 @@ const nextConfig = {
       },
     ];
   },
+  
+  // Rewrites configuration
   async rewrites() {
     return [
       {
@@ -89,10 +67,47 @@ const nextConfig = {
       },
     ];
   },
-  experimental: {
-    optimizeCss: true,
-    scrollRestoration: true,
+  
+  // Webpack configuration
+  webpack: (config, { isServer, dev }) => {
+    // Only apply these optimizations in production
+    if (!dev) {
+      // Disable source maps in production to reduce memory usage
+      config.devtool = false;
+      
+      // Disable the default webpack minifier to use swcMinify
+      config.optimization.minimizer = [];
+      
+      // Only add CSS minimizer if not already present
+      if (Array.isArray(config.optimization.minimizer)) {
+        try {
+          config.optimization.minimizer.push(
+            new (require('css-minimizer-webpack-plugin'))()
+          );
+        } catch (e) {
+          console.warn('css-minimizer-webpack-plugin not found, skipping CSS optimization');
+        }
+      }
+    }
+    
+    // Important: return the modified config
+    return config;
   },
+  
+  // Experimental features
+  experimental: {
+    // Disable features that might cause issues
+    optimizeCss: false, // Disable as we're handling it in webpack
+    scrollRestoration: true,
+    // Disable the new React compiler as it might cause issues
+    reactCompiler: false,
+    // Disable the new React server components as they might cause issues
+    serverComponents: false,
+    // Disable webpack's cache to prevent memory issues
+    webpackBuildWorker: false,
+  },
+  
+  // Compiler options
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production' ? { exclude: ['error'] } : false,
   },
