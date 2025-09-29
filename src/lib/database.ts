@@ -152,7 +152,27 @@ export interface Database {
 
 let cachedData: Database | null = null;
 
-export function readDatabase(): Database {
+// Async version for serverless compatibility
+export async function readDatabase(): Promise<Database> {
+  if (cachedData) {
+    return cachedData;
+  }
+
+  try {
+    const data = await fs.promises.readFile(DB_PATH, 'utf8');
+    cachedData = JSON.parse(data);
+    if (!cachedData) {
+      throw new Error('Database data is null or undefined');
+    }
+    return cachedData;
+  } catch (error) {
+    console.error('Error reading database:', error);
+    throw new Error('Failed to read database');
+  }
+}
+
+// Sync version for backward compatibility
+export function readDatabaseSync(): Database {
   if (cachedData) {
     return cachedData;
   }
@@ -170,7 +190,24 @@ export function readDatabase(): Database {
   }
 }
 
-export function writeDatabase(data: Database): void {
+export async function writeDatabase(data: Database): Promise<void> {
+  try {
+    // Create backup
+    const backupPath = `${DB_PATH}.backup`;
+    if (fs.existsSync(DB_PATH)) {
+      fs.copyFileSync(DB_PATH, backupPath);
+    }
+
+    // Write new data
+    await fs.promises.writeFile(DB_PATH, JSON.stringify(data, null, 2));
+    cachedData = data;
+  } catch (error) {
+    console.error('Error writing database:', error);
+    throw new Error('Failed to write database');
+  }
+}
+
+export function writeDatabaseSync(data: Database): void {
   try {
     // Create backup
     const backupPath = `${DB_PATH}.backup`;

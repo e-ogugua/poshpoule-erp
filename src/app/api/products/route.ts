@@ -3,8 +3,7 @@ import { readDatabase, writeDatabase, Product, getNextId } from '@/lib/database'
 
 export async function GET() {
   try {
-    // Use Promise.resolve to handle synchronous function in async context
-    const data = await Promise.resolve(readDatabase());
+    const data = await readDatabase();
     return NextResponse.json(data.products);
   } catch (error) {
     console.error('Error fetching products:', error);
@@ -14,7 +13,7 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
-    const data = await Promise.resolve(readDatabase());
+    const data = await readDatabase();
     const productData = await request.json();
 
     // Validate required fields
@@ -39,7 +38,7 @@ export async function POST(request: NextRequest) {
 
     // Add to database
     data.products.push(newProduct);
-    writeDatabase(data);
+    await writeDatabase(data);
 
     return NextResponse.json(newProduct, { status: 201 });
   } catch (error) {
