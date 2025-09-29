@@ -1,5 +1,8 @@
 import type { Metadata, Viewport } from 'next';
 import { headers } from 'next/headers';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/auth';
+import { AuthProvider } from '@/providers/AuthProvider';
 import './globals.css';
 import dynamic from 'next/dynamic';
 
@@ -44,7 +47,7 @@ export const metadata: Metadata = {
   authors: [{ name: 'PoshPOULE Farms Ltd' }],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -52,18 +55,22 @@ export default function RootLayout({
   // Don't wrap admin routes with the default layout
   if (isAdminRoute()) {
     return (
-      <html lang="en" suppressHydrationWarning>
+      <html lang="en">
         <body>{children}</body>
       </html>
     );
   }
 
+  const session = await getServerSession(authOptions);
+  
   return (
-    <html lang="en">
-      <body className="font-body text-body bg-white">
-        <CurrencyProviderWrapper>
-          {children}
-        </CurrencyProviderWrapper>
+    <html lang="en" className="h-full">
+      <body className={`h-full ${isAdminRoute() ? 'bg-gray-50' : ''}`}>
+        <AuthProvider session={session}>
+          <CurrencyProviderWrapper>
+            {children}
+          </CurrencyProviderWrapper>
+        </AuthProvider>
       </body>
     </html>
   );
