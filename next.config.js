@@ -4,7 +4,7 @@ const nextConfig = {
     unoptimized: true, // Disable image optimization during build
   },
   swcMinify: true, // Enable SWC minification
-  output: 'standalone', // Output standalone build
+  // Removed 'standalone' output that causes webpack chunk issues in development
   productionBrowserSourceMaps: false, // Disable source maps in production
   typescript: {
     ignoreBuildErrors: true, // Disable type checking during build
