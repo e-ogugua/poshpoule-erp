@@ -1,13 +1,13 @@
 import { NextResponse } from 'next/server';
-import { readFile } from 'fs/promises';
+import fs from 'fs';
 import path from 'path';
 
 const DB_PATH = path.join(process.cwd(), 'db', 'data.json');
 
 export async function GET() {
   try {
-    // Read the database file
-    const fileContents = await readFile(DB_PATH, 'utf8');
+    // Use fs.promises for better Vercel compatibility
+    const fileContents = await fs.promises.readFile(DB_PATH, 'utf8');
     const data = JSON.parse(fileContents);
     
     // Get all blog posts and sort by date (newest first)
