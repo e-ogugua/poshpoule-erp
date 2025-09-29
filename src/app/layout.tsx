@@ -4,7 +4,7 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/auth';
 import { AuthProvider } from '@/providers/AuthProvider';
 import './globals.css';
-import dynamic from 'next/dynamic';
+import LayoutClient from '@/components/LayoutClient';
 
 // Define viewport settings
 export const viewport: Viewport = {
@@ -16,12 +16,12 @@ export const viewport: Viewport = {
 };
 
 // Check if the current route is under /admin
-const isAdminRoute = () => {
+const isAdminRoute = async () => {
   if (typeof window !== 'undefined') {
     return window.location.pathname.startsWith('/admin');
   }
   try {
-    const headersList = headers();
+    const headersList = await headers();
     const pathname = headersList.get('x-pathname') || '';
     return pathname.startsWith('/admin');
   } catch (e) {
@@ -30,11 +30,6 @@ const isAdminRoute = () => {
   }
 };
 
-// Dynamically import the CurrencyProviderWrapper with SSR disabled
-const CurrencyProviderWrapper = dynamic(
-  () => import('@/providers/CurrencyProviderWrapper'),
-  { ssr: false }
-);
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://poshpoule-farms.vercel.app'),
@@ -52,24 +47,17 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // Don't wrap admin routes with the default layout
-  if (isAdminRoute()) {
-    return (
-      <html lang="en">
-        <body>{children}</body>
-      </html>
-    );
-  }
-
   const session = await getServerSession(authOptions);
-  
+  const isAdmin = await isAdminRoute();
+  const bodyClass = isAdmin ? 'min-h-screen bg-background font-sans antialiased bg-gray-100' : 'min-h-screen bg-background font-sans antialiased';
+
   return (
-    <html lang="en" className="h-full">
-      <body className={`h-full ${isAdminRoute() ? 'bg-gray-50' : ''}`}>
+    <html lang="en" suppressHydrationWarning>
+      <body className={bodyClass}>
         <AuthProvider session={session}>
-          <CurrencyProviderWrapper>
+          <LayoutClient session={session}>
             {children}
-          </CurrencyProviderWrapper>
+          </LayoutClient>
         </AuthProvider>
       </body>
     </html>

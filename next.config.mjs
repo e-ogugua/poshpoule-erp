@@ -1,21 +1,88 @@
 /** @type {import('next').NextConfig} */
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+});
+
+const securityHeaders = [
+  {
+    key: 'X-Content-Type-Options',
+    value: 'nosniff',
+  },
+  {
+    key: 'X-Frame-Options',
+    value: 'DENY',
+  },
+  {
+    key: 'X-XSS-Protection',
+    value: '1; mode=block',
+  },
+  {
+    key: 'Referrer-Policy',
+    value: 'strict-origin-when-cross-origin',
+  },
+  {
+    key: 'Permissions-Policy',
+    value: 'camera=(), microphone=(), geolocation=()',
+  },
+];
+
 const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
+  productionBrowserSourceMaps: false,
+  poweredByHeader: false,
+  generateEtags: true,
+  compress: true,
+  
+  // Image optimization
+  images: {
+    domains: [
+      'localhost', 
+      'poshpoule-farms.vercel.app',
+      'images.unsplash.com', 
+      'via.placeholder.com'
+    ],
+    formats: ['image/webp', 'image/avif'],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    minimumCacheTTL: 60 * 60 * 24 * 7, // 1 week
+    qualities: [75, 85, 90, 95, 100], // All quality values used in the application
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
+  },
+
   // Configure output for Vercel
   output: 'standalone',
-  
-  // Enable experimental features
+
+  // Experimental features
   experimental: {
+    scrollRestoration: true,
     serverComponentsExternalPackages: ['@prisma/client', 'bcryptjs'],
     serverActions: true,
-    // Enable webpack 5 for better module resolution
     webpackBuildWorker: true,
+    optimizeCss: true,
   },
-  
+
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production' 
+      ? { exclude: ['error'] } 
+      : false,
+  },
+
   // Webpack configuration
-  webpack: (config, { isServer }) => {
-    // Important: return the modified config
+  webpack: (config, { isServer, dev }) => {
+    // Add rule for .node files
+    config.module.rules.push({
+      test: /\.node$/,
+      use: 'node-loader',
+    });
+
+    // Handle fallback for server-only modules in client-side code
     if (!isServer) {
-      // Ensure client-side code doesn't include server-only modules
       config.resolve.fallback = {
         ...config.resolve.fallback,
         fs: false,
@@ -26,53 +93,27 @@ const nextConfig = {
         'next/dist/compiled/next-server/server.runtime.prod.js': false,
       };
     }
+
+    // Production optimizations
+    if (!dev && !isServer) {
+      // Enable tree shaking
+      config.optimization.usedExports = true;
+      // Enable module concatenation
+      config.optimization.concatenateModules = true;
+      // Minimize in production
+      config.optimization.minimize = true;
+    }
+
+    // Add source map support in development
+    if (dev && !isServer) {
+      config.devtool = 'source-map';
+    }
+
     return config;
   },
-  poweredByHeader: false,
-  generateEtags: true,
-  compress: true,
-  reactStrictMode: true,
-  
-  // Image optimization
-  images: {
-    domains: ['images.unsplash.com', 'via.placeholder.com'],
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**',
-      },
-    ],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    formats: ['image/avif', 'image/webp'],
-    minimumCacheTTL: 86400, // 24 hours
-  },
 
-  // Headers for security, performance, and caching
+  // Security and cache headers
   async headers() {
-    const securityHeaders = [
-      {
-        key: 'X-Content-Type-Options',
-        value: 'nosniff',
-      },
-      {
-        key: 'X-Frame-Options',
-        value: 'DENY',
-      },
-      {
-        key: 'X-XSS-Protection',
-        value: '1; mode=block',
-      },
-      {
-        key: 'Referrer-Policy',
-        value: 'strict-origin-when-cross-origin',
-      },
-      {
-        key: 'Permissions-Policy',
-        value: 'camera=(), microphone=(), geolocation=()',
-      },
-    ];
-
     return [
       // Security headers for all routes
       {
@@ -102,33 +143,6 @@ const nextConfig = {
       },
     ];
   },
-
-  experimental: {
-    serverComponentsExternalPackages: ['@prisma/client', 'bcryptjs'],
-    optimizeCss: false,
-  },
-
-  // Webpack optimizations
-  webpack: (config, { isServer, dev }) => {
-    // Only run in production
-    if (!dev && !isServer) {
-      // Enable tree shaking
-      config.optimization.usedExports = true;
-      // Enable module concatenation
-      config.optimization.concatenateModules = true;
-      // Minimize in production
-      config.optimization.minimize = true;
-    }
-    return config;
-  },
-  compiler: {
-    removeConsole: process.env.NODE_ENV === 'production' ? {
-      exclude: ['error'],
-    } : false,
-  },
-  productionBrowserSourceMaps: false,
 };
 
-export default withBundleAnalyzer({
-  enabled: process.env.ANALYZE === 'true',
-})(nextConfig);
+module.exports = withBundleAnalyzer(nextConfig);

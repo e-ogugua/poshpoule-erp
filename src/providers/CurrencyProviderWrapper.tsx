@@ -2,12 +2,17 @@
 
 import { ReactNode, useEffect, useState } from 'react';
 import { CurrencyProvider } from '@/contexts/CurrencyContext';
+import { Session } from 'next-auth';
+
+interface CurrencyProviderWrapperProps {
+  children: ReactNode;
+  session: Session | null;
+}
 
 export default function CurrencyProviderWrapper({
   children,
-}: {
-  children: ReactNode;
-}) {
+  session,
+}: CurrencyProviderWrapperProps) {
   const [isMounted, setIsMounted] = useState(false);
 
   // This ensures we only render the provider on the client side
@@ -20,5 +25,5 @@ export default function CurrencyProviderWrapper({
     return <>{children}</>;
   }
 
-  return <CurrencyProvider>{children}</CurrencyProvider>;
+  return <CurrencyProvider session={session}>{children}</CurrencyProvider>;
 }

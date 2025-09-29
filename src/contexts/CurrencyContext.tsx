@@ -34,7 +34,12 @@ const isBrowser = typeof window !== 'undefined';
 // Default currency
 const DEFAULT_CURRENCY = 'NGN';
 
-export function CurrencyProvider({ children }: { children: React.ReactNode }) {
+interface CurrencyProviderProps {
+  children: React.ReactNode;
+  session: any; // Using any to avoid type issues with NextAuth session
+}
+
+export function CurrencyProvider({ children, session }: CurrencyProviderProps) {
   const [currency, setCurrencyState] = useState<Currency>(DEFAULT_CURRENCY);
   const [isMounted, setIsMounted] = useState(false);
   const [version, setVersion] = useState(0);

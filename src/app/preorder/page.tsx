@@ -1,11 +1,5 @@
 import { Metadata } from 'next';
-import dynamic from 'next/dynamic';
-
-// Disable SSR for the preorder page to avoid hydration issues
-const PreorderClient = dynamic(
-  () => import('./PreorderClient'),
-  { ssr: false }
-);
+import PreorderPageComponent from './PreorderPage';
 
 export const metadata: Metadata = {
   title: 'Pre-Order | Posh Poule Farms',
@@ -17,5 +11,5 @@ export default function PreorderPage({
 }: {
   searchParams: { product?: string; quantity?: string };
 }) {
-  return <PreorderClient searchParams={searchParams} />;
+  return <PreorderPageComponent searchParams={searchParams} />;
 }
