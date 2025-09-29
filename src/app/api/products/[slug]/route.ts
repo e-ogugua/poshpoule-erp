@@ -3,8 +3,9 @@ import { getProductBySlug } from '@/lib/db-utils';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { slug: string } }
+  context: { params: Promise<{ slug: string }> }
 ) {
+  const params = await context.params;
   try {
     const product = getProductBySlug(params.slug);
 
@@ -33,8 +34,9 @@ export async function GET(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { slug: string } }
+  context: { params: Promise<{ slug: string }> }
 ) {
+  const params = await context.params;
   try {
     const { readDatabase, writeDatabase, getNextId } = await import('@/lib/database');
     const data = readDatabase();
@@ -79,8 +81,9 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { slug: string } }
+  context: { params: Promise<{ slug: string }> }
 ) {
+  const params = await context.params;
   try {
     const { readDatabase, writeDatabase } = await import('@/lib/database');
     const data = readDatabase();

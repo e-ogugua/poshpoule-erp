@@ -1,10 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
-  swcMinify: true,
   productionBrowserSourceMaps: false,
   images: {
-    domains: ['localhost', 'poshpoule-farms.vercel.app'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
     formats: ['image/webp'],
     deviceSizes: [640, 750, 1080, 1200, 1920],
     imageSizes: [32, 64, 96, 128, 256],
@@ -35,10 +39,6 @@ const nextConfig = {
   },
   experimental: {
     scrollRestoration: true,
-    // Exclude node_modules from file tracing to prevent stack overflow
-    outputFileTracingExcludes: {
-      '*': ['node_modules/**/*'],
-    },
   },
   webpack: (config, { isServer, dev }) => {
     // Only optimize in production

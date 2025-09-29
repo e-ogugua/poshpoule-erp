@@ -1,10 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { readDatabase, writeDatabase } from '@/lib/database';
 
+interface RouteParams {
+  params: { id: string };
+}
+
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
+  const params = await context.params;
   try {
     const data = readDatabase();
     const updateData = await request.json();

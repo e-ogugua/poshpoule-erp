@@ -59,7 +59,7 @@ const markdownComponents: Components = {
     );
   },
   img: ({ node, ...props }: any) => {
-    const { src, alt } = props;
+    const { src, alt = '' } = props;
     if (!src) return null;
     
     // Ensure the component is mounted on the client
@@ -79,13 +79,15 @@ const markdownComponents: Components = {
     
     // Add a stable key based on the image source
     const imageKey = `img-${src.replace(/[^a-z0-9]/gi, '-')}`;
+    // Generate a meaningful alt text if none is provided
+    const imageAlt = alt?.trim() || 'Blog post image';
     
     return (
       <div key={imageKey} className="my-8 max-w-4xl mx-auto">
         <div className="relative aspect-video w-full">
           <Image
             src={src}
-            alt={alt || 'Blog post image'}
+            alt={imageAlt}
             fill
             className="rounded-xl shadow-lg object-cover"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
@@ -94,9 +96,9 @@ const markdownComponents: Components = {
             unoptimized={process.env.NODE_ENV !== 'production'}
           />
         </div>
-        {alt && alt !== 'undefined' && (
+        {imageAlt && imageAlt !== 'Blog post image' && (
           <p className="text-center text-sm text-gray-500 mt-2 italic">
-            {alt}
+            {imageAlt}
           </p>
         )}
       </div>
@@ -385,7 +387,7 @@ export function BlogPostContent({ post, readingTime, formattedDate, relatedPosts
                   <div className="w-16 h-16 rounded-full bg-gray-200 overflow-hidden flex-shrink-0">
                     <Image
                       src="/images/team/ChikwadoTeam4.png"
-                      alt={post.author}
+                      alt={post.author || 'Author profile picture'}
                       width={64}
                       height={64}
                       className="object-cover"
@@ -481,7 +483,7 @@ export function BlogPostContent({ post, readingTime, formattedDate, relatedPosts
                           <div className="w-20 h-16 rounded-lg overflow-hidden flex-shrink-0">
                             <Image
                               src={relatedPost.image}
-                              alt={relatedPost.title}
+                              alt={relatedPost.title || 'Related post image'}
                               width={80}
                               height={64}
                               className="object-cover w-full h-full group-hover:scale-105 transition-transform"

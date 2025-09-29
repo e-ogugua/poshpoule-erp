@@ -36,7 +36,7 @@ const DEFAULT_CURRENCY = 'NGN';
 
 interface CurrencyProviderProps {
   children: React.ReactNode;
-  session: any; // Using any to avoid type issues with NextAuth session
+  session?: any; // Make session optional
 }
 
 export function CurrencyProvider({ children, session }: CurrencyProviderProps) {
