@@ -1,13 +1,37 @@
-import withBundleAnalyzer from '@next/bundle-analyzer';
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Configure output for Vercel
   output: 'standalone',
+  
+  // Enable experimental features
+  experimental: {
+    serverComponentsExternalPackages: ['@prisma/client', 'bcryptjs'],
+    serverActions: true,
+    // Enable webpack 5 for better module resolution
+    webpackBuildWorker: true,
+  },
+  
+  // Webpack configuration
+  webpack: (config, { isServer }) => {
+    // Important: return the modified config
+    if (!isServer) {
+      // Ensure client-side code doesn't include server-only modules
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        net: false,
+        tls: false,
+        dns: false,
+        child_process: false,
+        'next/dist/compiled/next-server/server.runtime.prod.js': false,
+      };
+    }
+    return config;
+  },
   poweredByHeader: false,
   generateEtags: true,
   compress: true,
   reactStrictMode: true,
-  swcMinify: true,
   
   // Image optimization
   images: {
@@ -22,7 +46,6 @@ const nextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 86400, // 24 hours
-    unoptimized: process.env.NODE_ENV !== 'production',
   },
 
   // Headers for security, performance, and caching
@@ -80,14 +103,9 @@ const nextConfig = {
     ];
   },
 
-  // Experimental features
   experimental: {
-    optimizeCss: true,
-    optimizePackageImports: [
-      'lucide-react',
-      'framer-motion',
-    ],
     serverComponentsExternalPackages: ['@prisma/client', 'bcryptjs'],
+    optimizeCss: false,
   },
 
   // Webpack optimizations

@@ -1,20 +1,8 @@
-import { Metadata, Viewport } from 'next';
+'use client';
+
 import { Suspense } from 'react';
 import { ErrorBoundary } from '@/components/admin/ErrorBoundary';
 import { AdminLoading } from '@/components/admin/AdminLoading';
-
-export const metadata: Metadata = {
-  title: 'Admin Dashboard | PoshPOULE Farms',
-  description: 'Admin dashboard for PoshPOULE Farms management system',
-};
-
-export const viewport: Viewport = {
-  width: 'device-width',
-  initialScale: 1,
-  maximumScale: 5,
-  userScalable: true,
-  themeColor: '#ffffff',
-};
 
 export default function AdminLayout({
   children,
