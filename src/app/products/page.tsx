@@ -1,10 +1,12 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import * as React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { ShoppingCart, Star, ArrowRight } from 'lucide-react';
+import { Button } from '@/components/ui/Button';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import Link from 'next/link';
-import Image from 'next/image';
 import { usePriceFormatter } from '@/utils/currency';
 
 interface Product {
@@ -102,20 +104,45 @@ export default function ProductsPage({
 }: {
   searchParams: { category?: string }
 }) {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [products, setProducts] = React.useState<Product[]>([]);
+  const [categories, setCategories] = React.useState<string[]>([]);
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [error, setError] = React.useState<string | null>(null);
   const selectedCategory = searchParams.category || null;
 
-  useEffect(() => {
+  // Calculate filtered products
+  const filteredProducts = React.useMemo(() => {
+    if (!products.length) return [];
+    return selectedCategory
+      ? products.filter(p => p.category === selectedCategory)
+      : products;
+  }, [products, selectedCategory]);
+
+  // Fetch products and calculate categories
+  React.useEffect(() => {
     const fetchProducts = async () => {
       try {
+        setIsLoading(true);
         const response = await fetch('/api/products');
         if (!response.ok) {
           throw new Error('Failed to fetch products');
         }
-        const data = await response.json();
-        setProducts(data);
+        const responseData = await response.json();
+        
+        // Handle both array and object responses
+        const productsData = Array.isArray(responseData) 
+          ? responseData 
+          : responseData.data || [];
+          
+        setProducts(productsData);
+        
+        // Calculate unique categories
+        if (productsData.length > 0) {
+          const uniqueCategories = Array.from(
+            new Set(productsData.map((p: Product) => p.category).filter(Boolean))
+          ) as string[];
+          setCategories(uniqueCategories);
+        }
       } catch (err) {
         console.error('Error fetching products:', err);
         setError('Failed to load products. Please try again later.');
@@ -127,10 +154,30 @@ export default function ProductsPage({
     fetchProducts();
   }, []);
 
-  const categories = Array.from(new Set(products.map(p => p.category)));
-  const filteredProducts = selectedCategory
-    ? products.filter(p => p.category === selectedCategory)
-    : products;
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center p-6 max-w-md mx-auto">
+          <div className="text-red-500 text-2xl mb-4">Error</div>
+          <p className="text-gray-700 mb-6">{error}</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark transition-colors"
+          >
+            Try Again
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex flex-col">

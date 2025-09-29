@@ -1,17 +1,32 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'standalone',
   images: {
-    domains: ['images.unsplash.com', 'via.placeholder.com', 'localhost'],
+    domains: ['images.unsplash.com', 'via.placeholder.com'],
     remotePatterns: [
       {
-        protocol: 'http',
-        hostname: 'localhost',
-        port: '3000',
-        pathname: '/images/**',
+        protocol: 'https',
+        hostname: '**',
       },
     ],
-    unoptimized: process.env.NODE_ENV === 'development',
+    unoptimized: process.env.NODE_ENV !== 'production',
   },
+  experimental: {
+    optimizeCss: true,
+    optimizePackageImports: [
+      'lucide-react',
+      'framer-motion',
+    ],
+  },
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production' ? {
+      exclude: ['error'],
+    } : false,
+  },
+  poweredByHeader: false,
+  reactStrictMode: true,
+  swcMinify: true,
+  productionBrowserSourceMaps: false,
 }
 
 module.exports = nextConfig

@@ -380,6 +380,75 @@
       "currency": "NGN",
       "status": "new",
       "createdAt": "2025-09-29T14:48:55.161Z"
+    },
+    {
+      "id": "order-4",
+      "customerName": "Emmanuel Ogugua",
+      "customerEmail": "emmachuka@gmail.com",
+      "customerPhone": "08064508595",
+      "orderType": "pickup",
+      "deliveryAddress": "",
+      "scheduledDate": "2025-09-30",
+      "scheduledTime": "09:00",
+      "notes": ",,",
+      "products": [
+        {
+          "productId": "fresh-organic-eggs",
+          "name": "Fresh Organic Eggs",
+          "quantity": 2,
+          "priceNaira": 5700
+        }
+      ],
+      "totalAmount": 11400,
+      "currency": "NGN",
+      "status": "new",
+      "createdAt": "2025-09-29T14:55:46.034Z"
+    },
+    {
+      "id": "order-5",
+      "customerName": "Emmanuel Ogugua",
+      "customerEmail": "emmachuka@gmail.com",
+      "customerPhone": "08064508595",
+      "orderType": "pickup",
+      "deliveryAddress": "",
+      "scheduledDate": "2025-09-30",
+      "scheduledTime": "09:00",
+      "notes": "kk",
+      "products": [
+        {
+          "productId": "fresh-organic-eggs",
+          "name": "Fresh Organic Eggs",
+          "quantity": 1,
+          "priceNaira": 5700
+        }
+      ],
+      "totalAmount": 5700,
+      "currency": "NGN",
+      "status": "new",
+      "createdAt": "2025-09-29T15:37:23.055Z"
+    },
+    {
+      "id": "order-6",
+      "customerName": "Emmanuel Ogugua",
+      "customerEmail": "emmachuka@gmail.com",
+      "customerPhone": "08064508595",
+      "orderType": "pickup",
+      "deliveryAddress": "",
+      "scheduledDate": "2025-09-30",
+      "scheduledTime": "09:00",
+      "notes": "kk",
+      "products": [
+        {
+          "productId": "fresh-organic-eggs",
+          "name": "Fresh Organic Eggs",
+          "quantity": 1,
+          "priceNaira": 5700
+        }
+      ],
+      "totalAmount": 5700,
+      "currency": "NGN",
+      "status": "new",
+      "createdAt": "2025-09-29T16:12:45.831Z"
     }
   ],
   "leads": [],
