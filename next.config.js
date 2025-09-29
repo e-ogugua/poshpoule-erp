@@ -35,6 +35,10 @@ const nextConfig = {
   },
   experimental: {
     scrollRestoration: true,
+    // Exclude node_modules from file tracing to prevent stack overflow
+    outputFileTracingExcludes: {
+      '*': ['node_modules/**/*'],
+    },
   },
   webpack: (config, { isServer, dev }) => {
     // Only optimize in production
