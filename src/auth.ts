@@ -2,12 +2,14 @@ import { PrismaAdapter } from "@auth/prisma-adapter"
 import { PrismaClient } from "@prisma/client"
 import { compare } from "bcryptjs"
 import { AuthOptions } from "next-auth"
+import { Adapter } from "next-auth/adapters"
 import CredentialsProvider from "next-auth/providers/credentials"
 
 const prisma = new PrismaClient()
 
+// @ts-ignore - Fix for Prisma Adapter type issues
 export const authOptions: AuthOptions = {
-  adapter: PrismaAdapter(prisma),
+  adapter: PrismaAdapter(prisma) as Adapter,
   session: {
     strategy: "jwt",
   },
