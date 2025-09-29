@@ -384,7 +384,7 @@ export function BlogPostContent({ post, readingTime, formattedDate, relatedPosts
                 <div className="flex items-start">
                   <div className="w-16 h-16 rounded-full bg-gray-200 overflow-hidden flex-shrink-0">
                     <Image
-                      src="/images/team/ChikwadoTeam4.jpg"
+                      src="/images/team/ChikwadoTeam4.png"
                       alt={post.author}
                       width={64}
                       height={64}

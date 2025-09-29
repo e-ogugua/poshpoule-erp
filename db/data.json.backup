@@ -475,6 +475,41 @@
       "currency": "NGN",
       "status": "new",
       "createdAt": "2025-09-29T16:46:10.491Z"
+    },
+    {
+      "id": "order-9",
+      "customerName": "Emmanuel Ogugua",
+      "customerEmail": "emmachuka@gmail.com",
+      "customerPhone": "08064508595",
+      "orderType": "pickup",
+      "deliveryAddress": "",
+      "scheduledDate": "2025-09-30",
+      "scheduledTime": "09:00",
+      "notes": "dd",
+      "products": [
+        {
+          "productId": "organic-fruits-pack",
+          "name": "Organic Fruits Pack",
+          "quantity": 1,
+          "priceNaira": 6000
+        },
+        {
+          "productId": "workshop-training",
+          "name": "Workshop & Training (3 Months)",
+          "quantity": 1,
+          "priceNaira": 45000
+        },
+        {
+          "productId": "food-stall-export",
+          "name": "Food Stall Export Link & TasteBox Subscription",
+          "quantity": 1,
+          "priceNaira": 75000
+        }
+      ],
+      "totalAmount": 126000,
+      "currency": "NGN",
+      "status": "new",
+      "createdAt": "2025-09-29T17:02:19.737Z"
     }
   ],
   "testimonials": [

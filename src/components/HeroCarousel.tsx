@@ -53,7 +53,7 @@ export function HeroCarousel({ slides, interval = 6000 }: HeroCarouselProps) {
           >
             <Image
               src={slide.src}
-              alt={slide.alt}
+              alt={slide.alt || 'Hero carousel image'}
               fill
               quality={95}
               className="object-cover"

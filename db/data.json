@@ -510,6 +510,59 @@
       "currency": "NGN",
       "status": "new",
       "createdAt": "2025-09-29T17:02:19.737Z"
+    },
+    {
+      "id": "order-10",
+      "customerName": "Emmanuel Ogugua",
+      "customerEmail": "emmachuka@gmail.com",
+      "customerPhone": "08064508595",
+      "orderType": "pickup",
+      "deliveryAddress": "",
+      "scheduledDate": "2025-09-30",
+      "scheduledTime": "09:00",
+      "notes": "dd",
+      "products": [
+        {
+          "productId": "fresh-organic-eggs",
+          "name": "Fresh Organic Eggs",
+          "quantity": 1,
+          "priceNaira": 5700
+        },
+        {
+          "productId": "organic-vegetables-pack",
+          "name": "Organic Vegetables Pack",
+          "quantity": 1,
+          "priceNaira": 5000
+        },
+        {
+          "productId": "crop-box-subscription",
+          "name": "Crop Box Subscription (Monthly)",
+          "quantity": 1,
+          "priceNaira": 15000
+        },
+        {
+          "productId": "premium-organic-snack-pack",
+          "name": "Premium Organic Snack Pack",
+          "quantity": 1,
+          "priceNaira": 9500
+        },
+        {
+          "productId": "workshop-training",
+          "name": "Workshop & Training (3 Months)",
+          "quantity": 1,
+          "priceNaira": 45000
+        },
+        {
+          "productId": "premium-mentorship",
+          "name": "Premium Mentorship Program (1 Year)",
+          "quantity": 1,
+          "priceNaira": 160000
+        }
+      ],
+      "totalAmount": 240200,
+      "currency": "NGN",
+      "status": "new",
+      "createdAt": "2025-09-29T17:47:32.353Z"
     }
   ],
   "testimonials": [
@@ -762,6 +815,120 @@
       "title": "Our dedicated farm team",
       "image": "/images/gallery/team-1.jpg",
       "category": "Team"
+    },
+    {
+      "id": "cassava-1",
+      "title": "Thriving cassava farm",
+      "image": "/images/crops/cassavaFarm.jpg",
+      "category": "Crops"
+    },
+    {
+      "id": "potatoes-1",
+      "title": "Freshly harvested potatoes",
+      "image": "/images/crops/potatoes.jpg",
+      "category": "Harvest"
+    },
+    {
+      "id": "vegetable-garden-1",
+      "title": "Lush vegetable garden",
+      "image": "/images/crops/vegetableGarden.jpg",
+      "category": "Garden"
+    },
+    {
+      "id": "vegetable-beds-1",
+      "title": "Raised vegetable beds",
+      "image": "/images/crops/vegetablebeds1.jpg",
+      "category": "Garden"
+    },
+    {
+      "id": "legume-harvest-1",
+      "title": "Akidi legume harvest",
+      "image": "/images/farm/AkidiLegumeHarvet.JPG",
+      "category": "Harvest"
+    },
+    {
+      "id": "carrots-1",
+      "title": "Fresh carrot harvest",
+      "image": "/images/farm/CarrotsSmallHarvest.JPG",
+      "category": "Harvest"
+    },
+    {
+      "id": "corn-harvest-1",
+      "title": "Golden corn harvest",
+      "image": "/images/farm/CornHaverst.jpg",
+      "category": "Harvest"
+    },
+    {
+      "id": "cow-pasture-1",
+      "title": "Cattle grazing in pasture",
+      "image": "/images/farm/CowPasture2.jpg",
+      "category": "Livestock"
+    },
+    {
+      "id": "cow-stand-1",
+      "title": "Healthy cattle on the farm",
+      "image": "/images/farm/CowStand.jpg",
+      "category": "Livestock"
+    },
+    {
+      "id": "fresh-corn-1",
+      "title": "Fresh corn ready to eat",
+      "image": "/images/farm/FreashCorn.JPG",
+      "category": "Produce"
+    },
+    {
+      "id": "cucumbers-1",
+      "title": "Crisp fresh cucumbers",
+      "image": "/images/farm/FreshCucumbers.JPG",
+      "category": "Produce"
+    },
+    {
+      "id": "fruits-1",
+      "title": "Assorted farm fresh fruits",
+      "image": "/images/farm/FruitsCrops.jpg",
+      "category": "Produce"
+    },
+    {
+      "id": "ginger-1",
+      "title": "Fresh ginger harvest",
+      "image": "/images/farm/GingerCropHarvest.JPG",
+      "category": "Harvest"
+    },
+    {
+      "id": "greenery-1",
+      "title": "Lush farm landscape",
+      "image": "/images/farm/GreenTreesPath.jpg",
+      "category": "Farm Life"
+    },
+    {
+      "id": "farm-appreciation-1",
+      "title": "Celebrating our farmers",
+      "image": "/images/farm/IfYouAteTodayThankAFarmer.jpg",
+      "category": "Farm Life"
+    },
+    {
+      "id": "kids-farm-1",
+      "title": "Learning about farming",
+      "image": "/images/farm/KidslocallyGrown.jpg",
+      "category": "Community"
+    },
+    {
+      "id": "ginger-sale-1",
+      "title": "Local ginger for sale",
+      "image": "/images/farm/LocalGingersHarvetSale.JPG",
+      "category": "Market"
+    },
+    {
+      "id": "field-work-1",
+      "title": "Working the fields",
+      "image": "/images/farm/LocallyGrownFieldWork2.jpg",
+      "category": "Farm Life"
+    },
+    {
+      "id": "orchard-1",
+      "title": "Lush farm orchard",
+      "image": "/images/farm/LushTreesOrchards.jpg",
+      "category": "Orchard"
     }
   ],
   "teamMembers": [
@@ -822,7 +989,7 @@
         "staff training"
       ],
       "yearsExperience": 5,
-      "image": "/images/team/ChikwadoTeam4.jpg",
+      "image": "/images/team/ChikwadoTeam4.png",
       "featured": true,
       "createdAt": "2024-01-01T00:00:00.000Z"
     }
