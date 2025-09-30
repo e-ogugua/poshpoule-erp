@@ -31,15 +31,25 @@ interface BlogPostContentProps {
 
 const markdownComponents: Components = {
   p: ({ node, children, ...props }) => {
-    // Check if any child is a div, and if so, render as a fragment instead of p
-    const hasDiv = React.Children.toArray(children).some(
-      (child) => React.isValidElement(child) && child.type === 'div'
+    // Check if the paragraph contains any block-level elements or images
+    const hasBlockLevel = React.Children.toArray(children).some(
+      (child) => 
+        React.isValidElement(child) && 
+        (child.type === 'div' || 
+         child.type === 'img' || 
+         child.type === 'figure' ||
+         child.type === 'video' ||
+         child.type === 'iframe' ||
+         child.props?.className?.includes('grid') ||
+         child.props?.className?.includes('flex'))
     );
 
-    if (hasDiv) {
-      return <>{children}</>;
+    // If it contains block-level elements, render as a div instead of p
+    if (hasBlockLevel) {
+      return <div className="my-4">{children}</div>;
     }
 
+    // Regular paragraph with proper styling
     return (
       <p className="mb-4 text-gray-700 dark:text-gray-300 leading-relaxed" {...props}>
         {children}

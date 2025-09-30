@@ -592,6 +592,29 @@
       "currency": "NGN",
       "status": "new",
       "createdAt": "2025-09-29T22:21:51.235Z"
+    },
+    {
+      "id": "order-12",
+      "customerName": "Emmanuel Ogugua",
+      "customerEmail": "emmachuka@gmail.com",
+      "customerPhone": "08064508595",
+      "orderType": "pickup",
+      "deliveryAddress": "",
+      "scheduledDate": "2025-10-01",
+      "scheduledTime": "09:00",
+      "notes": "jj",
+      "products": [
+        {
+          "productId": "premium-mentorship",
+          "name": "Premium Mentorship Program (1 Year)",
+          "quantity": 1,
+          "priceNaira": 160000
+        }
+      ],
+      "totalAmount": 160000,
+      "currency": "NGN",
+      "status": "new",
+      "createdAt": "2025-09-30T09:41:20.371Z"
     }
   ],
   "testimonials": [

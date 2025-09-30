@@ -1,0 +1,23 @@
+// Minimal working version of product detail page
+import { notFound } from 'next/navigation';
+import { getProductBySlug } from '@/lib/db-utils';
+
+export default async function ProductPage({ params }: { params: { slug: string } }) {
+  const product = await getProductBySlug(params.slug);
+  
+  if (!product) {
+    notFound();
+  }
+
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="text-2xl font-bold mb-6">{product.name}</h1>
+      <p className="text-primary text-xl font-semibold mb-4">
+        ₦{product.priceNaira?.toLocaleString()}
+      </p>
+      <p className="text-gray-600">{product.description}</p>
+    </div>
+  );
+}
+
+export const dynamic = 'force-dynamic';

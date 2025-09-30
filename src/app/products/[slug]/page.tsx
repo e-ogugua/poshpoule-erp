@@ -1,71 +1,75 @@
+import { readDatabase } from '@/lib/database-server';
 import { notFound } from 'next/navigation';
-import { Metadata, ResolvingMetadata } from 'next';
-import { Suspense, cache } from 'react';
-import ProductClient, { Product } from './ProductClient';
-
-// Imported Product interface from ProductClient
-
-// Loading spinner component
-const LoadingSpinner = () => (
-  <div className="min-h-screen flex items-center justify-center">
-    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
-  </div>
-);
+import Image from 'next/image';
+import { Metadata } from 'next';
+import ProductClient from '@/components/ProductClient';
 
 interface ProductPageProps {
   params: {
     slug: string;
   };
+  searchParams: {
+    [key: string]: string | string[] | undefined;
+  };
 }
 
-// Cache the getProductBySlug call to prevent multiple fetches
-const getProduct = cache(async (slug: string) => {
-  const { getProductBySlug } = await import('@/lib/db-utils');
-  return getProductBySlug(slug);
-});
+export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
+  const { slug } = params;
+  const data = readDatabase();
+  const product = data.products.find((p: any) => p.slug === slug);
 
-// This is a server component that fetches the initial data
-export default async function ProductPage({ params }: { params: { slug: string } }) {
-  // Fetch the initial product data on the server side with caching
-  const product = await getProduct(params.slug);
-  
   if (!product) {
-    notFound();
-  }
-
-  return (
-    <Suspense fallback={<LoadingSpinner />}>
-      <ProductClient slug={params.slug} initialProduct={product} />
-    </Suspense>
-  );
-}
-
-// Metadata generation remains the same
-export async function generateMetadata(
-  { params }: { params: { slug: string } },
-  parent: ResolvingMetadata
-): Promise<Metadata> {
-  const { getProductBySlug } = await import('@/lib/db-utils');
-  const product = await getProductBySlug(params.slug);
-  
-  if (!product) {
-    return {
-      title: 'Product Not Found',
-    };
+    return {};
   }
 
   return {
     title: `${product.name} | PoshPOULE Farms`,
     description: product.description,
     openGraph: {
-      title: `${product.name} | PoshPOULE Farms`,
+      title: product.name,
       description: product.description,
-      images: product.images && product.images.length > 0 ? [product.images[0]] : [],
+      images: [
+        {
+          url: product.image,
+          width: 800,
+          height: 600,
+          alt: product.name,
+        },
+      ],
     },
   };
 }
 
-export async function generateStaticParams() {
-  // Return an empty array and rely on dynamic rendering
-  return [];
+export default async function ProductPage({ params }: ProductPageProps) {
+  const { slug } = params;
+  const data = readDatabase();
+  const product = data.products.find((p: any) => p.slug === slug);
+
+  if (!product) {
+    notFound();
+  }
+
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <div className="relative aspect-square w-full overflow-hidden rounded-lg">
+            <Image
+              src={product.image}
+              alt={product.name}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              priority
+            />
+          </div>
+        </div>
+        
+        <ProductClient product={product} />
+      </div>
+    </div>
+  );
 }
+
+// Ensure the page is always dynamically rendered
+export const dynamic = 'force-dynamic';

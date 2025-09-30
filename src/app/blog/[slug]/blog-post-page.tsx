@@ -2,12 +2,13 @@
 
 import { useEffect, useState } from 'react';
 import { useParams, notFound } from 'next/navigation';
+import { getBlogPostBySlug, getBlogPosts } from '@/app/actions/blog';
 import { BlogPostContent } from './BlogPostContent';
 import type { BlogPost } from '@/lib/database-server';
 
 export default function BlogPostPage() {
   const params = useParams();
-  const slug = Array.isArray(params.slug) ? params.slug[0] : params.slug || '';
+  const slug = (Array.isArray(params.slug) ? params.slug[0] : params.slug) || '';
   
   const [post, setPost] = useState<BlogPost | null>(null);
   const [allPosts, setAllPosts] = useState<BlogPost[]>([]);
@@ -18,16 +19,10 @@ export default function BlogPostPage() {
     async function loadData() {
       try {
         setIsLoading(true);
-        const response = await fetch(`/api/blog/${slug}`);
-        
-        if (!response.ok) {
-          if (response.status === 404) {
-            notFound();
-          }
-          throw new Error('Failed to fetch blog post');
-        }
-        
-        const { post: postData, allPosts: allPostsData } = await response.json();
+        const [postData, allPostsData] = await Promise.all([
+          getBlogPostBySlug(slug),
+          getBlogPosts()
+        ]);
         
         if (!postData) {
           notFound();

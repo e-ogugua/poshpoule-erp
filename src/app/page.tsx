@@ -6,6 +6,7 @@ import { ArrowRight } from 'lucide-react';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import { HeroCarousel } from '@/components/HeroCarousel';
+import FeaturedProducts from '@/components/FeaturedProducts';
 
 type Product = {
   id: string;
@@ -73,32 +74,7 @@ async function getHomePageData(): Promise<HomePageData> {
   };
 }
 
-function ProductCard({ product }: { product: Product }) {
-  return (
-    <div className="card p-6">
-      <div className="relative w-full h-48 mb-4">
-        <Image
-          src={product.image}
-          alt={product.name}
-          fill
-          className="object-cover rounded-lg"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        />
-      </div>
-      <h3 className="font-heading text-xl font-heading-semibold mb-2">{product.name}</h3>
-      <p className="text-body mb-4 line-clamp-2">{product.description}</p>
-      <div className="flex items-center justify-between">
-        <span className="font-bold text-primary text-lg">₦{product.priceNaira.toLocaleString()}</span>
-        <Link
-          href={`/products/${product.slug}`}
-          className="btn-outline text-sm"
-        >
-          View Details
-        </Link>
-      </div>
-    </div>
-  );
-}
+// ProductCard component has been moved to a separate file
 
 function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
@@ -189,45 +165,19 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* Why Choose Us Section */}
-        <section className="py-16 bg-neutral-50">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="font-heading text-3xl md:text-4xl font-heading-bold mb-4">
-                Why Choose PoshPOULE?
-              </h2>
-              <p className="text-lg text-body max-w-2xl mx-auto">
-                Experience the difference with our commitment to quality, sustainability, and your health.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {whyChooseUs.map((item, index) => (
-                <WhyChooseUsCard key={index} item={item} />
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* Featured Products Section */}
-        <section className="py-16">
+        <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="font-heading text-3xl md:text-4xl font-heading-bold mb-4">
-                Our Premium Products
+                Featured Products
               </h2>
-              <p className="text-lg text-body max-w-2xl mx-auto">
-                Fresh, organic, and sustainably grown produce from our farm to your table.
+              <p className="text-gray-600 max-w-2xl mx-auto">
+                Discover our premium selection of farm-fresh products
               </p>
             </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-              {featuredProducts.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
-
-            <div className="text-center">
+            <FeaturedProducts products={products} />
+            <div className="text-center mt-8">
               <Link
                 href="/products"
                 className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary to-emerald-600 px-8 py-3 font-semibold text-white shadow-lg shadow-primary/20 transition-all hover:from-primary/90 hover:to-emerald-700"
@@ -235,6 +185,25 @@ export default async function Home() {
                 View All Products
                 <ArrowRight className="h-4 w-4" />
               </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Why Choose Us Section */}
+        <section className="py-16 bg-neutral-50">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="font-heading text-3xl md:text-4xl font-heading-bold mb-4">
+                Why Choose PoshPOULE?
+              </h2>
+              <p className="text-gray-600 max-w-2xl mx-auto">
+                Experience the difference with our commitment to quality, sustainability, and your health.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {whyChooseUs.map((item, index) => (
+                <WhyChooseUsCard key={index} item={item} />
+              ))}
             </div>
           </div>
         </section>

@@ -1,0 +1,99 @@
+'use client';
+
+import { notFound } from 'next/navigation';
+import { getProductBySlug } from '@/lib/db-utils';
+import { useEffect, useState } from 'react';
+
+export default function ProductPage({ params }: { params: { slug: string } }) {
+  const [product, setProduct] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const data = await getProductBySlug(params.slug);
+        if (!data) {
+          notFound();
+        }
+        setProduct(data);
+      } catch (error) {
+        console.error('Error fetching product:', error);
+        notFound();
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchProduct();
+  }, [params.slug]);
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+      </div>
+    );
+  }
+
+  if (!product) {
+    notFound();
+  }
+
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="text-3xl font-bold mb-6">{product.name}</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          {product.images?.[0] && (
+            <img
+              src={product.images[0]}
+              alt={product.name}
+              className="w-full h-auto rounded-lg shadow-md"
+            />
+          )}
+        </div>
+        <div>
+          <p className="text-2xl font-bold text-primary mb-4">
+            ₦{product.priceNaira?.toLocaleString()}
+          </p>
+          <p className="text-gray-600 mb-6">{product.description}</p>
+          <button className="bg-primary text-white px-6 py-2 rounded-md hover:bg-primary/90 transition-colors">
+            Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Generate metadata for the page
+export async function generateMetadata({ params }: { params: { slug: string } }) {
+  const product = await getProductBySlug(params.slug);
+  
+  if (!product) {
+    return {
+      title: 'Product Not Found | Posh Poule Farms',
+      description: 'The requested product could not be found.',
+    };
+  }
+
+  return {
+    title: `${product.name} | Posh Poule Farms`,
+    description: product.description || 'Premium farm-fresh products from Posh Poule Farms',
+    openGraph: {
+      title: product.name,
+      description: product.description || 'Premium farm-fresh products from Posh Poule Farms',
+      images: [
+        {
+          url: product.images?.[0] || '/images/logo.png',
+          width: 800,
+          height: 600,
+          alt: product.name,
+        },
+      ],
+    },
+  };
+}
+
+// Ensure the page is always dynamically rendered
+export const dynamic = 'force-dynamic';

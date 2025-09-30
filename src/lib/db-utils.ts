@@ -77,6 +77,18 @@ export function getCachedProducts(filter: ProductFilter = {}, pagination: Pagina
   };
 }
 
+// Original getProducts function
+export function getProducts(filter: { category?: string } = {}) {
+  const { readDatabase } = require('./database');
+  const data = readDatabase();
+  
+  if (filter.category) {
+    return data.products.filter((p: Product) => p.category === filter.category);
+  }
+  
+  return data.products;
+}
+
 export function getProductBySlug(slug: string): Product | undefined {
   const { readDatabase } = require('./database');
   const data = readDatabase();

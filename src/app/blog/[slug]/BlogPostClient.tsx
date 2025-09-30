@@ -5,7 +5,7 @@ import { useParams, notFound } from 'next/navigation';
 import { BlogPostContent } from './BlogPostContent';
 import type { BlogPost } from '@/lib/database-server';
 
-export default function BlogPostPage() {
+export default function BlogPostClient() {
   const params = useParams();
   const slug = Array.isArray(params.slug) ? params.slug[0] : params.slug || '';
   
