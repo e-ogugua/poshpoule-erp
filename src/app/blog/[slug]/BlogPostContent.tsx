@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import Image from 'next/image';
 import { Calendar, User, Clock, ArrowLeft, Link as LinkIcon, Share2, Heart, MessageCircle, Bookmark } from 'lucide-react';
 import Link from 'next/link';
@@ -39,6 +40,22 @@ interface BlogPostContentProps {
 }
 
 const markdownComponents: Components = {
+  p: ({ node, children, ...props }) => {
+    // Check if any child is a div, and if so, render as a fragment instead of p
+    const hasDiv = React.Children.toArray(children).some(
+      (child) => React.isValidElement(child) && child.type === 'div'
+    );
+
+    if (hasDiv) {
+      return <>{children}</>;
+    }
+
+    return (
+      <p className="mb-4 text-gray-700 dark:text-gray-300 leading-relaxed" {...props}>
+        {children}
+      </p>
+    );
+  },
   code({ node, className, children, ...props }: any) {
     const match = /language-(\w+)/.exec(className || '');
     const isInline = !className?.includes('language-');
@@ -62,47 +79,51 @@ const markdownComponents: Components = {
     const { src, alt = '' } = props;
     if (!src) return null;
     
-    // Ensure the component is mounted on the client
-    const [isMounted, setIsMounted] = useState(false);
-    
-    useEffect(() => {
-      setIsMounted(true);
-    }, []);
-    
-    if (!isMounted) {
-      return (
-        <div className="my-8 max-w-4xl mx-auto">
-          <div className="relative aspect-video w-full bg-gray-100 rounded-xl" />
-        </div>
-      );
-    }
-    
-    // Add a stable key based on the image source
+    // Generate a stable key based on the image source
     const imageKey = `img-${src.replace(/[^a-z0-9]/gi, '-')}`;
     // Generate a meaningful alt text if none is provided
     const imageAlt = alt?.trim() || 'Blog post image';
     
-    return (
-      <div key={imageKey} className="my-8 max-w-4xl mx-auto">
-        <div className="relative aspect-video w-full">
-          <Image
-            src={src}
-            alt={imageAlt}
-            fill
-            className="rounded-xl shadow-lg object-cover"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
-            priority={false}
-            loading="lazy"
-            unoptimized={process.env.NODE_ENV !== 'production'}
-          />
+    // Use dynamic import for client-side only rendering of Image component
+    const DynamicImage = () => {
+      const [isClient, setIsClient] = useState(false);
+      
+      useEffect(() => {
+        setIsClient(true);
+      }, []);
+      
+      if (!isClient) {
+        return (
+          <div className="my-8 max-w-4xl mx-auto">
+            <div className="relative aspect-video w-full bg-gray-100 rounded-xl" />
+          </div>
+        );
+      }
+      
+      return (
+        <div key={imageKey} className="my-8 max-w-4xl mx-auto">
+          <div className="relative aspect-video w-full">
+            <Image
+              src={src}
+              alt={imageAlt}
+              fill
+              className="rounded-xl shadow-lg object-cover"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
+              priority={false}
+              loading="lazy"
+              unoptimized={process.env.NODE_ENV !== 'production'}
+            />
+          </div>
+          {imageAlt && imageAlt !== 'Blog post image' && (
+            <p className="text-center text-sm text-gray-500 mt-2 italic">
+              {imageAlt}
+            </p>
+          )}
         </div>
-        {imageAlt && imageAlt !== 'Blog post image' && (
-          <p className="text-center text-sm text-gray-500 mt-2 italic">
-            {imageAlt}
-          </p>
-        )}
-      </div>
-    );
+      );
+    };
+    
+    return <DynamicImage />;
   },
   a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
     const { href, children, ...rest } = props;
