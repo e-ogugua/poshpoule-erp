@@ -26,6 +26,7 @@ interface BlogPostContentProps {
   formattedDate: string;
   relatedPosts: BlogPost[];
   previousPost: BlogPost | null;
+  nextPost: BlogPost | null;
 }
 
 const markdownComponents: Components = {

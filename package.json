@@ -2,6 +2,7 @@
   "name": "poshpoule-farms-website",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@10.17.1",
   "scripts": {
     "dev": "next dev",
     "build": "prisma generate && next build",
