@@ -41,21 +41,20 @@ function CategoryFilter({ categories, selectedCategory }: { categories: string[]
     </div>
   );
 }
-
 export default async function ProductsPage({
   searchParams,
 }: {
-  searchParams: { category?: string }
+  searchParams: Promise<{ category?: string }>
 }) {
   // Read the database on the server
   const data = readDatabase();
-  const selectedCategory = searchParams?.category || null;
+  const searchParamsResolved = await searchParams;
+  const selectedCategory = searchParamsResolved?.category || null;
 
   const categories = Array.from(new Set(data.products.map(p => p.category)));
   const filteredProducts = selectedCategory
     ? data.products.filter(p => p.category === selectedCategory)
     : data.products;
-
   return (
     <div className="min-h-screen flex flex-col">
       <Header />

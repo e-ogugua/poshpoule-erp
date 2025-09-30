@@ -13,17 +13,32 @@ const ProductPriceDisplay = dynamic(
   }
 );
 
+export interface Product {
+  id: string;
+  name: string;
+  slug: string;
+  description: string;
+  priceNaira: number;
+  category: string;
+  stock: number;
+  image: string;
+  images: string[];
+  featured: boolean;
+  available: boolean;
+  createdAt: string;
+  originalPrice?: number;
+  discountPercentage?: number;
+}
+
 interface ProductClientProps {
-  product: {
-    name: string;
-    description: string;
-    priceNaira: number;
-    originalPrice?: number;
-    discountPercentage?: number;
-  };
+  product: Product;
 }
 
 export default function ProductClient({ product }: ProductClientProps) {
+  if (!product) {
+    return <div>Error: Product not found</div>;
+  }
+
   return (
     <div>
       <h1 className="text-3xl font-bold mb-2">{product.name}</h1>

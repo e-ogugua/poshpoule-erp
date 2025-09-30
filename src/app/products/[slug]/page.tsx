@@ -1,22 +1,21 @@
 import { readDatabase } from '@/lib/database-server';
 import { notFound } from 'next/navigation';
-import Image from 'next/image';
 import { Metadata } from 'next';
-import ProductClient from '@/components/ProductClient';
+import ProductClient, { Product } from '@/components/ProductClient';
 
 interface ProductPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
-  searchParams: {
+  }>;
+  searchParams: Promise<{
     [key: string]: string | string[] | undefined;
-  };
+  }>;
 }
 
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
-  const { slug } = params;
+  const { slug } = await params;
   const data = readDatabase();
-  const product = data.products.find((p: any) => p.slug === slug);
+  const product = data.products.find((p: Product) => p.slug === slug);
 
   if (!product) {
     return {};
@@ -41,9 +40,9 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
-  const { slug } = params;
+  const { slug } = await params;
   const data = readDatabase();
-  const product = data.products.find((p: any) => p.slug === slug);
+  const product = data.products.find((p: Product) => p.slug === slug);
 
   if (!product) {
     notFound();
@@ -54,13 +53,11 @@ export default async function ProductPage({ params }: ProductPageProps) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div>
           <div className="relative aspect-square w-full overflow-hidden rounded-lg">
-            <Image
+            <img
               src={product.image}
               alt={product.name}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
-              priority
+              className="object-cover w-full h-full"
+              style={{ objectFit: "cover" }}
             />
           </div>
         </div>
@@ -70,6 +67,3 @@ export default async function ProductPage({ params }: ProductPageProps) {
     </div>
   );
 }
-
-// Ensure the page is always dynamically rendered
-export const dynamic = 'force-dynamic';

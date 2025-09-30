@@ -26,22 +26,22 @@ interface BlogPostContentProps {
   formattedDate: string;
   relatedPosts: BlogPost[];
   previousPost: BlogPost | null;
-  nextPost: BlogPost | null;
 }
 
 const markdownComponents: Components = {
   p: ({ node, children, ...props }) => {
     // Check if the paragraph contains any block-level elements or images
     const hasBlockLevel = React.Children.toArray(children).some(
-      (child) => 
-        React.isValidElement(child) && 
-        (child.type === 'div' || 
-         child.type === 'img' || 
+      (child) =>
+        React.isValidElement(child) &&
+        (child.type === 'div' ||
+         child.type === 'img' ||
          child.type === 'figure' ||
          child.type === 'video' ||
          child.type === 'iframe' ||
          child.props?.className?.includes('grid') ||
-         child.props?.className?.includes('flex'))
+         child.props?.className?.includes('flex') ||
+         child.props?.className?.includes('block-level'))
     );
 
     // If it contains block-level elements, render as a div instead of p
@@ -95,13 +95,13 @@ const markdownComponents: Components = {
       if (!isClient) {
         return (
           <div className="my-8 max-w-4xl mx-auto">
-            <div className="relative aspect-video w-full bg-gray-100 rounded-xl" />
+            <div className="relative aspect-video w-full bg-gray-100 rounded-xl block-level" />
           </div>
         );
       }
       
       return (
-        <div key={imageKey} className="my-8 max-w-4xl mx-auto">
+        <div key={imageKey} className="my-8 max-w-4xl mx-auto block-level">
           <div className="relative aspect-video w-full">
             <Image
               src={src}
