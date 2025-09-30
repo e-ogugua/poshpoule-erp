@@ -48,6 +48,25 @@ Thumbs.db
 .cache/
 .turbo/
 
+# Database backups and dumps
+/prisma/*.db
+/prisma/*.sql
+/prisma/*.bak
+/prisma/dev-backup*.db
+
+# Temporary migration files
+/prisma/migrations/*_init/
+
+# Lock files (use either package-lock.json or pnpm-lock.yaml, not both)
+package-lock.json
+
+# Local development scripts
+/scripts/check-*.js
+/scripts/migrate-*.js
+/scripts/sqlite-*.js
+/scripts/import-*.js
+/scripts/test-*.js
+
 # Misc
 *.log
 

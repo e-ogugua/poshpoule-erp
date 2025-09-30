@@ -9,8 +9,8 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model User {
@@ -24,27 +24,27 @@ model User {
   createdAt     DateTime  @default(now()) @map("created_at")
   updatedAt     DateTime  @updatedAt @map("updated_at")
 
-  accounts      Account[]
-  sessions      Session[]
-  orders        Order[]
-  reviews       Review[]
-  
+  accounts Account[]
+  sessions Session[]
+  orders   Order[]
+  reviews  Review[]
+
   @@map("users")
 }
 
 model Account {
-  id                 String  @id @default(cuid())
-  userId             String  @map("user_id")
-  type               String
-  provider           String
-  providerAccountId  String  @map("provider_account_id")
-  refresh_token      String?
-  access_token       String?
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String?
-  session_state      String?
+  id                String  @id @default(cuid())
+  userId            String  @map("user_id")
+  type              String
+  provider          String
+  providerAccountId String  @map("provider_account_id")
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -72,17 +72,17 @@ model VerificationToken {
 }
 
 model Order {
-  id           String    @id @default(cuid())
-  userId       String    @map("user_id")
-  totalAmount  Float     @default(0) @map("total_amount")
-  status       String    @default("pending")
+  id           String   @id @default(cuid())
+  userId       String   @map("user_id")
+  totalAmount  Float    @default(0) @map("total_amount")
+  status       String   @default("pending")
   items        Json
-  shippingInfo Json      @map("shipping_info")
-  createdAt    DateTime  @default(now()) @map("created_at")
-  updatedAt    DateTime  @updatedAt @map("updated_at")
-  
-  user         User      @relation(fields: [userId], references: [id])
-  
+  shippingInfo Json     @map("shipping_info")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id])
+
   @@map("orders")
 }
 
@@ -100,22 +100,22 @@ model Product {
   numReviews  Int      @default(0) @map("num_reviews")
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @updatedAt @map("updated_at")
-  
-  reviews     Review[]
-  
+
+  reviews Review[]
+
   @@map("products")
 }
 
 model Review {
-  id         String   @id @default(cuid())
-  productId  String   @map("product_id")
-  userId     String   @map("user_id")
-  rating     Int
-  comment    String?
-  createdAt  DateTime @default(now()) @map("created_at")
-  
-  product    Product  @relation(fields: [productId], references: [id])
-  user       User     @relation(fields: [userId], references: [id])
-  
+  id        String   @id @default(cuid())
+  productId String   @map("product_id")
+  userId    String   @map("user_id")
+  rating    Int
+  comment   String?
+  createdAt DateTime @default(now()) @map("created_at")
+
+  product Product @relation(fields: [productId], references: [id])
+  user    User    @relation(fields: [userId], references: [id])
+
   @@map("reviews")
 }

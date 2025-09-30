@@ -563,6 +563,35 @@
       "currency": "NGN",
       "status": "new",
       "createdAt": "2025-09-29T17:47:32.353Z"
+    },
+    {
+      "id": "order-11",
+      "customerName": "Emmanuel Ogugua",
+      "customerEmail": "emmachuka@gmail.com",
+      "customerPhone": "08064508595",
+      "orderType": "pickup",
+      "deliveryAddress": "",
+      "scheduledDate": "2025-09-30",
+      "scheduledTime": "09:00",
+      "notes": "ggg",
+      "products": [
+        {
+          "productId": "fresh-organic-eggs",
+          "name": "Fresh Organic Eggs",
+          "quantity": 1,
+          "priceNaira": 5700
+        },
+        {
+          "productId": "workshop-training",
+          "name": "Workshop & Training (3 Months)",
+          "quantity": 1,
+          "priceNaira": 45000
+        }
+      ],
+      "totalAmount": 50700,
+      "currency": "NGN",
+      "status": "new",
+      "createdAt": "2025-09-29T22:21:51.235Z"
     }
   ],
   "testimonials": [
