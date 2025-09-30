@@ -11,8 +11,8 @@
 /.vercel/
 
 # environment variables
-.env*.local
-.env
+.env*
+!.env.example
 
 # debug logs
 npm-debug.log*
