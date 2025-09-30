@@ -1,51 +1,53 @@
 #!/bin/bash
 
-# Strict mode: exit on error, fail on unset variables, and print commands
+# Exit on any error and print commands
 set -euo pipefail
 IFS=$'\n\t'
 
-TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
-echo "[${TIMESTAMP}] Starting Vercel build process..."
+echo "🔹 Starting Vercel build at $(date +"%Y-%m-%d %H:%M:%S")"
 
-# ---- Step 1: Ensure required env variables ----
+# Ensure required environment variables are set
 for var in DATABASE_URL NEXTAUTH_SECRET NEXTAUTH_URL; do
   if [ -z "${!var:-}" ]; then
-    echo "❌ Error: $var is not set"
+    echo "❌ Error: Environment variable $var is not set"
     exit 1
   fi
 done
 
-# ---- Step 2: Install dependencies ----
-echo "🔧 Installing dependencies..."
+# Approve all native build scripts for pnpm v10
+echo "✅ Approving native build scripts for pnpm..."
+pnpm approve-builds --all || true
+
+# Install dependencies with cache
+echo "🔧 Installing dependencies via pnpm..."
 pnpm install --frozen-lockfile --prefer-offline
 
-# ---- Step 3: Generate Prisma client ----
-echo "⚙️ Generating Prisma client..."
-npx prisma generate
+# Generate Prisma client
+echo "⚙️  Generating Prisma client..."
+pnpm prisma generate
 
-# ---- Step 4: Run database migrations (production-safe) ----
-echo "🚀 Running production migrations..."
-NODE_ENV=production npx prisma migrate deploy
+# Run database migrations (non-interactive)
+echo "🚀 Running Prisma migrations in production..."
+NODE_ENV=production pnpm prisma migrate deploy
 
-# ---- Step 5: Verify database connection ----
-echo "🔌 Verifying database connection..."
-npx prisma db execute --stdin --url="$DATABASE_URL" <<< "SELECT 1 AS connection_test;"
+# Verify database connection
+echo "🔌 Testing database connection..."
+pnpm prisma db execute --stdin --url="$DATABASE_URL" <<< "SELECT 1 AS connection_test;"
 
-# ---- Step 6: Build Next.js 15 app ----
-echo "🏗️ Building Next.js app..."
-pnpm run build
+# Build Next.js app
+echo "🏗️  Building Next.js application..."
+pnpm build
 
-# ---- Step 7: Optional post-build (sitemap, etc.) ----
-if grep -q "\"postbuild\"" package.json; then
-  echo "🗺️ Running postbuild script..."
-  pnpm run postbuild
+# Run postbuild scripts if defined
+if grep -q '"postbuild"' package.json; then
+  echo "🗺️  Running postbuild script (e.g., sitemap)..."
+  pnpm postbuild
 fi
 
-# ---- Step 8: Verify build output ----
+# Check if .next build directory exists
 if [ ! -d ".next" ]; then
-  echo "❌ Error: Build failed - .next directory not found"
+  echo "❌ Build failed: .next directory not found!"
   exit 1
 fi
 
-TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
-echo "✅ [${TIMESTAMP}] Vercel build completed successfully!"
+echo "✅ Build completed successfully at $(date +"%Y-%m-%d %H:%M:%S")"
