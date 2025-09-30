@@ -3,15 +3,12 @@
 # Exit on error
 set -euo pipefail
 
-# Timestamp for logs
 TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
 echo "[${TIMESTAMP}] Starting Vercel build process..."
 
-# Function to approve pnpm build scripts (for Vercel CI)
-
-# Install dependencies
+# Install dependencies using npm (Vercel default)
 echo "[${TIMESTAMP}] Installing dependencies..."
-pnpm install --frozen-lockfile
+npm ci
 
 # Generate Prisma client
 echo "[${TIMESTAMP}] Generating Prisma client..."
@@ -23,12 +20,12 @@ NODE_ENV=production npx prisma migrate deploy || echo "[${TIMESTAMP}] Migrations
 
 # Build Next.js app
 echo "[${TIMESTAMP}] Building Next.js app..."
-pnpm run build
+npm run build
 
 # Postbuild
 if grep -q "postbuild" package.json; then
   echo "[${TIMESTAMP}] Running postbuild script..."
-  pnpm run postbuild
+  npm run postbuild
 fi
 
 if [ ! -d ".next" ]; then
