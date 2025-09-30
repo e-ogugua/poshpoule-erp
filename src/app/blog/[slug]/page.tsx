@@ -2,10 +2,8 @@ import { notFound } from 'next/navigation';
 import { getBlogPostBySlug, getBlogPosts } from '@/app/actions/blog';
 import { BlogPostContent } from './BlogPostContent';
 
-interface BlogPostPageProps {
-  params: {
-    slug: string;
-  };
+type BlogPostPageProps = {
+  params: { slug: string };
   searchParams?: { [key: string]: string | string[] | undefined };
 }
 
