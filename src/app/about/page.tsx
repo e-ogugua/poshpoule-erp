@@ -126,9 +126,6 @@ export default function AboutPage() {
                 <p className="mb-6">
                   {data.settings?.story || 'Founded in 2015, PoshPOULE® Farms Ltd was founded out of a deep passion for healthy living and food security. What began as a small family homestead with a few chickens and a vegetable patch has grown into a diversified organic agribusiness. Rooted in our tradition of growing what we eat the purest way possible, we now produce premium poultry, fresh eggs, vegetables, fruits, and crops through sustainable and transparent farming practices.'}
                 </p>
-                <p className="mb-6">
-                  From humble beginnings to serving hundreds of families, our journey has always been guided by trust, innovation, and care for both people and the planet. Today, PoshPOULE is proud to be a leading organic farm brand—nourishing communities with pure goodness while building a resilient agribusiness for the future.
-                </p>
               </div>
             </div>
           </div>

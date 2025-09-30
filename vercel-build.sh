@@ -1,53 +1,59 @@
 #!/bin/bash
 
-# Exit on any error and print commands
+# Exit on error
 set -euo pipefail
-IFS=$'\n\t'
 
-echo "🔹 Starting Vercel build at $(date +"%Y-%m-%d %H:%M:%S")"
+# Timestamp for logs
+TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
+echo "[${TIMESTAMP}] Starting Vercel build process..."
 
-# Ensure required environment variables are set
-for var in DATABASE_URL NEXTAUTH_SECRET NEXTAUTH_URL; do
-  if [ -z "${!var:-}" ]; then
-    echo "❌ Error: Environment variable $var is not set"
-    exit 1
+# Function to approve pnpm build scripts (for Vercel CI)
+approve_builds() {
+  if command -v pnpm >/dev/null 2>&1; then
+    echo "[${TIMESTAMP}] Attempting to approve all build scripts..."
+    # Only works on Vercel environment
+    if pnpm help approve-builds >/dev/null 2>&1; then
+      pnpm approve-builds --all || true
+      echo "[${TIMESTAMP}] Build scripts approved!"
+    else
+      echo "[${TIMESTAMP}] pnpm approve-builds command not available, skipping."
+    fi
   fi
-done
+}
 
-# Approve all native build scripts for pnpm v10
-echo "✅ Approving native build scripts for pnpm..."
-pnpm approve-builds --all || true
+# Approve scripts
+approve_builds
 
-# Install dependencies with cache
-echo "🔧 Installing dependencies via pnpm..."
-pnpm install --frozen-lockfile --prefer-offline
+# Install dependencies
+echo "[${TIMESTAMP}] Installing dependencies..."
+pnpm install --frozen-lockfile
 
 # Generate Prisma client
-echo "⚙️  Generating Prisma client..."
-pnpm prisma generate
+echo "[${TIMESTAMP}] Generating Prisma client..."
+npx prisma generate
 
-# Run database migrations (non-interactive)
-echo "🚀 Running Prisma migrations in production..."
-NODE_ENV=production pnpm prisma migrate deploy
+# Run production migrations
+echo "[${TIMESTAMP}] Running database migrations..."
+NODE_ENV=production npx prisma migrate deploy
 
-# Verify database connection
-echo "🔌 Testing database connection..."
-pnpm prisma db execute --stdin --url="$DATABASE_URL" <<< "SELECT 1 AS connection_test;"
+# Verify DB connection
+echo "[${TIMESTAMP}] Verifying database connection..."
+npx prisma db execute --stdin --url="$DATABASE_URL" <<< "SELECT 1 AS connection_test;"
 
 # Build Next.js app
-echo "🏗️  Building Next.js application..."
-pnpm build
+echo "[${TIMESTAMP}] Building Next.js app..."
+pnpm run build
 
-# Run postbuild scripts if defined
-if grep -q '"postbuild"' package.json; then
-  echo "🗺️  Running postbuild script (e.g., sitemap)..."
-  pnpm postbuild
+# Postbuild scripts if exist (e.g., sitemap)
+if grep -q "postbuild" package.json; then
+  echo "[${TIMESTAMP}] Running postbuild script..."
+  pnpm run postbuild
 fi
 
-# Check if .next build directory exists
+# Confirm build directory exists
 if [ ! -d ".next" ]; then
   echo "❌ Build failed: .next directory not found!"
   exit 1
 fi
 
-echo "✅ Build completed successfully at $(date +"%Y-%m-%d %H:%M:%S")"
+echo "[${TIMESTAMP}] ✅ Build completed successfully!"
