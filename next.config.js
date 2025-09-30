@@ -1,105 +1,51 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true, // Enable strict mode for better React practices
-  productionBrowserSourceMaps: false,
-  swcMinify: true, // Enable SWC minification for faster builds
-  compress: true, // Enable compression for smaller bundles
-  output: 'standalone', // Enable standalone output for better deployment
+  reactStrictMode: true,
+  output: 'standalone',
   images: {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'poshpoule.com', // Replace with your actual domain
-        port: '',
-        pathname: '/**',
+        hostname: 'poshpoule.com',
       },
       {
         protocol: 'https',
-        hostname: 'poshpoule.vercel.app', // Replace with your Vercel URL if different
-        port: '',
-        pathname: '/**',
+        hostname: 'poshpoule.vercel.app',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'via.placeholder.com',
       },
     ],
-    formats: ['image/webp'],
-    deviceSizes: [640, 750, 1080, 1200, 1920],
-    imageSizes: [32, 64, 96, 128, 256],
-    minimumCacheTTL: 60, // Cache images for 60 seconds
-  },
-  async headers() {
-    const securityHeaders = [
-      { key: 'X-Content-Type-Options', value: 'nosniff' },
-      { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
-      { key: 'X-XSS-Protection', value: '1; mode=block' },
-      { key: 'Referrer-Policy', value: 'origin-when-cross-origin' },
-      { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
-    ];
-    
-    if (process.env.NEXT_PUBLIC_ENABLE_CSP === 'true') {
-      securityHeaders.push({
-        key: 'Content-Security-Policy',
-        value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https:;"
-      });
-    }
-    
-    return [{ source: '/(.*)', headers: securityHeaders }];
-  },
-  async rewrites() {
-    return [{ source: '/api/:path*', destination: '/api/:path*' }];
+    formats: ['image/webp', 'image/avif'],
+    minimumCacheTTL: 60, // 1 minute cache TTL
   },
   compiler: {
-    removeConsole: process.env.NODE_ENV === 'production' ? { exclude: ['error'] } : false,
+    removeConsole: process.env.NODE_ENV === 'production' ? { exclude: ['error'] } : false
   },
-  // Removed experimental.scrollRestoration as it's now stable
-  webpack: (config, { isServer, dev }) => {
-    // Only optimize in production
-    if (!dev) {
-      // Add Terser plugin for JS minification
-      const TerserPlugin = require('terser-webpack-plugin');
-      const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-      
-      config.optimization.minimizer = [
-        new TerserPlugin({
-          parallel: true,
-          terserOptions: {
-            parse: { ecma: 8 },
-            compress: {
-              ecma: 5,
-              warnings: false,
-              comparisons: false,
-              inline: 2,
-              drop_console: true,
-              drop_debugger: true,
-            },
-            mangle: {
-              safari10: true,
-            },
-            output: {
-              ecma: 5,
-              comments: false,
-              ascii_only: true,
-            },
-          },
-        }),
-        new CssMinimizerPlugin({
-          minimizerOptions: {
-            preset: ['default', { discardComments: { removeAll: true } }],
-          },
-        }),
-      ];
-      
-      config.optimization.minimize = true;
-      config.devtool = false;
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '2mb'
     }
-    return config;
   },
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'X-Frame-Options', value: 'DENY' },
+          { key: 'X-XSS-Protection', value: '1; mode=block' },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+          { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' }
+        ]
+      }
+    ];
+  }
 };
 
-// Bundle analyzer (only in development)
-if (process.env.ANALYZE === 'true') {
-  const withBundleAnalyzer = require('@next/bundle-analyzer')({
-    enabled: true,
-  });
-  module.exports = withBundleAnalyzer(nextConfig);
-} else {
-  module.exports = nextConfig;
-}
+module.exports = nextConfig;
