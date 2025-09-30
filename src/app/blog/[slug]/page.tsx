@@ -2,11 +2,12 @@ import { notFound } from 'next/navigation';
 import { getBlogPostBySlug, getBlogPosts } from '@/app/actions/blog';
 import { BlogPostContent } from './BlogPostContent';
 
-export default async function BlogPostPage({
-  params,
-}: {
+type Props = {
   params: { slug: string };
-}) {
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export default async function BlogPostPage({ params }: Props) {
   const { slug } = params;
   const post = await getBlogPostBySlug(slug);
   const allPosts = await getBlogPosts();
