@@ -1,0 +1,19 @@
+# These are supported funding model platforms
+
+github: [your-github-username] # Replace with your GitHub Sponsors username
+twitter: your-twitter-username # Replace with your Twitter username
+patreon: your-patreon-username # Replace with your Patreon username
+open_collective: your-open-collective-username # Replace with your Open Collective username
+ko_fi: your-kofi-username # Replace with your Ko-fi username
+tidelift: # Replace with your Tidelift subscription URL
+  link: https://tidelift.com/subscription/pkg/npm/your-package-name
+  text: Get supported PoshPOULE Farms with the Tidelift Subscription
+community_bridge: your-community-bridge-username # Replace with your Community Bridge username
+liberapay: your-liberapay-username # Replace with your Liberapay username
+custom: https://poshpoule.com/donate # Replace with your custom donation URL
+
+# Set to true to display the sponsor button in the top-right of the repository
+display_in_bio: true
+
+# Set to true to enable the GitHub Sponsors button
+github_follow: true

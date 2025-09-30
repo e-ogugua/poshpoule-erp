@@ -1,17 +1,29 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: false,
+  reactStrictMode: true, // Enable strict mode for better React practices
   productionBrowserSourceMaps: false,
+  swcMinify: true, // Enable SWC minification for faster builds
+  compress: true, // Enable compression for smaller bundles
+  output: 'standalone', // Enable standalone output for better deployment
   images: {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**',
+        hostname: 'poshpoule.com', // Replace with your actual domain
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'poshpoule.vercel.app', // Replace with your Vercel URL if different
+        port: '',
+        pathname: '/**',
       },
     ],
     formats: ['image/webp'],
     deviceSizes: [640, 750, 1080, 1200, 1920],
     imageSizes: [32, 64, 96, 128, 256],
+    minimumCacheTTL: 60, // Cache images for 60 seconds
   },
   async headers() {
     const securityHeaders = [
@@ -37,9 +49,7 @@ const nextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production' ? { exclude: ['error'] } : false,
   },
-  experimental: {
-    scrollRestoration: true,
-  },
+  // Removed experimental.scrollRestoration as it's now stable
   webpack: (config, { isServer, dev }) => {
     // Only optimize in production
     if (!dev) {

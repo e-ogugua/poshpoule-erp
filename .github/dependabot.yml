@@ -1,0 +1,126 @@
+version: 2
+updates:
+  # Enable version updates for npm
+  - package-ecosystem: "npm"
+    # Look for `package.json` and `pnpm-lock.yaml` in the `root` directory
+    directory: "/"
+    # Check for updates once a week
+    schedule:
+      interval: "weekly"
+      # Check for updates on Monday
+      day: "monday"
+      # 09:00 UTC
+      time: "09:00"
+      # Use UTC timezone (default)
+      timezone: "UTC"
+    # Assign reviewers to pull requests
+    reviewers:
+      - "your-github-username"
+    # Add labels to pull requests
+    labels:
+      - "dependencies"
+      - "javascript"
+    # Group updates by dependency name pattern
+    groups:
+      # Group updates for all dependencies starting with "@types/"
+      types:
+        patterns:
+          - "@types/*"
+      # Group updates for all dependencies
+      all:
+        patterns:
+          - "*"
+    # Allow up to 10 open pull requests for version updates
+    open-pull-requests-limit: 10
+    # Rebase existing PRs when they become outdated
+    rebase-strategy: "auto"
+
+  # Enable version updates for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:30"
+      timezone: "UTC"
+    reviewers:
+      - "your-github-username"
+    labels:
+      - "dependencies"
+      - "github-actions"
+    open-pull-requests-limit: 5
+    rebase-strategy: "auto"
+
+  # Enable version updates for Docker
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "tuesday"
+      time: "09:00"
+      timezone: "UTC"
+    reviewers:
+      - "your-github-username"
+    labels:
+      - "dependencies"
+      - "docker"
+    open-pull-requests-limit: 5
+    rebase-strategy: "auto"
+
+# Configuration for version updates
+version: 2
+updates:
+  # Enable version updates for npm
+  - package-ecosystem: "npm"
+    # Look for `package.json` and `pnpm-lock.yaml` in the `root` directory
+    directory: "/"
+    # Check for updates once a week
+    schedule:
+      interval: "weekly"
+    # Assign reviewers to pull requests
+    reviewers:
+      - "your-github-username"
+    # Add labels to pull requests
+    labels:
+      - "dependencies"
+      - "javascript"
+    # Group updates by dependency name pattern
+    groups:
+      # Group updates for all dependencies starting with "@types/"
+      types:
+        patterns:
+          - "@types/*"
+      # Group updates for all dependencies
+      all:
+        patterns:
+          - "*"
+    # Allow up to 10 open pull requests for version updates
+    open-pull-requests-limit: 10
+    # Rebase existing PRs when they become outdated
+    rebase-strategy: "auto"
+
+  # Enable version updates for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    reviewers:
+      - "your-github-username"
+    labels:
+      - "dependencies"
+      - "github-actions"
+    open-pull-requests-limit: 5
+    rebase-strategy: "auto"
+
+  # Enable version updates for Docker
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    reviewers:
+      - "your-github-username"
+    labels:
+      - "dependencies"
+      - "docker"
+    open-pull-requests-limit: 5
+    rebase-strategy: "auto"

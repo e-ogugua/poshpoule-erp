@@ -1,15 +1,16 @@
 version: '3.8'
 
 services:
+  # Database Service
   postgres:
     image: postgres:15-alpine
     container_name: poshpoule-db
     environment:
       POSTGRES_USER: poshpoule
-      POSTGRES_PASSWORD: poshpoule123
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-poshpoule123}
       POSTGRES_DB: poshpoule
     ports:
-      - "5432:5432"
+      - "${DB_PORT:-5432}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -17,6 +18,43 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+    restart: unless-stopped
+
+  # Application Service
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runner
+    container_name: poshpoule-app
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=postgresql://poshpoule:${DB_PASSWORD:-poshpoule123}@postgres:5432/poshpoule?schema=public
+      - NEXTAUTH_URL=http://localhost:3000
+      - NEXTAUTH_SECRET=${NEXTAUTH_SECRET:-your-secret-key}
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    restart: unless-stopped
+    # For development with hot-reload
+    # command: sh -c "pnpm install && pnpm dev"
+
+  # Adminer for database management (optional)
+  adminer:
+    image: adminer:latest
+    container_name: poshpoule-adminer
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    restart: unless-stopped
 
 volumes:
   postgres_data:
+  node_modules:

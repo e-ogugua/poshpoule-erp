@@ -5,7 +5,8 @@ Disallow: /admin
 Disallow: /api
 
 # Host
-Host: http://localhost:3000
+Host: https://poshpoule.com
 
 # Sitemaps
+Sitemap: https://poshpoule.com/sitemap.xml
 Sitemap: http://localhost:3000/sitemap.xml

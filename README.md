@@ -158,6 +158,12 @@ Visit `/admin` to access the admin dashboard.
 
 ## 🚀 Deployment
 
+### Prerequisites
+
+- Node.js 18+ and pnpm
+- Vercel account
+- Environment variables set in Vercel project settings
+
 ### Vercel (Recommended)
 
 1. **Connect your repository** to Vercel

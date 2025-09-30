@@ -1,0 +1,42 @@
+# This is a comment.
+# Each line is a file pattern followed by one or more owners.
+
+# These owners will be the default owners for everything in the repo.
+*       @your-github-username @team-member1 @team-member2
+
+# Order is important. The last matching pattern has the most precedence.
+# So if a pull request only touches files that have a caretaker, only these
+# caretakers will receive a request for review.
+
+# Source code
+/src/**/*.ts @your-github-username @team-member1
+/src/**/*.tsx @your-github-username @team-member1
+/src/**/*.js @your-github-username @team-member1
+/src/**/*.jsx @your-github-username @team-member1
+
+# Configuration files
+/*.json @your-github-username @team-member2
+/*.js @your-github-username @team-member2
+/*.config.js @your-github-username @team-member2
+
+# Documentation
+/README.md @your-github-username @team-member3
+/CONTRIBUTING.md @your-github-username @team-member3
+/CHANGELOG.md @your-github-username @team-member3
+/docs/ @your-github-username @team-member3
+
+# Tests
+/tests/ @your-github-username @team-member4
+/__tests__/ @your-github-username @team-member4
+*.test.js @your-github-username @team-member4
+*.test.ts @your-github-username @team-member4
+
+# GitHub Actions
+/.github/workflows/ @your-github-username @team-member2
+
+# Security
+/SECURITY.md @your-github-username @security-team
+
+# Dependencies
+/package.json @your-github-username @team-member2
+/pnpm-lock.yaml @your-github-username @team-member2
