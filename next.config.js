@@ -2,6 +2,7 @@
 const nextConfig = {
   reactStrictMode: true, // Enable strict mode for better React practices
   productionBrowserSourceMaps: false,
+  swcMinify: true, // Enable SWC minification for faster builds
   compress: true, // Enable compression for smaller bundles
   output: 'standalone', // Enable standalone output for better deployment
   images: {

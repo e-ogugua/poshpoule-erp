@@ -1,32 +1,64 @@
 import { notFound } from 'next/navigation';
-import { getBlogPostBySlug } from '@/app/actions/blog';
-import type { BlogPost } from '@/lib/database-server';
+import { getBlogPostBySlug, getBlogPosts } from '@/app/actions/blog';
+import { BlogPostContent } from './BlogPostContent';
 
 type Props = {
   params: { slug: string };
 };
 
 export default async function BlogPostPage({ params }: Props) {
-  let post: BlogPost | null = null;
+  const { slug } = params;
   
   try {
-    post = await getBlogPostBySlug(params.slug);
-  } catch (error) {
-    console.error('Error fetching blog post:', error);
-    notFound();
-  }
-  
-  if (!post) {
-    notFound();
-  }
+    const [post, allPosts] = await Promise.all([
+      getBlogPostBySlug(slug),
+      getBlogPosts()
+    ]);
 
-  return (
-    <article className="max-w-4xl mx-auto py-8 px-4">
-      <h1 className="text-4xl font-bold mb-6">{post.title}</h1>
-      <div 
-        className="prose lg:prose-xl dark:prose-invert"
-        dangerouslySetInnerHTML={{ __html: post.content }} 
+    if (!post) {
+      notFound();
+    }
+
+    // Calculate reading time (approximately 200 words per minute)
+    const wordCount = post.content.split(/\s+/).length;
+    const readingTime = Math.ceil(wordCount / 200);
+
+    // Format date
+    const formattedDate = new Date(post.createdAt).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+
+    // Sort all posts by date (newest first)
+    const sortedPosts = [...allPosts].sort(
+      (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
+
+    // Find current post index in the sorted array
+    const currentIndex = sortedPosts.findIndex(p => p.id === post?.id);
+    
+    // Get previous and next posts
+    const previousPost = currentIndex > 0 ? sortedPosts[currentIndex - 1] : null;
+    const nextPost = currentIndex < sortedPosts.length - 1 ? sortedPosts[currentIndex + 1] : null;
+
+    // Get related posts (same category, excluding current post)
+    const relatedPosts = allPosts
+      .filter(p => p.id !== post?.id && p.category === post?.category)
+      .slice(0, 2);
+
+    return (
+      <BlogPostContent 
+        post={post} 
+        readingTime={readingTime}
+        formattedDate={formattedDate}
+        relatedPosts={relatedPosts}
+        previousPost={previousPost}
+        nextPost={nextPost}
       />
-    </article>
-  );
+    );
+  } catch (error) {
+    console.error('Error in blog post page:', error);
+    notFound();
+  }
 }
