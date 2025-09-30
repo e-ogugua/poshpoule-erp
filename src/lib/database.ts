@@ -158,15 +158,67 @@ export function readDatabase(): Database {
   }
 
   try {
-    const data = fs.readFileSync(DB_PATH, 'utf8');
-    cachedData = JSON.parse(data);
-    if (!cachedData) {
-      throw new Error('Database data is null or undefined');
+    console.log(`Attempting to read database from: ${DB_PATH}`);
+    
+    // Check if file exists
+    if (!fs.existsSync(DB_PATH)) {
+      throw new Error(`Database file not found at path: ${DB_PATH}`);
     }
+    
+    // Check file permissions
+    try {
+      fs.accessSync(DB_PATH, fs.constants.R_OK | fs.constants.W_OK);
+    } catch (err) {
+      throw new Error(`No read/write permissions for database file: ${DB_PATH}`);
+    }
+    
+    // Read and parse the file
+    const data = fs.readFileSync(DB_PATH, 'utf8');
+    if (!data) {
+      throw new Error('Database file is empty');
+    }
+    
+    cachedData = JSON.parse(data);
+    
+    if (!cachedData) {
+      throw new Error('Parsed database data is null or undefined');
+    }
+    
+    // Basic validation of required top-level fields
+    const requiredFields = ['products', 'users', 'orders'];
+    for (const field of requiredFields) {
+      if (!(field in cachedData)) {
+        console.warn(`Warning: Missing expected field '${field}' in database`);
+      }
+    }
+    
+    console.log('Successfully loaded database with products:', cachedData.products?.length || 0);
     return cachedData;
+    
   } catch (error) {
     console.error('Error reading database:', error);
-    throw new Error('Failed to read database');
+    
+    // Provide more detailed error information
+    const errorInfo = {
+      message: error instanceof Error ? error.message : 'Unknown error',
+      code: (error as NodeJS.ErrnoException).code,
+      path: DB_PATH,
+      exists: fs.existsSync(DB_PATH),
+      isFile: fs.existsSync(DB_PATH) ? fs.statSync(DB_PATH).isFile() : false,
+      canRead: fs.existsSync(DB_PATH) ? 
+        (() => { try { fs.accessSync(DB_PATH, fs.constants.R_OK); return true; } catch { return false; } })() : 
+        false,
+      canWrite: fs.existsSync(DB_PATH) ? 
+        (() => { try { fs.accessSync(DB_PATH, fs.constants.W_OK); return true; } catch { return false; } })() : 
+        false,
+    };
+    
+    console.error('Database error details:', JSON.stringify(errorInfo, null, 2));
+    
+    // Create a new error with the original error as a property for debugging
+    const dbError = new Error(`Failed to read database: ${errorInfo.message}`);
+    (dbError as any).originalError = error;
+    throw dbError;
   }
 }
 

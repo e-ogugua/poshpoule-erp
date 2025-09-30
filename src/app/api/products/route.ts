@@ -41,16 +41,37 @@ export async function GET(request: NextRequest) {
     // Set cache control headers (5 minutes client cache, 1 minute CDN cache)
     const response = NextResponse.json({
       data: products,
-      pagination,
     });
 
     response.headers.set('Cache-Control', 'public, s-maxage=300, stale-while-revalidate=60');
     return response;
   } catch (error) {
-    console.error('Error fetching products:', error);
+    console.error('Error in /api/products:', error);
+    
+    // Check if it's a database error
+    const errorMessage = error instanceof Error 
+      ? error.message 
+      : 'An unknown error occurred';
+      
+    // Check if the database file exists
+    const fs = require('fs');
+    const path = require('path');
+    const dbPath = path.join(process.cwd(), 'db', 'data.json');
+    const dbExists = fs.existsSync(dbPath);
+    
+    console.log(`Database file exists: ${dbExists}`);
+    if (dbExists) {
+      console.log('Database file stats:', fs.statSync(dbPath));
+    }
+    
     return NextResponse.json(
-      { error: 'Failed to fetch products' },
-      { status: 500, headers: { 'Cache-Control': 'no-store' } }
+      { 
+        error: 'Failed to fetch products',
+        details: errorMessage,
+        dbExists,
+        dbPath
+      },
+      { status: 500 }
     );
   }
 }

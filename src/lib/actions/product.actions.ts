@@ -18,13 +18,47 @@ interface Product {
 
 export async function getProducts(): Promise<Product[]> {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/api/products`);
+    const url = new URL('/api/products', process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000');
+    console.log('Fetching products from:', url.toString());
+    
+    const response = await fetch(url.toString(), {
+      cache: 'no-store', // Ensure we get fresh data
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    
     if (!response.ok) {
-      throw new Error('Failed to fetch products');
+      const errorText = await response.text();
+      console.error('Failed to fetch products:', {
+        status: response.status,
+        statusText: response.statusText,
+        error: errorText,
+      });
+      throw new Error(`Failed to fetch products: ${response.status} ${response.statusText}`);
     }
     
     const responseData = await response.json();
-    return Array.isArray(responseData) ? responseData : responseData.data || [];
+    
+    // Log the response for debugging
+    console.log('Products API response:', {
+      hasData: !!responseData,
+      dataType: Array.isArray(responseData) ? 'array' : typeof responseData,
+      dataKeys: responseData ? Object.keys(responseData) : [],
+      itemsCount: responseData?.data?.length || 0,
+    });
+    
+    // Handle different possible response formats
+    if (Array.isArray(responseData)) {
+      return responseData as Product[];
+    } else if (responseData && Array.isArray(responseData.data)) {
+      return responseData.data as Product[];
+    } else if (responseData && Array.isArray(responseData.products)) {
+      return responseData.products as Product[];
+    }
+    
+    console.warn('Unexpected API response format:', responseData);
+    return [];
   } catch (error) {
     console.error('Error fetching products:', error);
     throw error;

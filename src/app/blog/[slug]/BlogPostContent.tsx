@@ -18,17 +18,7 @@ const calculateReadingTime = (content: string): number => {
   return Math.ceil(wordCount / wordsPerMinute);
 };
 
-type BlogPost = {
-  id: string;
-  slug: string;
-  title: string;
-  excerpt: string;
-  content: string;
-  image: string;
-  author: string;
-  category: string;
-  createdAt: string;
-};
+import type { BlogPost } from '@/lib/database-server';
 
 interface BlogPostContentProps {
   post: BlogPost;
