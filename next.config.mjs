@@ -1,148 +1,162 @@
-/** @type {import('next').NextConfig} */
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-});
+// Optional Sentry configuration
+let withSentryConfig = (config) => config;
 
+try {
+  const sentry = require('@sentry/nextjs');
+  withSentryConfig = sentry.withSentryConfig || withSentryConfig;
+} catch (e) {
+  console.log('Sentry is not installed, skipping Sentry configuration');
+}
+
+// Environment variables
+const isDev = process.env.NODE_ENV === 'development';
+const isProd = process.env.NODE_ENV === 'production';
+const isAnalyze = process.env.ANALYZE === 'true';
+
+// Security headers
 const securityHeaders = [
-  {
-    key: 'X-Content-Type-Options',
-    value: 'nosniff',
-  },
-  {
-    key: 'X-Frame-Options',
-    value: 'DENY',
-  },
-  {
-    key: 'X-XSS-Protection',
-    value: '1; mode=block',
-  },
-  {
-    key: 'Referrer-Policy',
-    value: 'strict-origin-when-cross-origin',
-  },
-  {
-    key: 'Permissions-Policy',
-    value: 'camera=(), microphone=(), geolocation=()',
-  },
+  { key: 'X-Content-Type-Options', value: 'nosniff' },
+  { key: 'X-Frame-Options', value: 'DENY' },
+  { key: 'X-XSS-Protection', value: '1; mode=block' },
+  { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+  { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
+  { key: 'X-DNS-Prefetch-Control', value: 'on' },
 ];
 
-const nextConfig = {
+// Common configuration
+const commonConfig = {
   reactStrictMode: true,
-  swcMinify: true,
-  productionBrowserSourceMaps: false,
   poweredByHeader: false,
   generateEtags: true,
   compress: true,
+  output: 'standalone',
+  serverExternalPackages: ['@prisma/client', 'bcryptjs'],
   
   // Image optimization
   images: {
-    domains: [
-      'localhost', 
-      'poshpoule-farms.vercel.app',
-      'images.unsplash.com', 
-      'via.placeholder.com'
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'poshpoule.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'poshpoule.vercel.app',
+      },
+      {
+        protocol: 'https',
+        hostname: 'poshpoule-farms.vercel.app',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'via.placeholder.com',
+      },
     ],
     formats: ['image/webp', 'image/avif'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    minimumCacheTTL: 60 * 60 * 24 * 7, // 1 week
-    qualities: [75, 85, 90, 95, 100], // All quality values used in the application
-    remotePatterns: [
+    minimumCacheTTL: isDev ? 60 : 60 * 60 * 24 * 7, // 1 min in dev, 1 week in prod
+    qualities: isDev ? [75, 85, 90, 100] : [75, 85, 90, 100],
+  },
+
+  // Security headers
+  async headers() {
+    return [
       {
-        protocol: 'https',
-        hostname: '**',
+        source: '/(.*)',
+        headers: securityHeaders,
       },
-    ],
-  },
-
-  // Configure output for Vercel
-  output: 'standalone',
-
-  // Experimental features
-  experimental: {
-    scrollRestoration: true,
-    serverComponentsExternalPackages: ['@prisma/client', 'bcryptjs'],
-    serverActions: true,
-    webpackBuildWorker: true,
-    optimizeCss: true,
-  },
-
-  compiler: {
-    removeConsole: process.env.NODE_ENV === 'production' 
-      ? { exclude: ['error'] } 
-      : false,
+    ];
   },
 
   // Webpack configuration
-  webpack: (config, { isServer, dev }) => {
-    // Add rule for .node files
-    config.module.rules.push({
-      test: /\.node$/,
-      use: 'node-loader',
-    });
-
-    // Handle fallback for server-only modules in client-side code
+  webpack(config, { isServer, dev }) {
+    // Add custom webpack configurations here
     if (!isServer) {
+      // Client-side only configurations
       config.resolve.fallback = {
         ...config.resolve.fallback,
         fs: false,
         net: false,
         tls: false,
-        dns: false,
-        child_process: false,
-        'next/dist/compiled/next-server/server.runtime.prod.js': false,
       };
     }
 
-    // Production optimizations
-    if (!dev && !isServer) {
-      // Enable tree shaking
-      config.optimization.usedExports = true;
-      // Enable module concatenation
-      config.optimization.concatenateModules = true;
-      // Minimize in production
-      config.optimization.minimize = true;
-    }
-
-    // Add source map support in development
-    if (dev && !isServer) {
-      config.devtool = 'source-map';
+    // Add bundle analyzer in development or when ANALYZE=true
+    if (isDev || isAnalyze) {
+      const withBundleAnalyzer = require('@next/bundle-analyzer')({
+        enabled: isAnalyze,
+      });
+      return withBundleAnalyzer(config);
     }
 
     return config;
   },
 
-  // Security and cache headers
-  async headers() {
-    return [
-      // Security headers for all routes
-      {
-        source: '/(.*)',
-        headers: securityHeaders,
-      },
-      // Cache control for static assets
-      {
-        source: '/_next/static/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-          ...securityHeaders,
-        ],
-      },
-      {
-        source: '/static/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-          ...securityHeaders,
-        ],
-      },
-    ];
+  // Experimental features
+  experimental: {
+    scrollRestoration: true,
+    webpackBuildWorker: true,
+    optimizeCss: true,
   },
 };
 
-module.exports = withBundleAnalyzer(nextConfig);
+// Development-specific configuration
+const devConfig = {
+  ...commonConfig,
+  productionBrowserSourceMaps: true, // Enable source maps in development for better debugging
+  compiler: {
+    removeConsole: false, // Keep console logs in development
+  },
+};
+
+// Production-specific configuration
+const prodConfig = {
+  ...commonConfig,
+  productionBrowserSourceMaps: false, // Disable source maps in production by default
+  compiler: {
+    removeConsole: { exclude: ['error'] }, // Remove console logs except errors in production
+  },
+};
+
+// Combine configurations based on environment
+let nextConfig = isProd ? prodConfig : devConfig;
+
+// Add Sentry configuration if SENTRY_AUTH_TOKEN is present
+if (process.env.SENTRY_AUTH_TOKEN) {
+  nextConfig = withSentryConfig(
+    nextConfig,
+    {
+      // Suppresses source map uploading logs during build
+      silent: true,
+      
+      // Upload a larger set of source maps for prettier stack traces (increases build time)
+      widenClientFileUpload: true,
+
+      // Transpiles SDK to be compatible with IE11 (increases bundle size)
+      transpileClientSDK: false,
+
+      // Routes browser requests to Sentry through a Next.js rewrite
+      tunnelRoute: "/monitoring",
+
+      // Hides source maps from generated client bundles
+      hideSourceMaps: true,
+
+      // Automatically tree-shake Sentry logger statements to reduce bundle size
+      disableLogger: true,
+    },
+    {
+      // Suppresses all logs
+      silent: true,
+      
+      // Only upload source maps in production
+      dryRun: !isProd,
+    }
+  );
+}
+
+export default nextConfig;

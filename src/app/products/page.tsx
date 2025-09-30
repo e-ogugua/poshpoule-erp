@@ -5,11 +5,16 @@ import Link from 'next/link';
 import Image from 'next/image';
 import PriceDisplay from '@/components/PriceDisplay';
 
-// This is a server component that fetches data on the server
 export const dynamic = 'force-dynamic'; // Ensure this page is dynamically rendered
 
 // Category filter component
-function CategoryFilter({ categories, selectedCategory }: { categories: string[], selectedCategory: string | null }) {
+function CategoryFilter({
+  categories,
+  selectedCategory,
+}: {
+  categories: string[];
+  selectedCategory: string | null;
+}) {
   return (
     <div className="mb-8">
       <h3 className="font-heading text-lg font-heading-semibold mb-4">Filter by Category</h3>
@@ -42,18 +47,26 @@ function CategoryFilter({ categories, selectedCategory }: { categories: string[]
   );
 }
 
-export default async function ProductsPage({
-  searchParams,
-}: {
-  searchParams: { category?: string }
-}) {
-  // Read the database on the server
-  const data = readDatabase();
-  const selectedCategory = searchParams?.category || null;
+// 👇 FIXED TYPE for Next.js 15 — searchParams is a Promise
+interface ProductsPageProps {
+  searchParams: Promise<{ category?: string | string[] }>;
+}
 
-  const categories = Array.from(new Set(data.products.map(p => p.category)));
+export default async function ProductsPage({ searchParams }: ProductsPageProps) {
+  // 👇 Await searchParams because it's a Promise now in Next.js 15
+  const resolvedSearchParams = await searchParams;
+  const category = resolvedSearchParams?.category
+    ? Array.isArray(resolvedSearchParams.category)
+      ? resolvedSearchParams.category[0]
+      : resolvedSearchParams.category
+    : undefined;
+
+  const data = readDatabase();
+  const selectedCategory = category || null;
+
+  const categories = Array.from(new Set(data.products.map((p) => p.category)));
   const filteredProducts = selectedCategory
-    ? data.products.filter(p => p.category === selectedCategory)
+    ? data.products.filter((p) => p.category === selectedCategory)
     : data.products;
 
   return (
@@ -99,23 +112,21 @@ export default async function ProductsPage({
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                   </div>
-                  <h3 className="font-heading text-xl font-heading-semibold mb-2">{product.name}</h3>
+                  <h3 className="font-heading text-xl font-heading-semibold mb-2">
+                    {product.name}
+                  </h3>
                   <p className="text-body mb-4 line-clamp-2">{product.description}</p>
                   <div className="flex items-center justify-between mb-4">
                     <PriceDisplay priceNaira={product.priceNaira} />
-                    <span className="text-sm text-neutral-500 capitalize">{product.category}</span>
+                    <span className="text-sm text-neutral-500 capitalize">
+                      {product.category}
+                    </span>
                   </div>
                   <div className="flex space-x-2">
-                    <Link
-                      href={`/products/${product.slug}`}
-                      className="flex-1 btn-primary text-center"
-                    >
+                    <Link href={`/products/${product.slug}`} className="flex-1 btn-primary text-center">
                       View Details
                     </Link>
-                    <Link
-                      href={`/preorder?product=${product.id}`}
-                      className="flex-1 btn-outline text-center"
-                    >
+                    <Link href={`/preorder?product=${product.id}`} className="flex-1 btn-outline text-center">
                       Pre-Order
                     </Link>
                   </div>

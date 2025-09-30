@@ -1,25 +1,42 @@
 import { readDatabase } from '@/lib/database-server';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import ProductClient from '@/components/ProductClient';
 
-interface ProductPageProps {
-  params: {
-    slug: string;
-  };
-  searchParams: {
-    [key: string]: string | string[] | undefined;
-  };
-}
+type Product = {
+  slug: string;
+  name: string;
+  description: string;
+  priceNaira: number;
+  originalPrice?: number;
+  discountPercentage?: number;
+  image: string;
+};
 
-export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
-  const { slug } = params;
+// ✅ Fix: params & searchParams are now Promises in Next.js 15
+type PageParams = Promise<{ slug: string }>;
+type PageSearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
+
+// Generate metadata for the page
+export async function generateMetadata(
+  { params }: { params: PageParams }
+): Promise<Metadata> {
+  const { slug } = await params;
   const data = readDatabase();
-  const product = data.products.find((p: any) => p.slug === slug);
+
+  const product = data.products.find(
+    (p: any): p is Product =>
+      p.slug === slug &&
+      p.name &&
+      p.description &&
+      p.priceNaira !== undefined &&
+      p.image
+  );
 
   if (!product) {
-    return {};
+    console.error('Product not found or invalid data for slug:', slug);
+    notFound();
   }
 
   return {
@@ -40,12 +57,30 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   };
 }
 
-export default async function ProductPage({ params }: ProductPageProps) {
-  const { slug } = params;
+// ✅ Main Page component
+export default async function Page({
+  params,
+  searchParams,
+}: {
+  params: PageParams;
+  searchParams: PageSearchParams;
+}) {
+  const { slug } = await params;
+  // We don't actually need to await searchParams here unless you're using them
+  await searchParams;
+
   const data = readDatabase();
-  const product = data.products.find((p: any) => p.slug === slug);
+  const product = data.products.find(
+    (p: any): p is Product =>
+      p.slug === slug &&
+      p.name &&
+      p.description &&
+      p.priceNaira !== undefined &&
+      p.image
+  );
 
   if (!product) {
+    console.error('Product not found or invalid data for slug:', slug);
     notFound();
   }
 
@@ -64,12 +99,11 @@ export default async function ProductPage({ params }: ProductPageProps) {
             />
           </div>
         </div>
-        
+
         <ProductClient product={product} />
       </div>
     </div>
   );
 }
 
-// Ensure the page is always dynamically rendered
 export const dynamic = 'force-dynamic';

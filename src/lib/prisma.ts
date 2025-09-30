@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { Prisma, PrismaClient } from '@prisma/client';
 
 declare global {
   // eslint-disable-next-line no-var
@@ -12,9 +12,17 @@ const prisma = global.prisma || new PrismaClient({
     : ['error', 'warn'],
 });
 
+type QueryEvent = {
+  timestamp: Date;
+  query: string;
+  params: string;
+  duration: number;
+  target: string;
+};
+
 // Enable Prisma query logging in development
 if (process.env.NODE_ENV === 'development') {
-  prisma.$on('query', (e: any) => {
+  prisma.$on('query' as never, (e: QueryEvent) => {
     console.log('Query: ' + e.query);
     console.log('Params: ' + e.params);
     console.log('Duration: ' + e.duration + 'ms');
@@ -22,7 +30,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // Add monitoring for production
-prisma.$on('query', (e: any) => {
+prisma.$on('query' as never, (e: QueryEvent) => {
   if (e.duration > 200) { // Log slow queries (over 200ms)
     console.warn(`Slow query detected (${e.duration}ms): ${e.query}`);
   }
