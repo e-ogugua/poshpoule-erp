@@ -25,7 +25,7 @@ function ensureEmailConfig() {
   };
 }
 
-export async function sendOrderNotificationEmail(order: Order) {
+export async function sendOrderNotificationEmail(order: Order | any) {
   try {
     const emailConfig = ensureEmailConfig();
 
@@ -44,8 +44,10 @@ export async function sendOrderNotificationEmail(order: Order) {
       },
     });
 
-    const productLines = order.products
-      .map((product) => `- ${product.name} x${product.quantity} (₦${product.priceNaira?.toLocaleString() || '0'})`)
+    // Handle both old Order type and new Prisma Order type
+    const products = order.products || [];
+    const productLines = products
+      .map((product: any) => `- ${product.name} x${product.quantity} (₦${product.priceNaira?.toLocaleString() || '0'})`)
       .join('\n');
 
     const textBody = `New preorder received from ${order.customerName}.\n\n` +
@@ -77,7 +79,7 @@ export async function sendOrderNotificationEmail(order: Order) {
 
         <h3 style="color:#14532d;">Order Details</h3>
         <div style="background:#f9fafb;padding:20px;border-radius:8px;margin:20px 0;">
-          ${order.products.map(product => `
+          ${products.map((product: any) => `
             <div style="margin-bottom:12px;padding:12px;border-bottom:1px solid #e5e7eb;">
               <strong>${product.name}</strong><br>
               Quantity: ${product.quantity}<br>

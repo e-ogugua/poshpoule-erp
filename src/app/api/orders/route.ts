@@ -1,11 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { readDatabase, writeDatabase, Order, getNextId } from '@/lib/database';
+import { PrismaClient } from '@prisma/client';
 import { sendOrderNotificationEmail } from '@/lib/email';
+
+const prisma = new PrismaClient();
 
 export async function GET() {
   try {
-    const data = readDatabase();
-    return NextResponse.json(data.orders);
+    const orders = await prisma.order.findMany({
+      include: {
+        products: true
+      },
+      orderBy: {
+        createdAt: 'desc'
+      }
+    });
+
+    return NextResponse.json(orders);
   } catch (error) {
     console.error('Error fetching orders:', error);
     return NextResponse.json({ error: 'Failed to fetch orders' }, { status: 500 });
@@ -14,7 +24,6 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
-    const data = readDatabase();
     const orderData = await request.json();
 
     // Validate required fields
@@ -25,27 +34,67 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // Create new order
-    const newOrder: Order = {
-      id: getNextId(data.orders),
-      ...orderData,
-      status: 'new',
-      createdAt: new Date().toISOString(),
-    };
+    // Validate products array
+    if (!Array.isArray(orderData.products) || orderData.products.length === 0) {
+      return NextResponse.json({ error: 'At least one product is required' }, { status: 400 });
+    }
 
-    // Add to database
-    data.orders.push(newOrder);
-    writeDatabase(data);
+    // Create order with products in a transaction
+    const newOrder = await prisma.$transaction(async (tx) => {
+      // Create the order
+      const order = await tx.order.create({
+        data: {
+          customerName: orderData.customerName,
+          customerEmail: orderData.customerEmail,
+          customerPhone: orderData.customerPhone,
+          orderType: orderData.orderType || 'pickup',
+          scheduledDate: orderData.scheduledDate,
+          scheduledTime: orderData.scheduledTime,
+          deliveryAddress: orderData.deliveryAddress,
+          notes: orderData.notes,
+          totalAmount: orderData.totalAmount,
+          status: 'new',
+        }
+      });
 
+      // Create order products
+      const orderProducts = orderData.products.map((product: any) => ({
+        productId: product.productId,
+        name: product.name,
+        quantity: product.quantity,
+        priceNaira: product.priceNaira,
+        orderId: order.id
+      }));
+
+      await tx.orderProduct.createMany({
+        data: orderProducts
+      });
+
+      // Return order with products
+      return await tx.order.findUnique({
+        where: { id: order.id },
+        include: { products: true }
+      });
+    });
+
+    if (!newOrder) {
+      throw new Error('Failed to create order');
+    }
+
+    // Try to send email notification (don't fail if it fails)
     try {
       await sendOrderNotificationEmail(newOrder);
+      console.log('✅ Order notification email sent');
     } catch (emailError) {
-      console.error('Order created but failed to send notification email:', emailError);
+      console.error('❌ Email notification failed:', emailError);
+      // Don't throw - order is already saved
     }
 
     return NextResponse.json(newOrder, { status: 201 });
   } catch (error) {
-    console.error('Error creating order:', error);
-    return NextResponse.json({ error: 'Failed to create order' }, { status: 500 });
+    console.error('❌ Error creating order:', error);
+    return NextResponse.json({
+      error: error instanceof Error ? error.message : 'Failed to create order'
+    }, { status: 500 });
   }
 }

@@ -661,6 +661,26 @@
       "currency": "NGN",
       "status": "new",
       "createdAt": "2025-09-30T15:10:53.196Z"
+    },
+    {
+      "id": "test-order-1759418158384",
+      "customerName": "Test User",
+      "customerEmail": "test@example.com",
+      "customerPhone": "08012345678",
+      "products": [
+        {
+          "productId": "test",
+          "name": "Test Product",
+          "quantity": 1,
+          "priceNaira": 1000
+        }
+      ],
+      "totalAmount": 1000,
+      "status": "new",
+      "orderType": "pickup",
+      "scheduledDate": "2024-12-25",
+      "scheduledTime": "10:00",
+      "createdAt": "2025-10-02T15:15:58.384Z"
     }
   ],
   "testimonials": [

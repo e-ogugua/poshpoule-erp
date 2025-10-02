@@ -73,17 +73,36 @@ model VerificationToken {
   @@map("verification_tokens")
 }
 
-model Order {
-  id           String   @id @default(cuid())
-  userId       String   @map("user_id")
-  totalAmount  Float    @default(0) @map("total_amount")
-  status       String   @default("pending")
-  items        Json
-  shippingInfo Json     @map("shipping_info")
-  createdAt    DateTime @default(now()) @map("created_at")
-  updatedAt    DateTime @updatedAt @map("updated_at")
+model OrderProduct {
+  id          String   @id @default(cuid())
+  productId   String   @map("product_id")
+  name        String
+  quantity    Int
+  priceNaira  Float    @map("price_naira")
+  orderId     String   @map("order_id")
+  createdAt   DateTime @default(now()) @map("created_at")
 
-  user User @relation(fields: [userId], references: [id])
+  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  @@map("order_products")
+}
+
+model Order {
+  id              String   @id @default(cuid())
+  customerName    String   @map("customer_name")
+  customerEmail   String   @map("customer_email")
+  customerPhone   String   @map("customer_phone")
+  orderType       String   @default("pickup") @map("order_type")
+  scheduledDate   String   @map("scheduled_date")
+  scheduledTime   String?  @map("scheduled_time")
+  deliveryAddress String?  @map("delivery_address")
+  notes           String?
+  totalAmount     Float    @map("total_amount")
+  status          String   @default("new")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  products OrderProduct[]
 
   @@map("orders")
 }
