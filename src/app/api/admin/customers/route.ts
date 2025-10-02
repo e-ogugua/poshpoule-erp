@@ -21,38 +21,25 @@ export async function GET() {
       orderBy: {
         createdAt: 'desc',
       },
-      include: {
-        orders: {
-          select: {
-            id: true,
-            totalAmount: true,
-            createdAt: true,
-          },
-          orderBy: {
-            createdAt: 'desc',
-          },
-          take: 1,
-        },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        createdAt: true,
+        updatedAt: true,
       },
     });
 
     // Format the response to match the frontend expectations
     const formattedCustomers = customers.map((customer: any) => {
-      const totalOrders = customer.orders.length;
-      const totalSpent = customer.orders.reduce(
-        (sum: number, order: { totalAmount?: number }) => sum + (order.totalAmount || 0),
-        0
-      );
-      const lastOrder = customer.orders[0]?.createdAt.toISOString().split('T')[0];
-
       return {
         id: customer.id,
         name: customer.name || 'Unnamed Customer',
         email: customer.email,
-        phone: customer.phoneNumber || '',
-        totalOrders,
-        totalSpent,
-        lastOrder,
+        phone: '', // Not stored in user table for guest orders
+        totalOrders: 0, // Will need separate query if needed
+        totalSpent: 0,  // Will need separate query if needed
+        lastOrder: null, // Will need separate query if needed
       };
     });
 
