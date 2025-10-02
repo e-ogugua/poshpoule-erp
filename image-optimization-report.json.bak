@@ -1,0 +1,1130 @@
+{
+  "timestamp": "2025-09-30T18:34:26.806Z",
+  "totalImages": 160,
+  "totalOriginalSize": 132676097,
+  "totalOptimizedSize": 28562708,
+  "totalSaved": 104113389,
+  "percentageSaved": "78.47%",
+  "optimizedImages": [
+    {
+      "original": "public/images/blog/organic-eggs.jpg",
+      "optimized": "public/optimized-images/blog/organic-eggs.webp",
+      "originalSize": 728249,
+      "optimizedSize": 68824,
+      "saved": 659425
+    },
+    {
+      "original": "public/images/blog/organic-poultry.jpg",
+      "optimized": "public/optimized-images/blog/organic-poultry.webp",
+      "originalSize": 386538,
+      "optimizedSize": 162492,
+      "saved": 224046
+    },
+    {
+      "original": "public/images/blog/sustainability-practices.jpg",
+      "optimized": "public/optimized-images/blog/sustainability-practices.webp",
+      "originalSize": 1479463,
+      "optimizedSize": 384764,
+      "saved": 1094699
+    },
+    {
+      "original": "public/images/blog/sustainable-farming.jpg",
+      "optimized": "public/optimized-images/blog/sustainable-farming.webp",
+      "originalSize": 1811189,
+      "optimizedSize": 492714,
+      "saved": 1318475
+    },
+    {
+      "original": "public/images/converted/EggsSold.webp",
+      "optimized": "public/optimized-images/converted/EggsSold.webp",
+      "originalSize": 1075110,
+      "optimizedSize": 252356,
+      "saved": 822754
+    },
+    {
+      "original": "public/images/converted/GardenFreshCucumberFarm.webp",
+      "optimized": "public/optimized-images/converted/GardenFreshCucumberFarm.webp",
+      "originalSize": 1821100,
+      "optimizedSize": 458412,
+      "saved": 1362688
+    },
+    {
+      "original": "public/images/crops/cassavaFarm.jpg",
+      "optimized": "public/optimized-images/crops/cassavaFarm.webp",
+      "originalSize": 168282,
+      "optimizedSize": 114682,
+      "saved": 53600
+    },
+    {
+      "original": "public/images/crops/cornAndPearStudyandEat.jpg",
+      "optimized": "public/optimized-images/crops/cornAndPearStudyandEat.webp",
+      "originalSize": 70440,
+      "optimizedSize": 73320,
+      "saved": -2880
+    },
+    {
+      "original": "public/images/crops/potatoes.jpg",
+      "optimized": "public/optimized-images/crops/potatoes.webp",
+      "originalSize": 61859,
+      "optimizedSize": 37594,
+      "saved": 24265
+    },
+    {
+      "original": "public/images/crops/vegetableCropsBasketOfFood.jpg",
+      "optimized": "public/optimized-images/crops/vegetableCropsBasketOfFood.webp",
+      "originalSize": 106616,
+      "optimizedSize": 60122,
+      "saved": 46494
+    },
+    {
+      "original": "public/images/crops/vegetableGarden.jpg",
+      "optimized": "public/optimized-images/crops/vegetableGarden.webp",
+      "originalSize": 108190,
+      "optimizedSize": 84400,
+      "saved": 23790
+    },
+    {
+      "original": "public/images/crops/vegetablebeds1.jpg",
+      "optimized": "public/optimized-images/crops/vegetablebeds1.webp",
+      "originalSize": 1806203,
+      "optimizedSize": 253498,
+      "saved": 1552705
+    },
+    {
+      "original": "public/images/crops/vegetablesAndCornHarvest.JPG",
+      "optimized": "public/optimized-images/crops/vegetablesAndCornHarvest.JPG.webp",
+      "originalSize": 1145164,
+      "optimizedSize": 191918,
+      "saved": 953246
+    },
+    {
+      "original": "public/images/farm/AkidiLegumeHarvet.JPG",
+      "optimized": "public/optimized-images/farm/AkidiLegumeHarvet.JPG.webp",
+      "originalSize": 1515174,
+      "optimizedSize": 378830,
+      "saved": 1136344
+    },
+    {
+      "original": "public/images/farm/CarrotsSmallHarvest.JPG",
+      "optimized": "public/optimized-images/farm/CarrotsSmallHarvest.JPG.webp",
+      "originalSize": 1041401,
+      "optimizedSize": 170092,
+      "saved": 871309
+    },
+    {
+      "original": "public/images/farm/CornFarmBackyard.JPG",
+      "optimized": "public/optimized-images/farm/CornFarmBackyard.JPG.webp",
+      "originalSize": 2824358,
+      "optimizedSize": 417930,
+      "saved": 2406428
+    },
+    {
+      "original": "public/images/farm/CornHaverst.jpg",
+      "optimized": "public/optimized-images/farm/CornHaverst.webp",
+      "originalSize": 136688,
+      "optimizedSize": 66036,
+      "saved": 70652
+    },
+    {
+      "original": "public/images/farm/CowPasture2.jpg",
+      "optimized": "public/optimized-images/farm/CowPasture2.webp",
+      "originalSize": 1382573,
+      "optimizedSize": 357300,
+      "saved": 1025273
+    },
+    {
+      "original": "public/images/farm/CowStand.jpg",
+      "optimized": "public/optimized-images/farm/CowStand.webp",
+      "originalSize": 1345899,
+      "optimizedSize": 349450,
+      "saved": 996449
+    },
+    {
+      "original": "public/images/farm/CucumberAndUguGarden.JPG",
+      "optimized": "public/optimized-images/farm/CucumberAndUguGarden.JPG.webp",
+      "originalSize": 2285603,
+      "optimizedSize": 528310,
+      "saved": 1757293
+    },
+    {
+      "original": "public/images/farm/FarmFreshLayedEggs.JPG",
+      "optimized": "public/optimized-images/farm/FarmFreshLayedEggs.JPG.webp",
+      "originalSize": 728249,
+      "optimizedSize": 68824,
+      "saved": 659425
+    },
+    {
+      "original": "public/images/farm/FreashCorn.JPG",
+      "optimized": "public/optimized-images/farm/FreashCorn.JPG.webp",
+      "originalSize": 804022,
+      "optimizedSize": 87424,
+      "saved": 716598
+    },
+    {
+      "original": "public/images/farm/FreshCornReadyToEat.JPG",
+      "optimized": "public/optimized-images/farm/FreshCornReadyToEat.JPG.webp",
+      "originalSize": 893546,
+      "optimizedSize": 116984,
+      "saved": 776562
+    },
+    {
+      "original": "public/images/farm/FreshCucumbers.JPG",
+      "optimized": "public/optimized-images/farm/FreshCucumbers.JPG.webp",
+      "originalSize": 763754,
+      "optimizedSize": 94808,
+      "saved": 668946
+    },
+    {
+      "original": "public/images/farm/FruitsCrops.jpg",
+      "optimized": "public/optimized-images/farm/FruitsCrops.webp",
+      "originalSize": 45523,
+      "optimizedSize": 34058,
+      "saved": 11465
+    },
+    {
+      "original": "public/images/farm/GardenBeds.jpg",
+      "optimized": "public/optimized-images/farm/GardenBeds.webp",
+      "originalSize": 105182,
+      "optimizedSize": 81742,
+      "saved": 23440
+    },
+    {
+      "original": "public/images/farm/GardenFreshCucumberFarm.jpg",
+      "optimized": "public/optimized-images/farm/GardenFreshCucumberFarm.webp",
+      "originalSize": 3876360,
+      "optimizedSize": 514842,
+      "saved": 3361518
+    },
+    {
+      "original": "public/images/farm/GingerCropHarvest.JPG",
+      "optimized": "public/optimized-images/farm/GingerCropHarvest.JPG.webp",
+      "originalSize": 480203,
+      "optimizedSize": 230386,
+      "saved": 249817
+    },
+    {
+      "original": "public/images/farm/GreenTreesPath.jpg",
+      "optimized": "public/optimized-images/farm/GreenTreesPath.webp",
+      "originalSize": 1479463,
+      "optimizedSize": 384764,
+      "saved": 1094699
+    },
+    {
+      "original": "public/images/farm/GrowingBroilers.JPG",
+      "optimized": "public/optimized-images/farm/GrowingBroilers.JPG.webp",
+      "originalSize": 386538,
+      "optimizedSize": 162492,
+      "saved": 224046
+    },
+    {
+      "original": "public/images/farm/HowIeatWatermelonPlanningPoshPOULE.JPG",
+      "optimized": "public/optimized-images/farm/HowIeatWatermelonPlanningPoshPOULE.JPG.webp",
+      "originalSize": 885075,
+      "optimizedSize": 155068,
+      "saved": 730007
+    },
+    {
+      "original": "public/images/farm/ILoveOrganicFarming.png",
+      "optimized": "public/optimized-images/farm/ILoveOrganicFarming.webp",
+      "originalSize": 253088,
+      "optimizedSize": 13822,
+      "saved": 239266
+    },
+    {
+      "original": "public/images/farm/IfYouAteTodayThankAFarmer.jpg",
+      "optimized": "public/optimized-images/farm/IfYouAteTodayThankAFarmer.webp",
+      "originalSize": 31185,
+      "optimizedSize": 18124,
+      "saved": 13061
+    },
+    {
+      "original": "public/images/farm/KidslocallyGrown.jpg",
+      "optimized": "public/optimized-images/farm/KidslocallyGrown.webp",
+      "originalSize": 112789,
+      "optimizedSize": 52516,
+      "saved": 60273
+    },
+    {
+      "original": "public/images/farm/LocalGingersHarvetSale.JPG",
+      "optimized": "public/optimized-images/farm/LocalGingersHarvetSale.JPG.webp",
+      "originalSize": 1106856,
+      "optimizedSize": 196680,
+      "saved": 910176
+    },
+    {
+      "original": "public/images/farm/LocallyGrownFieldWork2.jpg",
+      "optimized": "public/optimized-images/farm/LocallyGrownFieldWork2.webp",
+      "originalSize": 55019,
+      "optimizedSize": 22780,
+      "saved": 32239
+    },
+    {
+      "original": "public/images/farm/LushTreesOrchards.jpg",
+      "optimized": "public/optimized-images/farm/LushTreesOrchards.webp",
+      "originalSize": 1811189,
+      "optimizedSize": 492714,
+      "saved": 1318475
+    },
+    {
+      "original": "public/images/farm/MixedFarmingCornAndUgu.JPG",
+      "optimized": "public/optimized-images/farm/MixedFarmingCornAndUgu.JPG.webp",
+      "originalSize": 1723463,
+      "optimizedSize": 345718,
+      "saved": 1377745
+    },
+    {
+      "original": "public/images/farm/PotGardeningCucumbers.JPG",
+      "optimized": "public/optimized-images/farm/PotGardeningCucumbers.JPG.webp",
+      "originalSize": 2002688,
+      "optimizedSize": 448136,
+      "saved": 1554552
+    },
+    {
+      "original": "public/images/farm/PotatoPatchRaisedGarden.JPG",
+      "optimized": "public/optimized-images/farm/PotatoPatchRaisedGarden.JPG.webp",
+      "originalSize": 1588486,
+      "optimizedSize": 406390,
+      "saved": 1182096
+    },
+    {
+      "original": "public/images/farm/Testimonal5.jpg",
+      "optimized": "public/optimized-images/farm/Testimonal5.webp",
+      "originalSize": 683414,
+      "optimizedSize": 92198,
+      "saved": 591216
+    },
+    {
+      "original": "public/images/farm/Testimoniaal3.jpg",
+      "optimized": "public/optimized-images/farm/Testimoniaal3.webp",
+      "originalSize": 163650,
+      "optimizedSize": 74776,
+      "saved": 88874
+    },
+    {
+      "original": "public/images/farm/UguBucketFarming.JPG",
+      "optimized": "public/optimized-images/farm/UguBucketFarming.JPG.webp",
+      "originalSize": 2547426,
+      "optimizedSize": 633670,
+      "saved": 1913756
+    },
+    {
+      "original": "public/images/farm/VegetableHavest.jpg",
+      "optimized": "public/optimized-images/farm/VegetableHavest.webp",
+      "originalSize": 117209,
+      "optimizedSize": 67612,
+      "saved": 49597
+    },
+    {
+      "original": "public/images/farm/cocoYamPlantation.jpg",
+      "optimized": "public/optimized-images/farm/cocoYamPlantation.webp",
+      "originalSize": 56656,
+      "optimizedSize": 28026,
+      "saved": 28630
+    },
+    {
+      "original": "public/images/farm/cookingFreshCorn.JPG",
+      "optimized": "public/optimized-images/farm/cookingFreshCorn.JPG.webp",
+      "originalSize": 1223058,
+      "optimizedSize": 220170,
+      "saved": 1002888
+    },
+    {
+      "original": "public/images/farm/farmFreshEggs.png",
+      "optimized": "public/optimized-images/farm/farmFreshEggs.webp",
+      "originalSize": 13147738,
+      "optimizedSize": 171948,
+      "saved": 12975790
+    },
+    {
+      "original": "public/images/farm/gingerHarvestSales.JPG",
+      "optimized": "public/optimized-images/farm/gingerHarvestSales.JPG.webp",
+      "originalSize": 463192,
+      "optimizedSize": 214174,
+      "saved": 249018
+    },
+    {
+      "original": "public/images/farm/goats.JPG",
+      "optimized": "public/optimized-images/farm/goats.JPG.webp",
+      "originalSize": 1175241,
+      "optimizedSize": 253932,
+      "saved": 921309
+    },
+    {
+      "original": "public/images/farm/handGrown.png",
+      "optimized": "public/optimized-images/farm/handGrown.webp",
+      "originalSize": 794042,
+      "optimizedSize": 38164,
+      "saved": 755878
+    },
+    {
+      "original": "public/images/farm/localPoultry.jpg",
+      "optimized": "public/optimized-images/farm/localPoultry.webp",
+      "originalSize": 605890,
+      "optimizedSize": 568202,
+      "saved": 37688
+    },
+    {
+      "original": "public/images/farm/poshpoule-logo1.png",
+      "optimized": "public/optimized-images/farm/poshpoule-logo1.webp",
+      "originalSize": 226186,
+      "optimizedSize": 15592,
+      "saved": 210594
+    },
+    {
+      "original": "public/images/farm/snailsHarvest.JPG",
+      "optimized": "public/optimized-images/farm/snailsHarvest.JPG.webp",
+      "originalSize": 1584331,
+      "optimizedSize": 483156,
+      "saved": 1101175
+    },
+    {
+      "original": "public/images/farm/uguVegetableGarden.jpg",
+      "optimized": "public/optimized-images/farm/uguVegetableGarden.webp",
+      "originalSize": 112205,
+      "optimizedSize": 85452,
+      "saved": 26753
+    },
+    {
+      "original": "public/images/gallery/FarmToTable.png",
+      "optimized": "public/optimized-images/gallery/FarmToTable.webp",
+      "originalSize": 1870257,
+      "optimizedSize": 105390,
+      "saved": 1764867
+    },
+    {
+      "original": "public/images/gallery/HowToFarmSustainably.png",
+      "optimized": "public/optimized-images/gallery/HowToFarmSustainably.webp",
+      "originalSize": 1959807,
+      "optimizedSize": 107100,
+      "saved": 1852707
+    },
+    {
+      "original": "public/images/gallery/TeamAtWorkonFarm.png",
+      "optimized": "public/optimized-images/gallery/TeamAtWorkonFarm.webp",
+      "originalSize": 1886561,
+      "optimizedSize": 109060,
+      "saved": 1777501
+    },
+    {
+      "original": "public/images/gallery/allNatural1.png",
+      "optimized": "public/optimized-images/gallery/allNatural1.webp",
+      "originalSize": 1797226,
+      "optimizedSize": 136774,
+      "saved": 1660452
+    },
+    {
+      "original": "public/images/gallery/chickens-1.jpg",
+      "optimized": "public/optimized-images/gallery/chickens-1.webp",
+      "originalSize": 386538,
+      "optimizedSize": 162492,
+      "saved": 224046
+    },
+    {
+      "original": "public/images/gallery/farm-2.jpg",
+      "optimized": "public/optimized-images/gallery/farm-2.webp",
+      "originalSize": 105182,
+      "optimizedSize": 81742,
+      "saved": 23440
+    },
+    {
+      "original": "public/images/gallery/freshEggs.JPG",
+      "optimized": "public/optimized-images/gallery/freshEggs.JPG.webp",
+      "originalSize": 1559054,
+      "optimizedSize": 154596,
+      "saved": 1404458
+    },
+    {
+      "original": "public/images/gallery/harvest-1.jpg",
+      "optimized": "public/optimized-images/gallery/harvest-1.webp",
+      "originalSize": 117209,
+      "optimizedSize": 67612,
+      "saved": 49597
+    },
+    {
+      "original": "public/images/gallery/hero1.png",
+      "optimized": "public/optimized-images/gallery/hero1.webp",
+      "originalSize": 1693816,
+      "optimizedSize": 90002,
+      "saved": 1603814
+    },
+    {
+      "original": "public/images/gallery/hero2.png",
+      "optimized": "public/optimized-images/gallery/hero2.webp",
+      "originalSize": 1983645,
+      "optimizedSize": 119754,
+      "saved": 1863891
+    },
+    {
+      "original": "public/images/gallery/sustainability-1.jpg",
+      "optimized": "public/optimized-images/gallery/sustainability-1.webp",
+      "originalSize": 1479463,
+      "optimizedSize": 384764,
+      "saved": 1094699
+    },
+    {
+      "original": "public/images/gallery/team-1.jpg",
+      "optimized": "public/optimized-images/gallery/team-1.webp",
+      "originalSize": 112789,
+      "optimizedSize": 52516,
+      "saved": 60273
+    },
+    {
+      "original": "public/images/gallery/teamAtWork2.png",
+      "optimized": "public/optimized-images/gallery/teamAtWork2.webp",
+      "originalSize": 2219951,
+      "optimizedSize": 150148,
+      "saved": 2069803
+    },
+    {
+      "original": "public/images/logo.webp",
+      "optimized": "public/optimized-images/logo.webp",
+      "originalSize": 15876,
+      "optimizedSize": 13918,
+      "saved": 1958
+    },
+    {
+      "original": "public/images/poultry/ChickenFeedingFrency.JPG",
+      "optimized": "public/optimized-images/poultry/ChickenFeedingFrency.JPG.webp",
+      "originalSize": 1644779,
+      "optimizedSize": 345094,
+      "saved": 1299685
+    },
+    {
+      "original": "public/images/poultry/LocalChickenandyoungs.JPG",
+      "optimized": "public/optimized-images/poultry/LocalChickenandyoungs.JPG.webp",
+      "originalSize": 1413978,
+      "optimizedSize": 334380,
+      "saved": 1079598
+    },
+    {
+      "original": "public/images/poultry/LocalChickens.jpg",
+      "optimized": "public/optimized-images/poultry/LocalChickens.webp",
+      "originalSize": 59432,
+      "optimizedSize": 48784,
+      "saved": 10648
+    },
+    {
+      "original": "public/images/poultry/MorningRangersChickens.JPG",
+      "optimized": "public/optimized-images/poultry/MorningRangersChickens.JPG.webp",
+      "originalSize": 1762499,
+      "optimizedSize": 451514,
+      "saved": 1310985
+    },
+    {
+      "original": "public/images/poultry/NoilerChickensFreeRangers.JPG",
+      "optimized": "public/optimized-images/poultry/NoilerChickensFreeRangers.JPG.webp",
+      "originalSize": 1356778,
+      "optimizedSize": 250774,
+      "saved": 1106004
+    },
+    {
+      "original": "public/images/poultry/backyardChickens.JPG",
+      "optimized": "public/optimized-images/poultry/backyardChickens.JPG.webp",
+      "originalSize": 1309159,
+      "optimizedSize": 381462,
+      "saved": 927697
+    },
+    {
+      "original": "public/images/poultry/broodingChickens.JPG",
+      "optimized": "public/optimized-images/poultry/broodingChickens.JPG.webp",
+      "originalSize": 1928918,
+      "optimizedSize": 286908,
+      "saved": 1642010
+    },
+    {
+      "original": "public/images/poultry/broodingChickens2.JPG",
+      "optimized": "public/optimized-images/poultry/broodingChickens2.JPG.webp",
+      "originalSize": 1356307,
+      "optimizedSize": 292156,
+      "saved": 1064151
+    },
+    {
+      "original": "public/images/poultry/freeRangeChickens.jpg",
+      "optimized": "public/optimized-images/poultry/freeRangeChickens.webp",
+      "originalSize": 104426,
+      "optimizedSize": 79868,
+      "saved": 24558
+    },
+    {
+      "original": "public/images/products/OrganicEggs.JPG",
+      "optimized": "public/optimized-images/products/OrganicEggs.JPG.webp",
+      "originalSize": 1134212,
+      "optimizedSize": 141012,
+      "saved": 993200
+    },
+    {
+      "original": "public/images/products/OrganicShopShelve.jpg",
+      "optimized": "public/optimized-images/products/OrganicShopShelve.webp",
+      "originalSize": 256942,
+      "optimizedSize": 164654,
+      "saved": 92288
+    },
+    {
+      "original": "public/images/products/OrganicVegetablePack.jpg",
+      "optimized": "public/optimized-images/products/OrganicVegetablePack.webp",
+      "originalSize": 174972,
+      "optimizedSize": 92914,
+      "saved": 82058
+    },
+    {
+      "original": "public/images/products/Organicbusiness-growth.png",
+      "optimized": "public/optimized-images/products/Organicbusiness-growth.webp",
+      "originalSize": 5123474,
+      "optimizedSize": 187448,
+      "saved": 4936026
+    },
+    {
+      "original": "public/images/products/WhyOrganic.png",
+      "optimized": "public/optimized-images/products/WhyOrganic.webp",
+      "originalSize": 102714,
+      "optimizedSize": 34508,
+      "saved": 68206
+    },
+    {
+      "original": "public/images/products/chicken/GrowingBroilers.JPG",
+      "optimized": "public/optimized-images/products/chicken/GrowingBroilers.JPG.webp",
+      "originalSize": 386538,
+      "optimizedSize": 162492,
+      "saved": 224046
+    },
+    {
+      "original": "public/images/products/chicken/LocalChickens.jpg",
+      "optimized": "public/optimized-images/products/chicken/LocalChickens.webp",
+      "originalSize": 386538,
+      "optimizedSize": 162492,
+      "saved": 224046
+    },
+    {
+      "original": "public/images/products/eggs/FreshEgg3.JPG",
+      "optimized": "public/optimized-images/products/eggs/FreshEgg3.JPG.webp",
+      "originalSize": 2376341,
+      "optimizedSize": 249458,
+      "saved": 2126883
+    },
+    {
+      "original": "public/images/products/eggs/OrganicEggs.JPG",
+      "optimized": "public/optimized-images/products/eggs/OrganicEggs.JPG.webp",
+      "originalSize": 1134212,
+      "optimizedSize": 141012,
+      "saved": 993200
+    },
+    {
+      "original": "public/images/products/eggs/farmFreshEggs.PNG",
+      "optimized": "public/optimized-images/products/eggs/farmFreshEggs.PNG.webp",
+      "originalSize": 728249,
+      "optimizedSize": 68824,
+      "saved": 659425
+    },
+    {
+      "original": "public/images/products/eggs/freeEggsDelivery.JPG",
+      "optimized": "public/optimized-images/products/eggs/freeEggsDelivery.JPG.webp",
+      "originalSize": 2263286,
+      "optimizedSize": 221298,
+      "saved": 2041988
+    },
+    {
+      "original": "public/images/products/eggs/freshEgg2.JPG",
+      "optimized": "public/optimized-images/products/eggs/freshEgg2.JPG.webp",
+      "originalSize": 1962458,
+      "optimizedSize": 183594,
+      "saved": 1778864
+    },
+    {
+      "original": "public/images/products/eggs/freshegg1.JPG",
+      "optimized": "public/optimized-images/products/eggs/freshegg1.JPG.webp",
+      "originalSize": 2166869,
+      "optimizedSize": 206078,
+      "saved": 1960791
+    },
+    {
+      "original": "public/images/products/eggs/organicFarmEggs.JPG",
+      "optimized": "public/optimized-images/products/eggs/organicFarmEggs.JPG.webp",
+      "originalSize": 2111723,
+      "optimizedSize": 209372,
+      "saved": 1902351
+    },
+    {
+      "original": "public/images/products/fruits/FruitsCrops.jpg",
+      "optimized": "public/optimized-images/products/fruits/FruitsCrops.webp",
+      "originalSize": 45523,
+      "optimizedSize": 34058,
+      "saved": 11465
+    },
+    {
+      "original": "public/images/products/fruits/fruitsSalad.jpg",
+      "optimized": "public/optimized-images/products/fruits/fruitsSalad.webp",
+      "originalSize": 117209,
+      "optimizedSize": 67612,
+      "saved": 49597
+    },
+    {
+      "original": "public/images/products/fruits/fruitsTableReady.jpg",
+      "optimized": "public/optimized-images/products/fruits/fruitsTableReady.webp",
+      "originalSize": 45179,
+      "optimizedSize": 34970,
+      "saved": 10209
+    },
+    {
+      "original": "public/images/products/fruitsSalad.jpg",
+      "optimized": "public/optimized-images/products/fruitsSalad.webp",
+      "originalSize": 122872,
+      "optimizedSize": 67152,
+      "saved": 55720
+    },
+    {
+      "original": "public/images/products/fruitsTableReady.jpg",
+      "optimized": "public/optimized-images/products/fruitsTableReady.webp",
+      "originalSize": 45179,
+      "optimizedSize": 34970,
+      "saved": 10209
+    },
+    {
+      "original": "public/images/products/mangoTreesPathwayOrchards.jpg",
+      "optimized": "public/optimized-images/products/mangoTreesPathwayOrchards.webp",
+      "originalSize": 1643651,
+      "optimizedSize": 439830,
+      "saved": 1203821
+    },
+    {
+      "original": "public/images/products/organicFoodSales.jpg",
+      "optimized": "public/optimized-images/products/organicFoodSales.webp",
+      "originalSize": 79811,
+      "optimizedSize": 38208,
+      "saved": 41603
+    },
+    {
+      "original": "public/images/products/subscription/vegetableCropsBasketOfFood.jpg",
+      "optimized": "public/optimized-images/products/subscription/vegetableCropsBasketOfFood.webp",
+      "originalSize": 106616,
+      "optimizedSize": 60122,
+      "saved": 46494
+    },
+    {
+      "original": "public/images/products/vegetables/OrganicVegetablePack.jpg",
+      "optimized": "public/optimized-images/products/vegetables/OrganicVegetablePack.webp",
+      "originalSize": 174972,
+      "optimizedSize": 92914,
+      "saved": 82058
+    },
+    {
+      "original": "public/images/products/vegetables/vegetableGarden.jpg",
+      "optimized": "public/optimized-images/products/vegetables/vegetableGarden.webp",
+      "originalSize": 105182,
+      "optimizedSize": 81742,
+      "saved": 23440
+    },
+    {
+      "original": "public/images/team/ChideraTeam3.JPG",
+      "optimized": "public/optimized-images/team/ChideraTeam3.JPG.webp",
+      "originalSize": 441426,
+      "optimizedSize": 89788,
+      "saved": 351638
+    },
+    {
+      "original": "public/images/team/ChikwadoTeam4.png",
+      "optimized": "public/optimized-images/team/ChikwadoTeam4.webp",
+      "originalSize": 328701,
+      "optimizedSize": 28778,
+      "saved": 299923
+    },
+    {
+      "original": "public/images/team/EmmanuelTeam1-CEO.png",
+      "optimized": "public/optimized-images/team/EmmanuelTeam1-CEO.webp",
+      "originalSize": 546432,
+      "optimizedSize": 37006,
+      "saved": 509426
+    },
+    {
+      "original": "public/images/team/JoshuaTeam2.jpg",
+      "optimized": "public/optimized-images/team/JoshuaTeam2.webp",
+      "originalSize": 55507,
+      "optimizedSize": 28868,
+      "saved": 26639
+    },
+    {
+      "original": "public/images/testimonials/Testimonal5.jpg",
+      "optimized": "public/optimized-images/testimonials/Testimonal5.webp",
+      "originalSize": 683414,
+      "optimizedSize": 92198,
+      "saved": 591216
+    },
+    {
+      "original": "public/images/testimonials/Testimoniaal3.jpg",
+      "optimized": "public/optimized-images/testimonials/Testimoniaal3.webp",
+      "originalSize": 163650,
+      "optimizedSize": 74776,
+      "saved": 88874
+    },
+    {
+      "original": "public/images/testimonials/testimonal1.png",
+      "optimized": "public/optimized-images/testimonials/testimonal1.webp",
+      "originalSize": 613299,
+      "optimizedSize": 45618,
+      "saved": 567681
+    },
+    {
+      "original": "public/images/testimonials/testimonial2.jpg",
+      "optimized": "public/optimized-images/testimonials/testimonial2.webp",
+      "originalSize": 16905,
+      "optimizedSize": 6420,
+      "saved": 10485
+    },
+    {
+      "original": "public/images/testimonials/testimonial4.png",
+      "optimized": "public/optimized-images/testimonials/testimonial4.webp",
+      "originalSize": 642757,
+      "optimizedSize": 18148,
+      "saved": 624609
+    },
+    {
+      "original": "public/images/testimonials/testimonial6.jpg",
+      "optimized": "public/optimized-images/testimonials/testimonial6.webp",
+      "originalSize": 334265,
+      "optimizedSize": 206400,
+      "saved": 127865
+    },
+    {
+      "original": "public/images/unused-images/AkidiLegumeHarvet.webp",
+      "optimized": "public/optimized-images/unused-images/AkidiLegumeHarvet.webp",
+      "originalSize": 516060,
+      "optimizedSize": 328010,
+      "saved": 188050
+    },
+    {
+      "original": "public/images/unused-images/CarrotsSmallHarvest.webp",
+      "optimized": "public/optimized-images/unused-images/CarrotsSmallHarvest.webp",
+      "originalSize": 241456,
+      "optimizedSize": 128800,
+      "saved": 112656
+    },
+    {
+      "original": "public/images/unused-images/ChickenFeedingFrency.webp",
+      "optimized": "public/optimized-images/unused-images/ChickenFeedingFrency.webp",
+      "originalSize": 463608,
+      "optimizedSize": 305486,
+      "saved": 158122
+    },
+    {
+      "original": "public/images/unused-images/CornHaverst.webp",
+      "optimized": "public/optimized-images/unused-images/CornHaverst.webp",
+      "originalSize": 86444,
+      "optimizedSize": 50444,
+      "saved": 36000
+    },
+    {
+      "original": "public/images/unused-images/CowPasture2.webp",
+      "optimized": "public/optimized-images/unused-images/CowPasture2.webp",
+      "originalSize": 484072,
+      "optimizedSize": 302638,
+      "saved": 181434
+    },
+    {
+      "original": "public/images/unused-images/CowStand.webp",
+      "optimized": "public/optimized-images/unused-images/CowStand.webp",
+      "originalSize": 469724,
+      "optimizedSize": 289036,
+      "saved": 180688
+    },
+    {
+      "original": "public/images/unused-images/CucumberAndUguGarden.webp",
+      "optimized": "public/optimized-images/unused-images/CucumberAndUguGarden.webp",
+      "originalSize": 721512,
+      "optimizedSize": 471932,
+      "saved": 249580
+    },
+    {
+      "original": "public/images/unused-images/FarmFreshLayedEggs.webp",
+      "optimized": "public/optimized-images/unused-images/FarmFreshLayedEggs.webp",
+      "originalSize": 92292,
+      "optimizedSize": 52880,
+      "saved": 39412
+    },
+    {
+      "original": "public/images/unused-images/FreashCorn.webp",
+      "optimized": "public/optimized-images/unused-images/FreashCorn.webp",
+      "originalSize": 135346,
+      "optimizedSize": 65152,
+      "saved": 70194
+    },
+    {
+      "original": "public/images/unused-images/FreshCornReadyToEat.webp",
+      "optimized": "public/optimized-images/unused-images/FreshCornReadyToEat.webp",
+      "originalSize": 177110,
+      "optimizedSize": 79932,
+      "saved": 97178
+    },
+    {
+      "original": "public/images/unused-images/FreshCucumbers.webp",
+      "optimized": "public/optimized-images/unused-images/FreshCucumbers.webp",
+      "originalSize": 121888,
+      "optimizedSize": 70330,
+      "saved": 51558
+    },
+    {
+      "original": "public/images/unused-images/FruitsCrops.webp",
+      "optimized": "public/optimized-images/unused-images/FruitsCrops.webp",
+      "originalSize": 45476,
+      "optimizedSize": 29176,
+      "saved": 16300
+    },
+    {
+      "original": "public/images/unused-images/GingerCropHarvest.webp",
+      "optimized": "public/optimized-images/unused-images/GingerCropHarvest.webp",
+      "originalSize": 246450,
+      "optimizedSize": 199368,
+      "saved": 47082
+    },
+    {
+      "original": "public/images/unused-images/GreenTreesPath.webp",
+      "optimized": "public/optimized-images/unused-images/GreenTreesPath.webp",
+      "originalSize": 526544,
+      "optimizedSize": 315674,
+      "saved": 210870
+    },
+    {
+      "original": "public/images/unused-images/HowIeatWatermelonPlanningPoshPOULE.webp",
+      "optimized": "public/optimized-images/unused-images/HowIeatWatermelonPlanningPoshPOULE.webp",
+      "originalSize": 207846,
+      "optimizedSize": 127904,
+      "saved": 79942
+    },
+    {
+      "original": "public/images/unused-images/ILoveOrganicFarming.webp",
+      "optimized": "public/optimized-images/unused-images/ILoveOrganicFarming.webp",
+      "originalSize": 16666,
+      "optimizedSize": 12370,
+      "saved": 4296
+    },
+    {
+      "original": "public/images/unused-images/IfYouAteTodayThankAFarmer.webp",
+      "optimized": "public/optimized-images/unused-images/IfYouAteTodayThankAFarmer.webp",
+      "originalSize": 33648,
+      "optimizedSize": 16010,
+      "saved": 17638
+    },
+    {
+      "original": "public/images/unused-images/LocalChickenandyoungs.webp",
+      "optimized": "public/optimized-images/unused-images/LocalChickenandyoungs.webp",
+      "originalSize": 467336,
+      "optimizedSize": 274730,
+      "saved": 192606
+    },
+    {
+      "original": "public/images/unused-images/LocalGingersHarvetSale.webp",
+      "optimized": "public/optimized-images/unused-images/LocalGingersHarvetSale.webp",
+      "originalSize": 279716,
+      "optimizedSize": 156028,
+      "saved": 123688
+    },
+    {
+      "original": "public/images/unused-images/LocallyGrownFieldWork2.webp",
+      "optimized": "public/optimized-images/unused-images/LocallyGrownFieldWork2.webp",
+      "originalSize": 69026,
+      "optimizedSize": 21418,
+      "saved": 47608
+    },
+    {
+      "original": "public/images/unused-images/LushTreesOrchards.webp",
+      "optimized": "public/optimized-images/unused-images/LushTreesOrchards.webp",
+      "originalSize": 662142,
+      "optimizedSize": 416080,
+      "saved": 246062
+    },
+    {
+      "original": "public/images/unused-images/MixedFarmingCornAndUgu.webp",
+      "optimized": "public/optimized-images/unused-images/MixedFarmingCornAndUgu.webp",
+      "originalSize": 462950,
+      "optimizedSize": 311038,
+      "saved": 151912
+    },
+    {
+      "original": "public/images/unused-images/MorningRangersChickens.webp",
+      "optimized": "public/optimized-images/unused-images/MorningRangersChickens.webp",
+      "originalSize": 199808,
+      "optimizedSize": 56904,
+      "saved": 142904
+    },
+    {
+      "original": "public/images/unused-images/NoilerChickensFreeRangers.webp",
+      "optimized": "public/optimized-images/unused-images/NoilerChickensFreeRangers.webp",
+      "originalSize": 331448,
+      "optimizedSize": 220830,
+      "saved": 110618
+    },
+    {
+      "original": "public/images/unused-images/Organicbusiness-growth.webp",
+      "optimized": "public/optimized-images/unused-images/Organicbusiness-growth.webp",
+      "originalSize": 100216,
+      "optimizedSize": 79098,
+      "saved": 21118
+    },
+    {
+      "original": "public/images/unused-images/PotGardeningCucumbers.webp",
+      "optimized": "public/optimized-images/unused-images/PotGardeningCucumbers.webp",
+      "originalSize": 617752,
+      "optimizedSize": 407164,
+      "saved": 210588
+    },
+    {
+      "original": "public/images/unused-images/PotatoPatchRaisedGarden.webp",
+      "optimized": "public/optimized-images/unused-images/PotatoPatchRaisedGarden.webp",
+      "originalSize": 541368,
+      "optimizedSize": 350758,
+      "saved": 190610
+    },
+    {
+      "original": "public/images/unused-images/UguBucketFarming.webp",
+      "optimized": "public/optimized-images/unused-images/UguBucketFarming.webp",
+      "originalSize": 866862,
+      "optimizedSize": 571076,
+      "saved": 295786
+    },
+    {
+      "original": "public/images/unused-images/allNatural1.webp",
+      "optimized": "public/optimized-images/unused-images/allNatural1.webp",
+      "originalSize": 137332,
+      "optimizedSize": 124354,
+      "saved": 12978
+    },
+    {
+      "original": "public/images/unused-images/backyardChickens.webp",
+      "optimized": "public/optimized-images/unused-images/backyardChickens.webp",
+      "originalSize": 154572,
+      "optimizedSize": 42720,
+      "saved": 111852
+    },
+    {
+      "original": "public/images/unused-images/broodingChickens.webp",
+      "optimized": "public/optimized-images/unused-images/broodingChickens.webp",
+      "originalSize": 373274,
+      "optimizedSize": 249488,
+      "saved": 123786
+    },
+    {
+      "original": "public/images/unused-images/broodingChickens2.webp",
+      "optimized": "public/optimized-images/unused-images/broodingChickens2.webp",
+      "originalSize": 406348,
+      "optimizedSize": 232110,
+      "saved": 174238
+    },
+    {
+      "original": "public/images/unused-images/cassavaFarm.webp",
+      "optimized": "public/optimized-images/unused-images/cassavaFarm.webp",
+      "originalSize": 231238,
+      "optimizedSize": 105974,
+      "saved": 125264
+    },
+    {
+      "original": "public/images/unused-images/cocoYamPlantation.webp",
+      "optimized": "public/optimized-images/unused-images/cocoYamPlantation.webp",
+      "originalSize": 73384,
+      "optimizedSize": 25518,
+      "saved": 47866
+    },
+    {
+      "original": "public/images/unused-images/cookingFreshCorn.webp",
+      "optimized": "public/optimized-images/unused-images/cookingFreshCorn.webp",
+      "originalSize": 344368,
+      "optimizedSize": 165858,
+      "saved": 178510
+    },
+    {
+      "original": "public/images/unused-images/cornAndPearStudyandEat.webp",
+      "optimized": "public/optimized-images/unused-images/cornAndPearStudyandEat.webp",
+      "originalSize": 85772,
+      "optimizedSize": 59806,
+      "saved": 25966
+    },
+    {
+      "original": "public/images/unused-images/freeRangeChickens.webp",
+      "optimized": "public/optimized-images/unused-images/freeRangeChickens.webp",
+      "originalSize": 155078,
+      "optimizedSize": 72726,
+      "saved": 82352
+    },
+    {
+      "original": "public/images/unused-images/gingerHarvestSales.webp",
+      "optimized": "public/optimized-images/unused-images/gingerHarvestSales.webp",
+      "originalSize": 231466,
+      "optimizedSize": 186156,
+      "saved": 45310
+    },
+    {
+      "original": "public/images/unused-images/goats.webp",
+      "optimized": "public/optimized-images/unused-images/goats.webp",
+      "originalSize": 349442,
+      "optimizedSize": 201496,
+      "saved": 147946
+    },
+    {
+      "original": "public/images/unused-images/handGrown.webp",
+      "optimized": "public/optimized-images/unused-images/handGrown.webp",
+      "originalSize": 41012,
+      "optimizedSize": 33814,
+      "saved": 7198
+    },
+    {
+      "original": "public/images/unused-images/hero1.webp",
+      "optimized": "public/optimized-images/unused-images/hero1.webp",
+      "originalSize": 221332,
+      "optimizedSize": 81940,
+      "saved": 139392
+    },
+    {
+      "original": "public/images/unused-images/hero2.webp",
+      "optimized": "public/optimized-images/unused-images/hero2.webp",
+      "originalSize": 297384,
+      "optimizedSize": 108564,
+      "saved": 188820
+    },
+    {
+      "original": "public/images/unused-images/localPoultry.webp",
+      "optimized": "public/optimized-images/unused-images/localPoultry.webp",
+      "originalSize": 778574,
+      "optimizedSize": 497436,
+      "saved": 281138
+    },
+    {
+      "original": "public/images/unused-images/mangoTreesPathwayOrchards.webp",
+      "optimized": "public/optimized-images/unused-images/mangoTreesPathwayOrchards.webp",
+      "originalSize": 583440,
+      "optimizedSize": 375630,
+      "saved": 207810
+    },
+    {
+      "original": "public/images/unused-images/organicFoodSales.webp",
+      "optimized": "public/optimized-images/unused-images/organicFoodSales.webp",
+      "originalSize": 107854,
+      "optimizedSize": 35490,
+      "saved": 72364
+    },
+    {
+      "original": "public/images/unused-images/potatoes.webp",
+      "optimized": "public/optimized-images/unused-images/potatoes.webp",
+      "originalSize": 70714,
+      "optimizedSize": 34194,
+      "saved": 36520
+    },
+    {
+      "original": "public/images/unused-images/uguVegetableGarden.webp",
+      "optimized": "public/optimized-images/unused-images/uguVegetableGarden.webp",
+      "originalSize": 152550,
+      "optimizedSize": 77448,
+      "saved": 75102
+    },
+    {
+      "original": "public/images/unused-images/vegetablebeds1.webp",
+      "optimized": "public/optimized-images/unused-images/vegetablebeds1.webp",
+      "originalSize": 324624,
+      "optimizedSize": 202128,
+      "saved": 122496
+    },
+    {
+      "original": "public/images/unused-images/vegetablesAndCornHarvest.webp",
+      "optimized": "public/optimized-images/unused-images/vegetablesAndCornHarvest.webp",
+      "originalSize": 293830,
+      "optimizedSize": 149662,
+      "saved": 144168
+    }
+  ]
+}

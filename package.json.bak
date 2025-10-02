@@ -1,8 +1,18 @@
 {
   "name": "poshpoule-farms-website",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "description": "Complete e-commerce and ERP website for PoshPOULE Farms Ltd - Organic poultry, fresh eggs, vegetables, and farm-fresh produce with multi-currency support and admin dashboard",
+  "author": "Emmanuel Ogugua <ceo@poshpoule.com>",
+  "homepage": "https://poshpoule-farms.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/e-ogugua/PoshPOULE-Farms-suite.git"
+  },
   "private": true,
   "packageManager": "pnpm@10.17.1",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "prisma generate && next build",
@@ -21,9 +31,11 @@
   },
   "dependencies": {
     "@auth/prisma-adapter": "2.10.0",
+    "@next/font": "^14.2.15",
     "@prisma/client": "6.16.2",
     "@radix-ui/react-slot": "1.2.3",
     "@types/nodemailer": "6.4.19",
+    "@types/react-syntax-highlighter": "^15.5.13",
     "@vercel/node": "5.3.24",
     "autoprefixer": "10.4.19",
     "bcryptjs": "3.0.2",
@@ -42,15 +54,17 @@
     "pg": "^8.16.3",
     "pg-connection-string": "^2.9.1",
     "postcss": "8.4.38",
+    "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-markdown": "9.0.1",
     "react-syntax-highlighter": "15.5.0",
-    "remark-gfm": "4.0.0",
+    "remark-gfm": "^4.0.1",
     "sharp": "^0.33.3",
     "swr": "^2.3.6",
     "tailwind-merge": "^2.5.2",
     "tailwindcss": "^3.4.1",
-    "tsx": "^4.20.6"
+    "tsx": "^4.20.6",
+    "zod": "^4.1.11"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^15.5.4",
@@ -58,14 +72,13 @@
     "@types/node": "20.11.25",
     "@types/react": "^18.2.66",
     "@types/react-dom": "18.2.22",
-    "@types/react-syntax-highlighter": "^15.5.13",
     "css-minimizer-webpack-plugin": "^7.0.2",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.3",
     "next-sitemap": "^4.2.3",
     "prisma": "^6.16.2",
-    "sqlite3": "^5.1.7",
     "terser-webpack-plugin": "^5.3.14",
     "ts-node": "^10.9.2",
     "typescript": "5.3.3"
   }
+}
