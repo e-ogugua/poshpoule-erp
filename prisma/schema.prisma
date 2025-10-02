@@ -89,19 +89,22 @@ model Order {
 }
 
 model Product {
-  id          String   @id @default(cuid())
-  name        String
-  description String
-  price       Float
-  stock       Int      @default(0)
-  image       String?
-  category    String
-  slug        String   @unique
-  isFeatured  Boolean  @default(false) @map("is_featured")
-  rating      Float?   @default(0)
-  numReviews  Int      @default(0) @map("num_reviews")
-  createdAt   DateTime @default(now()) @map("created_at")
-  updatedAt   DateTime @updatedAt @map("updated_at")
+  id              String   @id @default(cuid())
+  name            String
+  description     String
+  priceNaira      Float    @map("price")
+  basePriceNaira  Float    @default(0) @map("base_price")
+  stock           Int      @default(0)
+  image           String?
+  images          String[] @default([])
+  category        String
+  slug            String   @unique
+  featured        Boolean  @default(false) @map("is_featured")
+  available       Boolean  @default(true)
+  rating          Float?   @default(0)
+  numReviews      Int      @default(0) @map("num_reviews")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
 
   reviews Review[]
 

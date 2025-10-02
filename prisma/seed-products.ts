@@ -1,7 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
-
 const products = [
   {
     name: 'Fresh Organic Eggs',
@@ -10,8 +9,10 @@ const products = [
     price: 2500,
     category: 'Food',
     stock: 100,
-    image: '/images/products/eggs/organicFarmEggs.webp',
-    isFeatured: true
+    image: '/optimized-images/products/eggs/organicFarmEggs.JPG.webp',
+    images: ['/optimized-images/products/eggs/organicFarmEggs.JPG.webp'],
+    isFeatured: true,
+    available: true,
   },
   {
     name: 'Broiler & Meat Chickens',
@@ -20,8 +21,10 @@ const products = [
     price: 7000,
     category: 'Meat',
     stock: 50,
-    image: '/images/products/OrganicEggs.JPG',
-    isFeatured: true
+    image: '/optimized-images/products/chicken/LocalChickens.webp',
+    images: ['/optimized-images/products/chicken/LocalChickens.webp'],
+    isFeatured: true,
+    available: true,
   },
   {
     name: 'Organic Vegetables Pack',
@@ -30,8 +33,10 @@ const products = [
     price: 4500,
     category: 'Vegetables',
     stock: 30,
-    image: '/images/products/OrganicVegetablePack.jpg',
-    isFeatured: false
+    image: '/optimized-images/products/vegetables/OrganicVegetablePack.webp',
+    images: ['/optimized-images/products/vegetables/OrganicVegetablePack.webp'],
+    isFeatured: false,
+    available: true,
   },
   {
     name: 'Organic Fruits Pack',
@@ -40,8 +45,10 @@ const products = [
     price: 5000,
     category: 'Fruits',
     stock: 25,
-    image: '/images/products/fruitsSalad.jpg',
-    isFeatured: false
+    image: '/optimized-images/products/fruits/fruitsSalad.webp',
+    images: ['/optimized-images/products/fruits/fruitsSalad.webp'],
+    isFeatured: false,
+    available: true,
   },
   {
     name: 'Crop Box Subscription (Monthly)',
@@ -50,8 +57,10 @@ const products = [
     price: 25000,
     category: 'Subscription',
     stock: 20,
-    image: '/images/products/organicFoodSales.jpg',
-    isFeatured: true
+    image: '/optimized-images/products/subscription/vegetableCropsBasketOfFood.webp',
+    images: ['/optimized-images/products/subscription/vegetableCropsBasketOfFood.webp'],
+    isFeatured: true,
+    available: true,
   },
   {
     name: 'Premium Organic Snack Pack',
@@ -60,8 +69,10 @@ const products = [
     price: 8000,
     category: 'Snacks',
     stock: 40,
-    image: '/images/products/OrganicShopShelve.jpg',
-    isFeatured: false
+    image: '/optimized-images/products/OrganicShopShelve.webp',
+    images: ['/optimized-images/products/OrganicShopShelve.webp'],
+    isFeatured: false,
+    available: true,
   },
   {
     name: 'Food Stall Export Link & TasteBox Subscription',
@@ -70,8 +81,10 @@ const products = [
     price: 15000,
     category: 'Export',
     stock: 15,
-    image: '/images/products/WhyOrganic.png',
-    isFeatured: false
+    image: '/optimized-images/products/WhyOrganic.webp',
+    images: ['/optimized-images/products/WhyOrganic.webp'],
+    isFeatured: false,
+    available: true,
   },
   {
     name: 'Workshop & Training (3 Months)',
@@ -80,8 +93,10 @@ const products = [
     price: 100000,
     category: 'Training',
     stock: 10,
-    image: '/images/products/Organicbusiness-growth.png',
-    isFeatured: true
+    image: '/optimized-images/products/Organicbusiness-growth.webp',
+    images: ['/optimized-images/products/Organicbusiness-growth.webp'],
+    isFeatured: true,
+    available: true,
   },
   {
     name: 'Premium Mentorship Program (1 Year)',
@@ -90,13 +105,14 @@ const products = [
     price: 250000,
     category: 'Mentorship',
     stock: 5,
-    image: '/images/products/mangoTreesPathwayOrchards.jpg',
-    isFeatured: true
+    image: '/optimized-images/products/mangoTreesPathwayOrchards.webp',
+    images: ['/optimized-images/products/mangoTreesPathwayOrchards.webp'],
+    isFeatured: true,
+    available: true,
   },
 ];
 
 async function main() {
-  console.log('🌱 Starting product seeding...');
 
   for (const product of products) {
     try {
