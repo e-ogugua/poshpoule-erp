@@ -4,20 +4,9 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import PriceDisplay from '@/components/PriceDisplay';
+import { Product } from '@/types/product';
 
 const prisma = new PrismaClient();
-
-interface Product {
-  id: string;
-  name: string;
-  slug: string;
-  description: string;
-  price: number;
-  stock: number;
-  image: string;
-  category: string;
-  isFeatured: boolean;
-}
 
 interface ProductPageProps {
   params: Promise<{

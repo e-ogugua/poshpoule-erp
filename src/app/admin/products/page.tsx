@@ -5,17 +5,7 @@ import { Plus, Edit, Trash2, Star } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-interface Product {
-  id: string;
-  name: string;
-  slug: string;
-  description: string;
-  price: number;
-  stock: number;
-  image: string;
-  category: string;
-  isFeatured: boolean;
-}
+import { Product } from '@/types/product';
 
 export default function ProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);
