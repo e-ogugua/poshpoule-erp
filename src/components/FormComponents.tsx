@@ -9,27 +9,10 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: string;
   helperText?: string;
   phone?: boolean;
-}
 
 export const FormInput = forwardRef<HTMLInputElement, InputProps>(
   ({ label, error, helperText, className, id, phone, onChange, ...props }, ref) => {
     const inputId = id || `input-${label.replace(/\s+/g, '-').toLowerCase()}`;
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      let value = e.target.value;
-
-      if (phone) {
-        // Format phone number as user types
-        value = formatPhoneNumber(value);
-        // Update the input value
-        e.target.value = value;
-      }
-
-      // Call the original onChange if provided
-      if (onChange) {
-        onChange(e);
-      }
-    };
 
     return (
       <div className="space-y-2">
@@ -44,7 +27,7 @@ export const FormInput = forwardRef<HTMLInputElement, InputProps>(
             error && 'border-red-500 focus:border-red-500 focus:ring-red-500',
             className
           )}
-          onChange={handleChange}
+          onChange={onChange}
           {...props}
         />
         {error && (

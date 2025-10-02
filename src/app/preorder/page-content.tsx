@@ -281,7 +281,6 @@ export default function PreorderPageContent({
                     error={touched.customerPhone ? errors.customerPhone : undefined}
                     placeholder="e.g., 08012345678"
                     helperText="Enter Nigerian phone number"
-                    phone={true}
                     required
                   />
                 </div>
