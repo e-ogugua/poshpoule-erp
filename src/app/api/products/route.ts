@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
     // Get filtered and paginated products from Prisma
     const where: any = {};
     if (category) where.category = category;
-    if (featured) where.isFeatured = featured === 'true';
+    if (featured) where.featured = featured === 'true';
     if (available) where.stock = { gt: 0 };
     if (search) {
       where.OR = [
@@ -48,11 +48,11 @@ export async function GET(request: NextRequest) {
       name: product.name,
       slug: product.slug,
       description: product.description,
-      priceNaira: product.price,
+      priceNaira: product.priceNaira,
       category: product.category,
       stock: product.stock,
       image: product.image,
-      featured: product.isFeatured,
+      featured: product.featured,
       available: product.stock > 0,
     }));
 
@@ -103,7 +103,7 @@ export async function POST(request: NextRequest) {
     const productData = await request.json();
 
     // Validate required fields
-    const requiredFields = ['name', 'slug', 'description', 'price', 'category', 'stock'];
+    const requiredFields = ['name', 'slug', 'description', 'priceNaira', 'category', 'stock'];
     for (const field of requiredFields) {
       if (!productData[field]) {
         const response = NextResponse.json(
@@ -132,11 +132,11 @@ export async function POST(request: NextRequest) {
         name: productData.name,
         slug: productData.slug,
         description: productData.description,
-        price: productData.price,
+        priceNaira: productData.priceNaira,
         category: productData.category,
         stock: productData.stock,
-        image: productData.image || '/optimized/images/products/eggs/organicFarmEggs.webp',
-        isFeatured: productData.featured || false,
+        image: productData.image || '/optimized-images/products/eggs/organicFarmEggs.JPG.webp',
+        featured: productData.featured || false,
       },
     });
 
