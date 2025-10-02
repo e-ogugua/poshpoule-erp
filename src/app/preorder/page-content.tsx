@@ -15,6 +15,13 @@ interface Product {
   name: string;
   priceNaira: number;
   category: string;
+  slug: string;
+  description: string;
+  stock: number;
+  image: string;
+  featured: boolean;
+  available: boolean;
+  createdAt: string;
 }
 
 interface OrderFormData {
@@ -45,16 +52,8 @@ export default function PreorderPageContent({
   const [error, setError] = useState<string | null>(null);
   const { format } = usePriceFormatter();
 
-  // Sample product data to use when API is not available
-  const sampleProducts: Product[] = [
-    { id: '1', name: 'Fresh Organic Eggs', priceNaira: 3000, category: 'Eggs' },
-    { id: '2', name: 'Organic Chicken (Whole)', priceNaira: 8000, category: 'Poultry' },
-    { id: '3', name: 'Fresh Vegetables (Seasonal)', priceNaira: 2000, category: 'Vegetables' },
-    { id: '4', name: 'Farm Fresh Fruits', priceNaira: 2500, category: 'Fruits' }
-  ];
-
   useEffect(() => {
-    // Try to fetch products from API, fallback to sample data if it fails
+    // Fetch products from API
     const fetchProducts = async () => {
       setIsLoading(true);
       setError(null);
@@ -67,11 +66,11 @@ export default function PreorderPageContent({
         const data = await response.json();
         // Handle both array and object responses
         const productsData = Array.isArray(data) ? data : (data.data || []);
-        setProducts(productsData.length > 0 ? productsData : sampleProducts);
+        setProducts(productsData);
       } catch (error) {
-        console.error('Failed to fetch products, using sample data:', error);
-        setError('Failed to load products. Using sample data.');
-        setProducts(sampleProducts);
+        console.error('Failed to fetch products:', error);
+        setError('Unable to load products. Please try again later.');
+        setProducts([]);
       } finally {
         setIsLoading(false);
       }
@@ -277,11 +276,12 @@ export default function PreorderPageContent({
                     type="tel"
                     name="customerPhone"
                     value={values.customerPhone}
-                    onChange={(e) => setValue('customerPhone', formatField('customerPhone', e.target.value))}
+                    onChange={(e) => setValue('customerPhone', e.target.value)}
                     onBlur={() => markFieldAsTouched('customerPhone')}
                     error={touched.customerPhone ? errors.customerPhone : undefined}
                     placeholder="e.g., 08012345678"
                     helperText="Enter Nigerian phone number"
+                    phone={true}
                     required
                   />
                 </div>

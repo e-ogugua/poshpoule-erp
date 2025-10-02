@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
-// Phone number validation for Nigerian numbers
-const phoneRegex = /^(\+234|0)[789]\d{9}$/;
+// Phone number validation for Nigerian numbers - more flexible
+const phoneRegex = /^(\+?234|0)[789]\d{9}$/;
 
 // Order form validation schema
 export const orderFormSchema = z.object({
@@ -19,8 +19,10 @@ export const orderFormSchema = z.object({
 
   customerPhone: z
     .string()
-    .regex(phoneRegex, 'Please enter a valid Nigerian phone number')
-    .min(11, 'Phone number must be at least 11 digits'),
+    .min(10, 'Phone number must be at least 10 digits')
+    .max(15, 'Phone number must not exceed 15 digits')
+    .regex(/^(\+?234|0)[789]\d{9}$/, 'Please enter a valid Nigerian phone number starting with 0 or +234')
+    .transform((val) => val.replace(/\s+/g, '')),
 
   orderType: z.enum(['pickup', 'delivery'], {
     error: 'Please select an order type',
@@ -70,14 +72,48 @@ export const formatPhoneNumber = (value: string): string => {
   // Remove all non-digit characters
   const digits = value.replace(/\D/g, '');
 
-  // Format Nigerian phone numbers
+  // Handle Nigerian phone numbers
   if (digits.startsWith('234')) {
-    if (digits.length === 13) {
-      return `+${digits.slice(0, 3)} ${digits.slice(3, 6)} ${digits.slice(6, 9)} ${digits.slice(9)}`;
+    // +234 format
+    if (digits.length >= 3) {
+      let formatted = '+234';
+      if (digits.length >= 6) {
+        formatted += ` ${digits.slice(3, 6)}`;
+      } else {
+        formatted += ` ${digits.slice(3)}`;
+      }
+      if (digits.length >= 9) {
+        formatted += ` ${digits.slice(6, 9)}`;
+      } else if (digits.length > 6) {
+        formatted += ` ${digits.slice(6)}`;
+      }
+      if (digits.length >= 13) {
+        formatted += ` ${digits.slice(9, 13)}`;
+      } else if (digits.length > 9) {
+        formatted += ` ${digits.slice(9)}`;
+      }
+      return formatted.trim();
     }
   } else if (digits.startsWith('0')) {
-    if (digits.length === 11) {
-      return `0${digits.slice(1, 2)} ${digits.slice(2, 5)} ${digits.slice(5, 8)} ${digits.slice(8)}`;
+    // 0 format
+    if (digits.length >= 2) {
+      let formatted = `0${digits.slice(1, 2)}`;
+      if (digits.length >= 5) {
+        formatted += ` ${digits.slice(2, 5)}`;
+      } else if (digits.length > 2) {
+        formatted += ` ${digits.slice(2)}`;
+      }
+      if (digits.length >= 8) {
+        formatted += ` ${digits.slice(5, 8)}`;
+      } else if (digits.length > 5) {
+        formatted += ` ${digits.slice(5)}`;
+      }
+      if (digits.length >= 12) {
+        formatted += ` ${digits.slice(8, 12)}`;
+      } else if (digits.length > 8) {
+        formatted += ` ${digits.slice(8)}`;
+      }
+      return formatted.trim();
     }
   }
 
