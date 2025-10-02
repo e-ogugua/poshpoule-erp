@@ -3,12 +3,13 @@ import { readDatabase, writeDatabase } from '@/lib/database';
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const data = readDatabase();
     const subscribers = data.blogSubscribers || [];
-    const subscriberIndex = subscribers.findIndex((sub: any) => sub.id === params.id);
+    const subscriberIndex = subscribers.findIndex((sub: any) => sub.id === id);
 
     if (subscriberIndex === -1) {
       return NextResponse.json({ error: 'Subscriber not found' }, { status: 404 });
