@@ -122,12 +122,12 @@ export interface Database {
   products: Product[];
   orders: Order[];
   testimonials: Testimonial[];
-  blogPosts: BlogPost[];
   galleryImages: GalleryImage[];
   teamMembers: TeamMember[];
   pickupSlots: PickupSlot[];
   leads: Lead[];
   whyChooseUs: WhyChooseUsItem[];
+  blogSubscribers: BlogSubscriber[];
   currencyRates: Record<string, number>;
   settings: {
     siteName: string;
@@ -138,15 +138,8 @@ export interface Database {
     values?: string[];
     yearFounded?: number;
     primaryColor: string;
-    accentColor?: string;
-    highlightColor?: string;
-    neutralColor?: string;
-    neutralDarkColor?: string;
-    contactEmail: string;
-    contactPhone: string;
-    address: string;
-    businessHours?: Record<string, string>;
-    socialMedia?: Record<string, string>;
+    secondaryColor: string;
+    accentColor: string;
   };
 }
 
@@ -242,4 +235,13 @@ export function writeDatabase(data: Database): void {
 export function getNextId(collection: any[]): string {
   const maxId = Math.max(...collection.map(item => parseInt(item.id.split('-')[1] || '0')));
   return `${collection[0]?.id.split('-')[0] || 'item'}-${maxId + 1}`;
+}
+
+export interface BlogSubscriber {
+  id: string;
+  email: string;
+  status: 'pending' | 'confirmed' | 'unsubscribed';
+  subscribedAt: string;
+  confirmedAt: string | null;
+  unsubscribedAt: string | null;
 }

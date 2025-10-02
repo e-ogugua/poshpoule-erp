@@ -55,10 +55,26 @@ export default function ContactPage() {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus('idle');
-    
+
     try {
-      // Replace with your form submission logic
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const response = await fetch('/api/leads', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          subject: formData.subject,
+          message: formData.message,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+
       setSubmitStatus('success');
       setFormData({
         name: '',
