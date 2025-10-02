@@ -55,7 +55,7 @@
       "basePriceNaira": 12000,
       "category": "Poultry Produce",
       "stock": 50,
-      "image": "/images/products/chicken/GrowingBroilers.JPG",
+      "image": "/images/products/chicken/NoilerChickensFreeRangers.JPG",
       "images": [
         "/images/products/chicken/GrowingBroilers.JPG",
         "/images/poultry/broodingChickens.JPG",
@@ -113,7 +113,7 @@
       "basePriceNaira": 6000,
       "category": "Fruits",
       "stock": 25,
-      "image": "/images/products/fruits/fruitsTableReady.jpg",
+      "image": "/images/products/organicFoodSales.jpg",
       "images": [
         "/images/products/fruits/fruitsTableReady.jpg",
         "/images/products/fruits/fruitsSalad.jpg",
@@ -197,7 +197,7 @@
       "basePriceNaira": 75000,
       "category": "Export & Distribution",
       "stock": 50,
-      "image": "/images/farm/VegetableHavest.jpg",
+      "image": "/images/products/FoodStallExportLinkTasteBox.png",
       "images": [
         "/images/farm/VegetableHavest.jpg",
         "/images/crops/vegetableGarden.jpg",
@@ -222,7 +222,7 @@
       "basePriceNaira": 45000,
       "category": "Training & Services",
       "stock": 25,
-      "image": "/images/farm/GingerCropHarvest.JPG",
+      "image": "/images/products/WorkshopTraining3Months.jpeg",
       "images": [
         "/images/farm/GingerCropHarvest.JPG",
         "/images/farm/CornFarmBackyard.JPG",
@@ -247,7 +247,7 @@
       "basePriceNaira": 160000,
       "category": "Training & Services",
       "stock": 15,
-      "image": "/optimized-images/team/ChikwadoTeam4.webp",
+      "image": "/images/products/PremiumMentorshipProgram.png",
       "images": [
         "/optimized-images/team/ChikwadoTeam4.webp",
         "/optimized-images/team/mentorship-training.webp",
