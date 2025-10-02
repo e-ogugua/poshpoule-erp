@@ -49,7 +49,7 @@ async function main() {
         id: product.id,
         name: product.name,
         description: product.description,
-        price: product.priceNaira,
+        priceNaira: product.priceNaira,
         stock: product.stock,
         image: product.image,
         category: product.category,
