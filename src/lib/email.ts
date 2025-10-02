@@ -184,7 +184,7 @@ export async function sendSubscriptionConfirmationEmail(email: string) {
       return;
     }
 
-    const transporter = nodemailer.createTransporter({
+    const transporter = nodemailer.createTransport({
       host: emailConfig.host,
       port: emailConfig.port,
       secure: emailConfig.port === 465,

@@ -170,12 +170,11 @@ export async function sendContactNotificationEmail(lead: any) {
       html: htmlBody,
     });
 
-    console.log('✅ Contact notification email sent successfully');
   } catch (error) {
     console.error('❌ Failed to send contact notification email:', error);
     // Don't throw - allow contact to be saved even if email fails
+  }
 }
-
 
 export async function sendSubscriptionConfirmationEmail(email: string) {
   try {
@@ -185,8 +184,7 @@ export async function sendSubscriptionConfirmationEmail(email: string) {
       return;
     }
 
-
-    const transporter = nodemailer.createTransport({
+    const transporter = nodemailer.createTransporter({
       host: emailConfig.host,
       port: emailConfig.port,
       secure: emailConfig.port === 465,
@@ -202,7 +200,7 @@ export async function sendSubscriptionConfirmationEmail(email: string) {
 
     const textBody = `Thank you for subscribing to PoshPOULE Farms blog!\n\n` +
                       `Please confirm your subscription by clicking this link:\n${confirmUrl}\n\n` +
-                      `You'll now receive updates about our latest blog posts, farm news, and organic farmer tips.\n\n` +
+                      `You'll now receive updates about our latest blog posts, farm news, and organic farming tips.\n\n` +
                       `Best regards,\nThe PoshPOULE Farms Team`;
 
     const htmlBody = `
@@ -212,7 +210,7 @@ export async function sendSubscriptionConfirmationEmail(email: string) {
         <ul>
           <li>Latest blog posts</li>
           <li>Farm news and updates</li>
-          <li>Organic farmer tips</li>
+          <li>Organic farming tips</li>
           <li>Special offers and promotions</li>
         </ul>
 
@@ -238,27 +236,9 @@ export async function sendSubscriptionConfirmationEmail(email: string) {
       html: htmlBody,
     });
 
-  } catch (error) {
-    console.error('❌ Failed to send subscription confirmation email:', error);
-    // Don't throw - allow subscription to be saved even if email fails
-  }
-
-}
-
-
-  } catch (error) {
-    console.error('❌ Failed to send subscription confirmation email:', error);
-    // Don't throw - allow subscription to be saved even if email fails
-  }
-
-}
-
-
     console.log('✅ Subscription confirmation email sent successfully');
   } catch (error) {
     console.error('❌ Failed to send subscription confirmation email:', error);
     // Don't throw - allow subscription to be saved even if email fails
   }
-
 }
-
