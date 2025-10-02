@@ -54,7 +54,7 @@ async function main() {
         image: product.image,
         category: product.category,
         slug: product.slug,
-        isFeatured: product.featured || false,
+        featured: product.featured || false,
       },
     })
   }
