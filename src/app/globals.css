@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@300;400;500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -43,19 +41,19 @@ body {
 }
 
 .font-heading {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-playfair-display), serif;
 }
 
 .font-body {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-inter), sans-serif;
 }
 
 .font-heading-bold {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-playfair-display), serif;
   font-weight: 700;
 }
 
 .font-heading-semibold {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-playfair-display), serif;
   font-weight: 600;
 }

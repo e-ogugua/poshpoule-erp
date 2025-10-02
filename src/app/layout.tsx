@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next';
+import { Inter, Playfair_Display } from 'next/font/google';
 import { headers } from 'next/headers';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/auth';
@@ -6,6 +7,21 @@ import { AuthProvider } from '@/providers/AuthProvider';
 import { validateEnvironment } from '@/lib/env-validation';
 import './globals.css';
 import LayoutClient from '@/components/LayoutClient';
+
+// Configure fonts with Next.js font optimization
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-inter',
+  display: 'swap',
+});
+
+const playfairDisplay = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-playfair-display',
+  display: 'swap',
+});
 
 // Define viewport settings
 export const viewport: Viewport = {
@@ -27,26 +43,26 @@ const isAdminRoute = async () => {
     return pathname.startsWith('/admin');
   } catch (e) {
     // If we can't access headers, default to false
-    return false;
   }
 };
 
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://poshpoule-farms.vercel.app'),
   title: {
-    default: 'PoshPOULE Farms - Organic Poultry & Fresh Produce',
-    template: '%s | PoshPOULE Farms'
+    default: 'PoshPOULE Farms - Premium Organic Poultry & Fresh Produce',
+    template: '%s | PoshPOULE Farms',
   },
   description: 'Premium organic poultry, fresh eggs, vegetables, and farm-fresh produce. Experience the taste of pure, healthy goodness from our sustainable farm.',
   keywords: 'organic farm, poultry, fresh eggs, vegetables, sustainable farmer, healthy food',
   authors: [{ name: 'PoshPOULE Farms Ltd' }],
+  other: {
+    'google-fonts': 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@300;400;500;600;700&display=swap',
+  },
 };
 
 export default async function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
 }) {
   // Validate environment variables early - this will throw if any are missing
   validateEnvironment();
@@ -56,7 +72,7 @@ export default async function RootLayout({
   const bodyClass = isAdmin ? 'min-h-screen bg-background font-sans antialiased bg-gray-100' : 'min-h-screen bg-background font-sans antialiased';
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable} ${playfairDisplay.variable}`} suppressHydrationWarning>
       <body className={bodyClass}>
         <AuthProvider session={session}>
           <LayoutClient session={session}>
