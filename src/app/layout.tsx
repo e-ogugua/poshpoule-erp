@@ -7,6 +7,7 @@ import { AuthProvider } from '@/providers/AuthProvider';
 import { validateEnvironment } from '@/lib/env-validation';
 import './globals.css';
 import LayoutClient from '@/components/LayoutClient';
+import React from 'react';
 
 // Configure fonts with Next.js font optimization
 const inter = Inter({
@@ -63,6 +64,7 @@ export const metadata: Metadata = {
 export default async function RootLayout({
   children,
 }: {
+  children: React.ReactNode;
 }) {
   // Validate environment variables early - this will throw if any are missing
   validateEnvironment();
