@@ -2,15 +2,16 @@
 
 import { forwardRef } from 'react';
 import { cn } from '@/lib/utils';
+import { formatPhoneNumber } from '@/lib/validation';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
   error?: string;
   helperText?: string;
-}
+  phone?: boolean;
 
 export const FormInput = forwardRef<HTMLInputElement, InputProps>(
-  ({ label, error, helperText, className, id, onChange, ...props }, ref) => {
+  ({ label, error, helperText, className, id, phone, onChange, ...props }, ref) => {
     const inputId = id || `input-${label.replace(/\s+/g, '-').toLowerCase()}`;
 
     return (
