@@ -13,9 +13,11 @@ function ensureEmailConfig() {
     return null;
   }
 
+
   if (!SMTP_HOST || !SMTP_PORT || !SMTP_USER || !SMTP_PASS || !ORDER_NOTIFICATIONS_EMAIL) {
     throw new Error('Email configuration is incomplete. Please set SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, and ORDER_NOTIFICATIONS_EMAIL environment variables.');
   }
+
 
   return {
     host: SMTP_HOST,
@@ -25,6 +27,7 @@ function ensureEmailConfig() {
   };
 }
 
+
 export async function sendOrderNotificationEmail(order: Order | any) {
   try {
     const emailConfig = ensureEmailConfig();
@@ -33,6 +36,7 @@ export async function sendOrderNotificationEmail(order: Order | any) {
       console.log('📧 Email configuration not available - skipping order notification');
       return;
     }
+
 
     const transporter = nodemailer.createTransport({
       host: emailConfig.host,
@@ -72,9 +76,12 @@ export async function sendOrderNotificationEmail(order: Order | any) {
           <p><strong>Phone:</strong> ${order.customerPhone}</p>
           <p><strong>Order Type:</strong> ${order.orderType}</p>
           ${order.deliveryAddress ? `<p><strong>Delivery Address:</strong> ${order.deliveryAddress}</p>` : ''}
+
           <p><strong>Preferred Date:</strong> ${order.scheduledDate}</p>
           ${order.scheduledTime ? `<p><strong>Preferred Time:</strong> ${order.scheduledTime}</p>` : ''}
+
           ${order.notes ? `<p><strong>Notes:</strong> ${order.notes}</p>` : ''}
+
         </div>
 
         <h3 style="color:#14532d;">Order Details</h3>
@@ -84,8 +91,10 @@ export async function sendOrderNotificationEmail(order: Order | any) {
               <strong>${product.name}</strong><br>
               Quantity: ${product.quantity}<br>
               Price: ₦${product.priceNaira?.toLocaleString() || '0'}
+
             </div>
           `).join('')}
+
           <div style="border-top:2px solid #14532d;padding-top:12px;margin-top:12px;">
             <strong>Total: ₦${order.totalAmount?.toLocaleString() || '0'}</strong>
           </div>
@@ -93,6 +102,7 @@ export async function sendOrderNotificationEmail(order: Order | any) {
 
         <p style="color:#6b7280;">
           Submitted at: ${new Date(order.createdAt).toLocaleString()}
+
         </p>
       </div>
     `;
@@ -110,7 +120,9 @@ export async function sendOrderNotificationEmail(order: Order | any) {
     console.error('❌ Failed to send order notification email:', error);
     // Don't throw - allow order to be saved even if email fails
   }
+
 }
+
 
 export async function sendContactNotificationEmail(lead: any) {
   try {
@@ -120,6 +132,7 @@ export async function sendContactNotificationEmail(lead: any) {
       console.log('📧 Email configuration not available - skipping contact notification');
       return;
     }
+
 
     const transporter = nodemailer.createTransport({
       host: emailConfig.host,
@@ -163,6 +176,7 @@ export async function sendContactNotificationEmail(lead: any) {
     // Don't throw - allow contact to be saved even if email fails
 }
 
+
 export async function sendSubscriptionConfirmationEmail(email: string) {
   try {
     const emailConfig = ensureEmailConfig();
@@ -170,6 +184,7 @@ export async function sendSubscriptionConfirmationEmail(email: string) {
       console.log('📧 Email configuration not available - skipping subscription confirmation');
       return;
     }
+
 
     const transporter = nodemailer.createTransport({
       host: emailConfig.host,
@@ -227,11 +242,23 @@ export async function sendSubscriptionConfirmationEmail(email: string) {
     console.error('❌ Failed to send subscription confirmation email:', error);
     // Don't throw - allow subscription to be saved even if email fails
   }
+
 }
+
+
+  } catch (error) {
+    console.error('❌ Failed to send subscription confirmation email:', error);
+    // Don't throw - allow subscription to be saved even if email fails
+  }
+
+}
+
 
     console.log('✅ Subscription confirmation email sent successfully');
   } catch (error) {
     console.error('❌ Failed to send subscription confirmation email:', error);
     // Don't throw - allow subscription to be saved even if email fails
   }
+
 }
+
