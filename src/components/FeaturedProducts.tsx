@@ -1,6 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import { Product } from '@/types/product';
 
 const ProductCard = dynamic(
   () => import('@/components/ProductCard').then(mod => mod.default),
@@ -19,18 +20,6 @@ const ProductCard = dynamic(
     )
   }
 );
-
-interface Product {
-  id: string;
-  name: string;
-  description: string;
-  priceNaira: number;
-  image: string;
-  slug: string;
-  featured?: boolean;
-  originalPrice?: number;
-  discountPercentage?: number;
-}
 
 interface FeaturedProductsProps {
   products: Product[];

@@ -4,6 +4,7 @@ export interface Product {
   slug: string;
   description: string;
   priceNaira: number;
+  basePriceNaira: number;
   category: string;
   stock: number;
   image: string;

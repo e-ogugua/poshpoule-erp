@@ -1,17 +1,5 @@
 import ProductCard from '@/components/ProductCard';
-
-interface Product {
-  id: string;
-  name: string;
-  slug: string;
-  description: string;
-  priceNaira: number;
-  category: string;
-  stock: number;
-  image: string;
-  featured: boolean;
-  available: boolean;
-}
+import { Product } from '@/types/product';
 
 interface ProductsGridProps {
   products: Product[];

@@ -7,16 +7,7 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import { HeroCarousel } from '@/components/HeroCarousel';
 import FeaturedProducts from '@/components/FeaturedProducts';
-
-type Product = {
-  id: string;
-  name: string;
-  description: string;
-  priceNaira: number;
-  image: string;
-  slug: string;
-  featured?: boolean;
-};
+import { Product } from '@/types/product';
 
 type Testimonial = {
   id: string;
