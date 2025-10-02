@@ -10,7 +10,7 @@ const products = [
     price: 2500,
     category: 'Food',
     stock: 100,
-    image: '/optimized/images/products/eggs/organicFarmEggs.webp',
+    image: '/images/products/eggs/organicFarmEggs.webp',
     isFeatured: true
   },
   {
@@ -20,7 +20,7 @@ const products = [
     price: 7000,
     category: 'Meat',
     stock: 50,
-    image: '/optimized/images/products/chickens/broilerChicken.webp',
+    image: '/images/products/OrganicEggs.JPG',
     isFeatured: true
   },
   {
@@ -30,7 +30,7 @@ const products = [
     price: 4500,
     category: 'Vegetables',
     stock: 30,
-    image: '/optimized/images/products/vegetables/organicVegetables.webp',
+    image: '/images/products/OrganicVegetablePack.jpg',
     isFeatured: false
   },
   {
@@ -40,7 +40,7 @@ const products = [
     price: 5000,
     category: 'Fruits',
     stock: 25,
-    image: '/optimized/images/products/fruits/organicFruits.webp',
+    image: '/images/products/fruitsSalad.jpg',
     isFeatured: false
   },
   {
@@ -50,7 +50,7 @@ const products = [
     price: 25000,
     category: 'Subscription',
     stock: 20,
-    image: '/optimized/images/products/subscriptions/cropBox.webp',
+    image: '/images/products/organicFoodSales.jpg',
     isFeatured: true
   },
   {
@@ -60,7 +60,7 @@ const products = [
     price: 8000,
     category: 'Snacks',
     stock: 40,
-    image: '/optimized/images/products/snacks/organicSnacks.webp',
+    image: '/images/products/OrganicShopShelve.jpg',
     isFeatured: false
   },
   {
@@ -70,7 +70,7 @@ const products = [
     price: 15000,
     category: 'Export',
     stock: 15,
-    image: '/optimized/images/products/export/foodStallExport.webp',
+    image: '/images/products/WhyOrganic.png',
     isFeatured: false
   },
   {
@@ -80,7 +80,7 @@ const products = [
     price: 100000,
     category: 'Training',
     stock: 10,
-    image: '/optimized/images/products/training/farmingWorkshop.webp',
+    image: '/images/products/Organicbusiness-growth.png',
     isFeatured: true
   },
   {
@@ -90,7 +90,7 @@ const products = [
     price: 250000,
     category: 'Mentorship',
     stock: 5,
-    image: '/optimized/images/products/mentorship/mentorshipProgram.webp',
+    image: '/images/products/mangoTreesPathwayOrchards.jpg',
     isFeatured: true
   },
 ];
