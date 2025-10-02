@@ -100,7 +100,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 />
               </div>
             </div>
-
             {/* Right Column - Details */}
             <div className="space-y-6">
               <div>

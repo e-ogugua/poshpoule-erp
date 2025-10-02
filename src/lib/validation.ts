@@ -53,16 +53,24 @@ export const orderFormSchema = z.object({
 
   products: z
     .array(z.object({
-      productId: z.string(),
-      name: z.string(),
-      quantity: z.number().min(1, 'Quantity must be at least 1'),
-      priceNaira: z.number().positive(),
+      productId: z.string().min(1, 'Product ID is required'),
+      name: z.string().min(1, 'Product name is required'),
+      quantity: z.number().min(1, 'Quantity must be at least 1').max(100, 'Quantity cannot exceed 100'),
+      priceNaira: z.union([
+        z.number().positive('Price must be greater than 0'),
+        z.string().transform((val) => {
+          const num = parseFloat(val.replace(/[^0-9.-]+/g, ''));
+          return isNaN(num) ? 0 : num;
+        }).refine((val) => val > 0, 'Price must be greater than 0')
+      ]).optional().default(0),
     }))
-    .min(1, 'Please select at least one product'),
+    .min(1, 'Please select at least one product')
+    .max(10, 'Cannot order more than 10 different products'),
 
   totalAmount: z
     .number()
-    .positive('Total amount must be greater than 0'),
+    .positive('Total amount must be greater than 0')
+    .max(10000000, 'Order amount cannot exceed ₦10,000,000'),
 });
 
 export type OrderFormData = z.infer<typeof orderFormSchema>;
