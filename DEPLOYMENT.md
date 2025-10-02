@@ -24,7 +24,7 @@ Create a `.env.local` file in the root directory with the following variables:
 
 ```env
 # Database
-DATABASE_URL="postgresql://user:password@localhost:5432/poshpoule?schema=public"
+DATABASE_URL="postgresql://neondb_owner:npg_sunRjm98IBPG@ep-divine-forest-ad8z9yxm.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
 
 # Next.js
 NEXT_PUBLIC_SITE_URL="https://poshpoule.com"
@@ -32,7 +32,7 @@ NEXT_PUBLIC_ENABLE_CSP="false"
 
 # Authentication
 NEXTAUTH_SECRET="your-secret-key"
-NEXTAUTH_URL="http://localhost:3000"
+NEXTAUTH_URL="https://poshpoule-farms.vercel.app"
 
 # Email (for contact forms, etc.)
 SMTP_HOST="smtp.example.com"
@@ -66,7 +66,7 @@ SMTP_FROM="noreply@poshpoule.com"
    pnpm dev
    ```
 
-5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+5. Open [https://poshpoule-farms.vercel.app](https://poshpoule-farms.vercel.app) in your browser.
 
 ## Vercel Deployment
 

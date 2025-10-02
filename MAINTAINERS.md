@@ -1,34 +1,36 @@
 # PoshPOULE Farms - Project Maintainers
 
-This file lists the maintainers of the PoshPOULE Farms project. Maintainers are responsible for reviewing and merging pull requests, managing releases, and ensuring the overall health of the project.
 
 ## Core Maintainers
 
 | Name | GitHub | Email | Role |
 |------|--------|-------|------|
-| Your Name | [@your-github](https://github.com/your-github) | your.email@example.com | Project Lead |
-| Team Member | [@team-member](https://github.com/team-member) | team.member@example.com | Core Maintainer |
+| Elochukwu Ogugua | [@e-ogugua](https://github.com/e-ogugua) | ceo@poshpoule.com | Founder & CEO |
+| PoshPOULE Team | [@poshpoule-team](https://github.com/PoshPOULE-Farms-suite) | support@poshpoulefarms.com | Development Team |
 
-## Responsibilities
+## Contact Information
 
-As a maintainer, you are expected to:
+For technical issues or questions about the codebase:
+- **Email**: support@poshpoulefarms.com
+- **GitHub Issues**: [Create an issue](https://github.com/e-ogugua/PoshPOULE-Farms-suite/issues)
 
-1. **Review Pull Requests**: Provide constructive feedback on code changes and ensure they meet project standards.
-2. **Merge Code**: Merge pull requests that are ready and follow the project's contribution guidelines.
-3. **Handle Issues**: Triage and respond to issues in a timely manner.
-4. **Release Management**: Help prepare and publish new releases.
-5. **Community Support**: Answer questions and provide guidance to community members.
-6. **Code Quality**: Ensure the codebase remains maintainable and follows best practices.
+## Maintenance Responsibilities
 
-## Becoming a Maintainer
+- **Code Review**: Reviewing and approving pull requests
+- **Release Management**: Managing version releases and deployments
+- **Security Updates**: Keeping dependencies updated and secure
+- **Documentation**: Maintaining project documentation
+- **Community Support**: Helping contributors and users
 
-We're always looking for new maintainers who are passionate about PoshPOULE Farms. To become a maintainer:
+## Adding New Maintainers
 
-1. Submit several high-quality pull requests that demonstrate your understanding of the project.
-2. Help with code reviews and issue triage.
-3. Be active in the community and help other users.
-4. Express your interest to the existing maintainers.
+New maintainers should:
+1. Have demonstrated significant contributions to the project
+2. Be approved by existing maintainers
+3. Be familiar with the codebase and development processes
+4. Be committed to maintaining code quality and security
 
+## Emeritus Maintainers
 ## Making Decisions
 
 We use the following process for making decisions:
