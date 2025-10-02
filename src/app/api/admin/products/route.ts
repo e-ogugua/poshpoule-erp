@@ -26,12 +26,12 @@ export async function GET() {
         id: true,
         name: true,
         description: true,
-        price: true,
+        priceNaira: true,
         stock: true,
         image: true,
         category: true,
         slug: true,
-        isFeatured: true,
+        featured: true,
         rating: true,
         numReviews: true,
         createdAt: true,
@@ -65,10 +65,10 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
-    const { name, description, price, stock, image, category } = body;
+    const { name, description, priceNaira, stock, image, category } = body;
 
     // Basic validation
-    if (!name || !description || price === undefined || stock === undefined || !category) {
+    if (!name || !description || priceNaira === undefined || stock === undefined || !category) {
       return new NextResponse('Missing required fields', { status: 400 });
     }
 
@@ -76,7 +76,7 @@ export async function POST(request: Request) {
       data: {
         name,
         description,
-        price: parseFloat(price),
+        priceNaira: parseFloat(priceNaira),
         stock: parseInt(stock),
         image: image || null,
         category,
