@@ -117,7 +117,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                   <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
                     {product.category}
                   </span>
-                  {product.isFeatured && (
+                  {product.featured && (
                     <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
                       Featured
                     </span>
