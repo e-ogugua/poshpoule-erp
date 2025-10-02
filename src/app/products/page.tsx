@@ -26,7 +26,7 @@ async function getProducts(category?: string) {
       : `${process.env.NEXTAUTH_URL}/api/products`;
 
     const response = await fetch(url, {
-      next: { revalidate: 300 } // Cache for 5 minutes
+      next: { revalidate: 0 } // Force fresh data, no cache
     });
 
     if (!response.ok) {
