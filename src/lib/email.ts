@@ -229,6 +229,12 @@ export async function sendSubscriptionConfirmationEmail(email: string) {
   }
 }
 
+  } catch (error) {
+    console.error('❌ Failed to send subscription confirmation email:', error);
+    // Don't throw - allow subscription to be saved even if email fails
+  }
+}
+
     console.log('✅ Subscription confirmation email sent successfully');
   } catch (error) {
     console.error('❌ Failed to send subscription confirmation email:', error);
