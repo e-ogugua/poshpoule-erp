@@ -93,17 +93,21 @@ export default function ProductCard({ product }: { product: Product }) {
           >
             View Details
           </Link>
-          <Link
-            href={`/preorder?product=${product.id}`}
-            className={`flex-1 text-center py-2 px-4 rounded-lg font-medium transition-colors ${
-              product.stock > 0
-                ? 'bg-green-600 text-white hover:bg-green-700'
-                : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-            }`}
-            onClick={(e) => product.stock === 0 && e.preventDefault()}
-          >
-            Pre-Order
-          </Link>
+          {product.stock > 0 ? (
+            <Link
+              href={`/preorder?product=${product.id}`}
+              className="flex-1 bg-green-600 text-white text-center py-2 px-4 rounded-lg font-medium hover:bg-green-700 transition-colors"
+            >
+              Pre-Order
+            </Link>
+          ) : (
+            <button
+              disabled
+              className="flex-1 bg-gray-300 text-gray-500 text-center py-2 px-4 rounded-lg font-medium cursor-not-allowed"
+            >
+              Out of Stock
+            </button>
+          )}
         </div>
       </div>
     </div>

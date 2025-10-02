@@ -130,17 +130,21 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
               {/* Call to Action Buttons */}
               <div className="space-y-3">
-                <Link
-                  href={`/preorder?product=${product.id}`}
-                  className={`w-full block text-center py-3 px-6 rounded-lg font-medium transition-colors ${
-                    product.stock > 0
-                      ? 'bg-primary text-white hover:bg-primary-dark'
-                      : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                  }`}
-                  onClick={(e) => product.stock === 0 && e.preventDefault()}
-                >
-                  Pre-Order Now
-                </Link>
+                {product.stock > 0 ? (
+                  <Link
+                    href={`/preorder?product=${product.id}`}
+                    className="w-full block text-center py-3 px-6 rounded-lg font-medium bg-primary text-white hover:bg-primary-dark transition-colors"
+                  >
+                    Pre-Order Now
+                  </Link>
+                ) : (
+                  <button
+                    disabled
+                    className="w-full block text-center py-3 px-6 rounded-lg font-medium bg-gray-300 text-gray-500 cursor-not-allowed"
+                  >
+                    Out of Stock
+                  </button>
+                )}
                 <Link
                   href="/contact"
                   className="w-full block text-center py-3 px-6 rounded-lg font-medium border border-primary text-primary hover:bg-primary hover:text-white transition-colors"

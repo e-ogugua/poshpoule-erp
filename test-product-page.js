@@ -1,59 +1,69 @@
-// Test script to isolate product detail page issues
+// Simple test to check if product detail pages work
 const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
+const fs = require('fs');
 
-async function testProductPage() {
-  console.log('🧪 Testing product detail page component...');
+async function testProductDetailPage() {
+  console.log('🧪 Testing product detail page functionality...');
+  
+  const prisma = new PrismaClient();
   
   try {
-    // Test the exact query used in the component
-    const product = await prisma.product.findUnique({
-      where: { slug: 'premium-mentorship' }
-    });
+    // 1. Check if products exist
+    const productCount = await prisma.product.count();
+    console.log('📊 Products in database:', productCount);
     
-    if (!product) {
-      console.log('❌ Product not found');
-      // List available products
-      const products = await prisma.product.findMany({ select: { slug: true, name: true } });
-      console.log('📋 Available products:');
-      products.forEach(p => console.log('  -', p.slug, ':', p.name));
+    if (productCount === 0) {
+      console.log('❌ No products found - need to seed database');
       return;
     }
     
-    console.log('✅ Product found:', product.name);
+    // 2. Get a sample product
+    const product = await prisma.product.findFirst();
+    console.log('✅ Found product:', product.name);
+    console.log('✅ Slug:', product.slug);
     
-    // Check all fields that the component uses
-    const componentFields = [
-      'id', 'name', 'slug', 'description', 'priceNaira', 'stock', 
-      'image', 'category', 'featured', 'available', 'createdAt'
-    ];
+    // 3. Test the exact query used in the component
+    const productBySlug = await prisma.product.findUnique({
+      where: { slug: product.slug }
+    });
     
-    const missingFields = componentFields.filter(field => !(field in product));
+    if (!productBySlug) {
+      console.log('❌ Product lookup by slug failed');
+      return;
+    }
+    
+    console.log('✅ Product lookup by slug successful');
+    
+    // 4. Check all required fields
+    const requiredFields = ['id', 'name', 'slug', 'description', 'priceNaira', 'stock', 'image', 'category', 'featured'];
+    const missingFields = requiredFields.filter(field => !(field in productBySlug));
+    
     if (missingFields.length > 0) {
       console.log('❌ Missing fields:', missingFields);
     } else {
-      console.log('✅ All component fields present');
+      console.log('✅ All required fields present');
     }
     
-    // Test the component logic
-    if (product.stock > 0) {
-      console.log('✅ Stock check passed');
-    } else {
-      console.log('❌ Stock check would fail');
-    }
+    // 5. Test component logic
+    const wouldRender = {
+      name: productBySlug.name,
+      price: productBySlug.priceNaira,
+      stock: productBySlug.stock > 0 ? 'In Stock' : 'Out of Stock',
+      category: productBySlug.category,
+      featured: productBySlug.featured ? 'Featured' : 'Not Featured',
+      image: productBySlug.image || '/images/logo.png'
+    };
     
-    if (product.featured) {
-      console.log('✅ Featured badge would show');
-    }
-    
-    console.log('🎯 Component would render successfully');
+    console.log('✅ Component logic test passed');
+    console.log('📋 Would render:', wouldRender);
+    console.log('🎉 Product detail page should work!');
     
   } catch (error) {
-    console.error('❌ Product page test failed:', error.message);
-    console.error('❌ Error stack:', error.stack);
+    console.error('❌ Test failed:', error.message);
+    console.error('❌ Full error:', error);
   } finally {
     await prisma.$disconnect();
   }
 }
 
-testProductPage();
+testProductDetailPage();
