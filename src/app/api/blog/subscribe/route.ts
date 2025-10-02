@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { sendSubscriptionConfirmation } from '@/lib/email';
+import { sendSubscriptionConfirmationEmail } from '@/lib/email';
 
 export async function POST(request: NextRequest) {
   try {
@@ -9,7 +9,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Valid email address is required' }, { status: 400 });
     }
 
-    await sendSubscriptionConfirmation(email);
+    await sendSubscriptionConfirmationEmail(email);
 
     return NextResponse.json({
       success: true,
