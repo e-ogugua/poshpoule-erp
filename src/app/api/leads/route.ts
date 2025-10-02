@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { readDatabase, writeDatabase, getNextId } from '@/lib/database';
+import { sendContactNotificationEmail } from '@/lib/email';
 
 export async function POST(request: NextRequest) {
   try {
@@ -32,6 +33,13 @@ export async function POST(request: NextRequest) {
     }
     data.leads.push(newLead);
     writeDatabase(data);
+
+    // Send email notification
+    try {
+      await sendContactNotificationEmail(newLead);
+    } catch (emailError) {
+      console.error('Lead created but email failed:', emailError);
+    }
 
     return NextResponse.json({ message: 'Message sent successfully' }, { status: 201 });
   } catch (error) {

@@ -47,7 +47,7 @@ export default function PreorderPageContent({
 
   // Sample product data to use when API is not available
   const sampleProducts: Product[] = [
-    { id: '1', name: 'Fresh Organic Eggs', priceNaira: 3000, category: 'Eggs' },
+    { id: '1', name: 'Fresh Eggs (Tray of 30)', priceNaira: 3000, category: 'Eggs' },
     { id: '2', name: 'Organic Chicken (Whole)', priceNaira: 8000, category: 'Poultry' },
     { id: '3', name: 'Fresh Vegetables (Seasonal)', priceNaira: 2000, category: 'Vegetables' },
     { id: '4', name: 'Farm Fresh Fruits', priceNaira: 2500, category: 'Fruits' }
@@ -323,56 +323,55 @@ export default function PreorderPageContent({
                   </div>
 
                   {values.orderType === 'delivery' && (
-                    <FormTextarea
-                      label="Delivery Address *"
-                      name="deliveryAddress"
-                      value={values.deliveryAddress}
-                      onChange={(e) => setValue('deliveryAddress', e.target.value)}
-                      onBlur={() => markFieldAsTouched('deliveryAddress')}
-                      error={touched.deliveryAddress ? errors.deliveryAddress : undefined}
-                      placeholder="Enter your complete delivery address"
-                      required
-                    />
-                  )}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <FormTextarea
+                        label="Delivery Address *"
+                        name="deliveryAddress"
+                        value={values.deliveryAddress}
+                        onChange={(e) => setValue('deliveryAddress', e.target.value)}
+                        onBlur={() => markFieldAsTouched('deliveryAddress')}
+                        error={touched.deliveryAddress ? errors.deliveryAddress : undefined}
+                        placeholder="Enter your complete delivery address"
+                        required
+                      />
 
-                  <FormInput
-                    label="Preferred Date *"
-                    type="date"
-                    name="scheduledDate"
-                    value={values.scheduledDate}
-                    onChange={(e) => setValue('scheduledDate', e.target.value)}
-                    onBlur={() => markFieldAsTouched('scheduledDate')}
-                    error={touched.scheduledDate ? errors.scheduledDate : undefined}
-                    min={getMinDate()}
-                    required
-                  />
+                      <div className="space-y-4">
+                        <FormInput
+                          label="Preferred Date *"
+                          type="date"
+                          name="scheduledDate"
+                          value={values.scheduledDate}
+                          onChange={(e) => setValue('scheduledDate', e.target.value)}
+                          onBlur={() => markFieldAsTouched('scheduledDate')}
+                          error={touched.scheduledDate ? errors.scheduledDate : undefined}
+                          min={getMinDate()}
+                          required
+                        />
 
-                  <FormSelect
-                    label="Preferred Time *"
-                    name="scheduledTime"
-                    value={values.scheduledTime}
-                    onChange={(e) => setValue('scheduledTime', e.target.value)}
-                    onBlur={() => markFieldAsTouched('scheduledTime')}
-                    error={touched.scheduledTime ? errors.scheduledTime : undefined}
-                    options={[
-                      { value: '', label: 'Select a time' },
-                      ...timeOptions
-                    ]}
-                    required
-                  />
+                        <FormSelect
+                          label="Preferred Time *"
+                          name="scheduledTime"
+                          value={values.scheduledTime}
+                          onChange={(e) => setValue('scheduledTime', e.target.value)}
+                          onBlur={() => markFieldAsTouched('scheduledTime')}
+                          error={touched.scheduledTime ? errors.scheduledTime : undefined}
+                          options={[
+                            { value: '', label: 'Select a time' },
+                            ...timeOptions
+                          ]}
+                          required
+                        />
 
-                  <FormTextarea
-                    label="Additional Notes"
-                    name="notes"
-                    value={values.notes}
-                    onChange={(e) => setValue('notes', e.target.value)}
-                    onBlur={() => markFieldAsTouched('notes')}
-                    error={touched.notes ? errors.notes : undefined}
-                    placeholder="Any special instructions or dietary requirements"
-                    helperText="Optional - maximum 500 characters"
-                  />
-                </div>
-              </div>
+                        <FormTextarea
+                          label="Additional Notes"
+                          name="notes"
+                          value={values.notes}
+                          onChange={(e) => setValue('notes', e.target.value)}
+                          onBlur={() => markFieldAsTouched('notes')}
+                          error={touched.notes ? errors.notes : undefined}
+                          placeholder="Any special instructions or dietary requirements"
+                          helperText="Optional - maximum 500 characters"
+                        />
             </div>
 
             {/* Products Selection */}

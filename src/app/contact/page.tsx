@@ -25,9 +25,9 @@ const ContactCard = ({ icon: Icon, title, children }: { icon: any; title: string
 );
 
 const contactInfo = {
-  address: '123 Farm Road, Agricultural Zone, Enugu, Nigeria',
-  phone: '+234 812 345 6789',
-  email: 'info@poshpoulefarms.com',
+  address: 'PoshPOULE Farms Prototype, No 3 Jesus Power Arena Crescent, Airport Road, New Haven Extension Enugu, Nigeria',
+  phone: '+234 8122394397',
+  email: 'poshpoulefarms@gmail.com',
   social: {
     facebook: 'https://facebook.com/poshpoulefarms',
     twitter: 'https://twitter.com/poshpoulefarms',

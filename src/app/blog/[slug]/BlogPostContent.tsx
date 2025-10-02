@@ -79,52 +79,33 @@ const markdownComponents: Components = {
   img: ({ node, ...props }: any) => {
     const { src, alt = '' } = props;
     if (!src) return null;
-    
+
     // Generate a stable key based on the image source
     const imageKey = `img-${src.replace(/[^a-z0-9]/gi, '-')}`;
     // Generate a meaningful alt text if none is provided
     const imageAlt = alt?.trim() || 'Blog post image';
-    
-    // Use dynamic import for client-side only rendering of Image component
-    const DynamicImage = () => {
-      const [isClient, setIsClient] = useState(false);
-      
-      useEffect(() => {
-        setIsClient(true);
-      }, []);
-      
-      if (!isClient) {
-        return (
-          <div className="my-8 max-w-4xl mx-auto">
-            <div className="relative aspect-video w-full bg-gray-100 rounded-xl block-level" />
-          </div>
-        );
-      }
-      
-      return (
-        <div key={imageKey} className="my-8 max-w-4xl mx-auto block-level">
-          <div className="relative aspect-video w-full">
-            <Image
-              src={src}
-              alt={imageAlt}
-              fill
-              className="rounded-xl shadow-lg object-cover"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
-              priority={false}
-              loading="lazy"
-              unoptimized={process.env.NODE_ENV !== 'production'}
-            />
-          </div>
-          {imageAlt && imageAlt !== 'Blog post image' && (
-            <p className="text-center text-sm text-gray-500 mt-2 italic">
-              {imageAlt}
-            </p>
-          )}
+
+    return (
+      <div key={imageKey} className="my-8 max-w-4xl mx-auto block-level">
+        <div className="relative aspect-video w-full">
+          <Image
+            src={src}
+            alt={imageAlt}
+            fill
+            className="rounded-xl shadow-lg object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
+            priority={false}
+            loading="lazy"
+            unoptimized={process.env.NODE_ENV !== 'production'}
+          />
         </div>
-      );
-    };
-    
-    return <DynamicImage />;
+        {imageAlt && imageAlt !== 'Blog post image' && (
+          <p className="text-center text-sm text-gray-500 mt-2 italic">
+            {imageAlt}
+          </p>
+        )}
+      </div>
+    );
   },
   a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
     const { href, children, ...rest } = props;
@@ -208,38 +189,35 @@ const extractImagesFromContent = (content: string) => {
 };
 
 export function BlogPostContent({ post, readingTime, formattedDate, relatedPosts, previousPost, nextPost }: BlogPostContentProps) {
-  const [isClient, setIsClient] = useState(false);
   const [activeHeading, setActiveHeading] = useState('');
   const [showScrollTop, setShowScrollTop] = useState(false);
   const postImages = extractImagesFromContent(post.content);
   const hasMultipleImages = postImages.length > 1;
-  
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-  
+
   // Handle scroll for table of contents highlighting
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     const handleScroll = () => {
       // Show/hide scroll to top button
       setShowScrollTop(window.scrollY > 500);
-      
+
       // Update active heading in table of contents
       const headings = document.querySelectorAll('h2, h3');
       let current = '';
-      
+
       headings.forEach((heading) => {
         const headingTop = heading.getBoundingClientRect().top;
         if (headingTop >= 0 && headingTop < 200) {
           current = heading.id || '';
         }
       });
-      
+
       if (current !== activeHeading) {
         setActiveHeading(current);
       }
     };
-    
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [activeHeading]);
@@ -344,20 +322,18 @@ export function BlogPostContent({ post, readingTime, formattedDate, relatedPosts
 
                 {/* Article Content */}
                 <div className="prose prose-lg max-w-none">
-                  {isClient && (
-                    <ReactMarkdown
-                      components={markdownComponents}
-                      remarkPlugins={[remarkGfm]}
-                      rehypePlugins={[]}
-                      urlTransform={(url) => {
-                        // Ensure URLs are properly formatted
-                        if (url.startsWith('http')) return url;
-                        return url;
-                      }}
-                    >
-                      {post.content}
-                    </ReactMarkdown>
-                  )}
+                  <ReactMarkdown
+                    components={markdownComponents}
+                    remarkPlugins={[remarkGfm]}
+                    rehypePlugins={[]}
+                    urlTransform={(url) => {
+                      // Ensure URLs are properly formatted
+                      if (url.startsWith('http')) return url;
+                      return url;
+                    }}
+                  >
+                    {post.content}
+                  </ReactMarkdown>
                 </div>
                 
                 {/* Tags */}

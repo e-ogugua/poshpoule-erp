@@ -1,9 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
+import { setCORSHeaders } from '@/lib/headers';
 
 const prisma = new PrismaClient();
 
 export async function GET(request: NextRequest) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 10000);
+
   try {
     // Get query parameters
     const { searchParams } = new URL(request.url);
@@ -64,26 +68,37 @@ export async function GET(request: NextRequest) {
     });
 
     response.headers.set('Cache-Control', 'public, s-maxage=300, stale-while-revalidate=60');
-    return response;
+    return setCORSHeaders(response);
   } catch (error) {
+    if (error && typeof error === 'object' && 'name' in error && error.name === 'AbortError') {
+      const response = NextResponse.json({ error: 'Request timeout' }, { status: 408 });
+      return setCORSHeaders(response);
+    }
+
     console.error('Error in /api/products:', error);
 
     // Check if it's a database error
-    const errorMessage = error instanceof Error 
-      ? error.message 
+    const errorMessage = error instanceof Error
+      ? error.message
       : 'An unknown error occurred';
 
-    return NextResponse.json(
-      { 
+    const response = NextResponse.json(
+      {
         error: 'Failed to fetch products',
         details: errorMessage,
       },
       { status: 500 }
     );
+    return setCORSHeaders(response);
+  } finally {
+    clearTimeout(timeout);
   }
 }
 
 export async function POST(request: NextRequest) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 10000);
+
   try {
     const productData = await request.json();
 
@@ -91,10 +106,11 @@ export async function POST(request: NextRequest) {
     const requiredFields = ['name', 'slug', 'description', 'price', 'category', 'stock'];
     for (const field of requiredFields) {
       if (!productData[field]) {
-        return NextResponse.json(
+        const response = NextResponse.json(
           { error: `Missing required field: ${field}` },
           { status: 400, headers: { 'Cache-Control': 'no-store' } }
         );
+        return setCORSHeaders(response);
       }
     }
 
@@ -103,10 +119,11 @@ export async function POST(request: NextRequest) {
       where: { slug: productData.slug }
     });
     if (slugExists) {
-      return NextResponse.json(
+      const response = NextResponse.json(
         { error: 'A product with this slug already exists' },
         { status: 400, headers: { 'Cache-Control': 'no-store' } }
       );
+      return setCORSHeaders(response);
     }
 
     // Create new product
@@ -126,12 +143,20 @@ export async function POST(request: NextRequest) {
     // Return only necessary fields
     const response = NextResponse.json(newProduct, { status: 201 });
     response.headers.set('Cache-Control', 'no-store');
-    return response;
+    return setCORSHeaders(response);
   } catch (error) {
+    if (error && typeof error === 'object' && 'name' in error && error.name === 'AbortError') {
+      const response = NextResponse.json({ error: 'Request timeout' }, { status: 408 });
+      return setCORSHeaders(response);
+    }
+
     console.error('Error creating product:', error);
-    return NextResponse.json(
+    const response = NextResponse.json(
       { error: 'Failed to create product' },
       { status: 500, headers: { 'Cache-Control': 'no-store' } }
     );
+    return setCORSHeaders(response);
+  } finally {
+    clearTimeout(timeout);
   }
 }

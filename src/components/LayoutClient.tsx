@@ -1,14 +1,8 @@
 'use client';
 
 import { ReactNode } from 'react';
-import dynamic from 'next/dynamic';
+import CurrencyProviderWrapper from '@/providers/CurrencyProviderWrapper';
 import { Session } from 'next-auth';
-
-// Dynamically import the CurrencyProviderWrapper with SSR disabled
-const CurrencyProviderWrapper = dynamic(
-  () => import('@/providers/CurrencyProviderWrapper'),
-  { ssr: false, loading: () => <div>Loading currency...</div> }
-);
 
 interface LayoutClientProps {
   children: ReactNode;

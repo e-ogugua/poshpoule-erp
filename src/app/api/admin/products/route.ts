@@ -2,14 +2,18 @@ import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/auth';
+import { setCORSHeaders } from '@/lib/headers';
 
 const prisma = new PrismaClient();
 
 export async function GET() {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 10000);
+
   try {
     // Verify admin access
     const session = await getServerSession(authOptions);
-    
+
     if (!session?.user || session.user.role !== 'admin') {
       return new NextResponse('Unauthorized', { status: 401 });
     }
@@ -37,16 +41,25 @@ export async function GET() {
 
     return NextResponse.json(products);
   } catch (error) {
+    if (error && typeof error === 'object' && 'name' in error && error.name === 'AbortError') {
+      return NextResponse.json({ error: 'Request timeout' }, { status: 408 });
+    }
+
     console.error('Error fetching products:', error);
     return new NextResponse('Internal Server Error', { status: 500 });
+  } finally {
+    clearTimeout(timeout);
   }
 }
 
 export async function POST(request: Request) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 10000);
+
   try {
     // Verify admin access
     const session = await getServerSession(authOptions);
-    
+
     if (!session?.user || session.user.role !== 'admin') {
       return new NextResponse('Unauthorized', { status: 401 });
     }
@@ -73,7 +86,13 @@ export async function POST(request: Request) {
 
     return NextResponse.json(product, { status: 201 });
   } catch (error) {
+    if (error && typeof error === 'object' && 'name' in error && error.name === 'AbortError') {
+      return NextResponse.json({ error: 'Request timeout' }, { status: 408 });
+    }
+
     console.error('Error creating product:', error);
     return new NextResponse('Internal Server Error', { status: 500 });
+  } finally {
+    clearTimeout(timeout);
   }
 }

@@ -1,66 +1,46 @@
-'use client';
-
-import { useEffect, useState } from 'react';
-import { useParams, notFound } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import { BlogPostContent } from './BlogPostContent';
 import type { BlogPost } from '@/lib/database-server';
 
-export default function BlogPostPage() {
-  const params = useParams();
-  const slug = Array.isArray(params.slug) ? params.slug[0] : params.slug || '';
-  
-  const [post, setPost] = useState<BlogPost | null>(null);
-  const [allPosts, setAllPosts] = useState<BlogPost[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<Error | null>(null);
+// Server-side data fetching function
+async function getBlogPostData(slug: string) {
+  try {
+    const response = await fetch(`${process.env.NEXTAUTH_URL || 'http://localhost:3000'}/api/blog/${slug}`, {
+      cache: 'no-store' // For fresh data, or use 'force-cache' for static generation
+    });
 
-  useEffect(() => {
-    async function loadData() {
-      try {
-        setIsLoading(true);
-        const response = await fetch(`/api/blog/${slug}`);
-        
-        if (!response.ok) {
-          if (response.status === 404) {
-            notFound();
-          }
-          throw new Error('Failed to fetch blog post');
-        }
-        
-        const { post: postData, allPosts: allPostsData } = await response.json();
-        
-        if (!postData) {
-          notFound();
-        }
-        
-        setPost(postData);
-        setAllPosts(allPostsData);
-      } catch (err) {
-        console.error('Error loading blog post:', err);
-        setError(err instanceof Error ? err : new Error('An error occurred'));
-      } finally {
-        setIsLoading(false);
+    if (!response.ok) {
+      if (response.status === 404) {
+        notFound();
       }
+      throw new Error('Failed to fetch blog post');
     }
-    
-    loadData();
-  }, [slug]);
 
-  if (isLoading) {
-    return (
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="animate-pulse space-y-4">
-          <div className="h-10 bg-gray-200 rounded w-3/4"></div>
-          <div className="h-4 bg-gray-200 rounded w-1/4"></div>
-          <div className="h-64 bg-gray-200 rounded"></div>
-        </div>
-      </div>
-    );
+    const { post, allPosts } = await response.json();
+
+    if (!post) {
+      notFound();
+    }
+
+    return { post, allPosts };
+  } catch (error) {
+    console.error('Error fetching blog post:', error);
+    throw error;
   }
+}
 
-  if (error || !post) {
+export default async function BlogPostPage({
+  params
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const { slug } = await params;
+
+  if (!slug) {
     notFound();
   }
+
+  const { post, allPosts } = await getBlogPostData(slug);
 
   // Calculate reading time (approximately 200 words per minute)
   const wordCount = post.content.split(/\s+/).length;
@@ -80,19 +60,19 @@ export default function BlogPostPage() {
 
   // Find current post index in the sorted array
   const currentIndex = sortedPosts.findIndex(p => p.id === post.id);
-  
+
   // Get previous and next posts
   const previousPost = currentIndex > 0 ? sortedPosts[currentIndex - 1] : null;
   const nextPost = currentIndex < sortedPosts.length - 1 ? sortedPosts[currentIndex + 1] : null;
 
   // Get related posts (same category, excluding current post)
   const relatedPosts = allPosts
-    .filter(p => p.id !== post.id && p.category === post.category)
+    .filter((p: BlogPost) => p.id !== post.id && p.category === post.category)
     .slice(0, 2);
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <BlogPostContent 
+      <BlogPostContent
         post={post}
         readingTime={readingTime}
         formattedDate={formattedDate}

@@ -1,12 +1,45 @@
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { readDatabase } from '@/lib/database-server';
 import Link from 'next/link';
 import Image from 'next/image';
-import PriceDisplay from '@/components/PriceDisplay';
+import ProductsGrid from '@/components/ProductsGrid';
+import LoadingSkeleton from '@/components/LoadingSkeleton';
 
-// This is a server component that fetches data on the server
-export const dynamic = 'force-dynamic'; // Ensure this page is dynamically rendered
+interface Product {
+  id: string;
+  name: string;
+  slug: string;
+  description: string;
+  priceNaira: number;
+  category: string;
+  stock: number;
+  image: string;
+  featured: boolean;
+  available: boolean;
+  createdAt: string;
+}
+
+async function getProducts(category?: string) {
+  try {
+    const url = category
+      ? `${process.env.NEXTAUTH_URL}/api/products?category=${encodeURIComponent(category)}`
+      : `${process.env.NEXTAUTH_URL}/api/products`;
+
+    const response = await fetch(url, {
+      next: { revalidate: 300 } // Cache for 5 minutes
+    });
+
+    if (!response.ok) {
+      throw new Error(`Products API failed: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data.data || [];
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    return [];
+  }
+}
 
 // Category filter component
 function CategoryFilter({ categories, selectedCategory }: { categories: string[], selectedCategory: string | null }) {
@@ -41,20 +74,20 @@ function CategoryFilter({ categories, selectedCategory }: { categories: string[]
     </div>
   );
 }
+
 export default async function ProductsPage({
   searchParams,
 }: {
   searchParams: Promise<{ category?: string }>
 }) {
-  // Read the database on the server
-  const data = readDatabase();
   const searchParamsResolved = await searchParams;
   const selectedCategory = searchParamsResolved?.category || null;
 
-  const categories = Array.from(new Set(data.products.map(p => p.category)));
-  const filteredProducts = selectedCategory
-    ? data.products.filter(p => p.category === selectedCategory)
-    : data.products;
+  // Fetch products from API
+  const products = await getProducts(selectedCategory || undefined);
+
+  const categories = Array.from(new Set(products.map((p: Product) => p.category))) as string[];
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -86,50 +119,7 @@ export default async function ProductsPage({
           <div className="container mx-auto px-4">
             <CategoryFilter categories={categories} selectedCategory={selectedCategory} />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredProducts.map((product) => (
-                <div key={product.id} className="card p-6">
-                  <div className="relative w-full h-48 mb-4">
-                    <Image
-                      src={product.image}
-                      alt={product.name}
-                      fill
-                      className="object-cover rounded-lg"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />
-                  </div>
-                  <h3 className="font-heading text-xl font-heading-semibold mb-2">{product.name}</h3>
-                  <p className="text-body mb-4 line-clamp-2">{product.description}</p>
-                  <div className="flex items-center justify-between mb-4">
-                    <PriceDisplay priceNaira={product.priceNaira} />
-                    <span className="text-sm text-neutral-500 capitalize">{product.category}</span>
-                  </div>
-                  <div className="flex space-x-2">
-                    <Link
-                      href={`/products/${product.slug}`}
-                      className="flex-1 btn-primary text-center"
-                    >
-                      View Details
-                    </Link>
-                    <Link
-                      href={`/preorder?product=${product.id}`}
-                      className="flex-1 btn-outline text-center"
-                    >
-                      Pre-Order
-                    </Link>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {filteredProducts.length === 0 && (
-              <div className="text-center py-12">
-                <p className="text-neutral-500 text-lg">No products found in this category.</p>
-                <Link href="/products" className="btn-primary mt-4">
-                  View All Products
-                </Link>
-              </div>
-            )}
+            <ProductsGrid products={products} />
           </div>
         </div>
 

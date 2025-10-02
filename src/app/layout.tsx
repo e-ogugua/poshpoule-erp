@@ -3,6 +3,7 @@ import { headers } from 'next/headers';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/auth';
 import { AuthProvider } from '@/providers/AuthProvider';
+import { validateEnvironment } from '@/lib/env-validation';
 import './globals.css';
 import LayoutClient from '@/components/LayoutClient';
 
@@ -47,6 +48,9 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // Validate environment variables early - this will throw if any are missing
+  validateEnvironment();
+
   const session = await getServerSession(authOptions);
   const isAdmin = await isAdminRoute();
   const bodyClass = isAdmin ? 'min-h-screen bg-background font-sans antialiased bg-gray-100' : 'min-h-screen bg-background font-sans antialiased';
