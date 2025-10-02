@@ -4,6 +4,7 @@
   "buildCommand": "./vercel-build.sh",
   "outputDirectory": ".next",
   "regions": ["iad1"],
+  "nodeVersion": "18.x",
   "env": {
     "NODE_ENV": "production",
     "NEXT_TELEMETRY_DISABLED": "1"
