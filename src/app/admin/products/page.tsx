@@ -198,13 +198,13 @@ export default function ProductsPage() {
                       </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                      ₦{product.price.toLocaleString()}
+                      ₦{product.priceNaira.toLocaleString()}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                       {product.stock}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      {product.isFeatured ? (
+                      {product.featured ? (
                         <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
                           <Star className="h-3 w-3 mr-1" />
                           Featured

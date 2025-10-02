@@ -117,7 +117,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
               <div>
                 <h1 className="text-3xl font-bold text-gray-900 mb-2">{product.name}</h1>
                 <div className="flex items-center gap-4 mb-4">
-                  <PriceDisplay priceNaira={product.price} />
+                  <PriceDisplay priceNaira={product.priceNaira} />
                   <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
                     product.stock > 0 ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
                   }`}>
