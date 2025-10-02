@@ -11,6 +11,9 @@ importers:
       '@auth/prisma-adapter':
         specifier: 2.10.0
         version: 2.10.0(@prisma/client@6.16.2(prisma@6.16.2(typescript@5.3.3))(typescript@5.3.3))(nodemailer@6.9.16)
+      '@next/font':
+        specifier: ^14.2.15
+        version: 14.2.15(next@15.5.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0))
       '@prisma/client':
         specifier: 6.16.2
         version: 6.16.2(prisma@6.16.2(typescript@5.3.3))(typescript@5.3.3)
@@ -815,6 +818,11 @@ packages:
 
   '@next/eslint-plugin-next@14.1.0':
     resolution: {integrity: sha512-x4FavbNEeXx/baD/zC/SdrvkjSby8nBn8KcCREqk6UuwvwoAPZmaV8TFCAuo/cpovBRTIY67mHhe86MQQm/68Q==}
+
+  '@next/font@14.2.15':
+    resolution: {integrity: sha512-QopYhBmCDDrNDynbi+ZD1hDZXmQXVFo7TmAFp4DQgO/kogz1OLbQ92hPigJbj572eZ3GaaVxNIyYVn3/eAsehg==}
+    peerDependencies:
+      next: '*'
 
   '@next/swc-darwin-arm64@15.5.4':
     resolution: {integrity: sha512-nopqz+Ov6uvorej8ndRX6HlxCYWCO3AHLfKK2TYvxoSB2scETOcfm/HSS3piPqc3A+MUgyHoqE6je4wnkjfrOA==}
@@ -5336,6 +5344,10 @@ snapshots:
   '@next/eslint-plugin-next@14.1.0':
     dependencies:
       glob: 10.3.10
+
+  '@next/font@14.2.15(next@15.5.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0))':
+    dependencies:
+      next: 15.5.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
 
   '@next/swc-darwin-arm64@15.5.4':
     optional: true
