@@ -31,7 +31,6 @@
   },
   "dependencies": {
     "@auth/prisma-adapter": "2.10.0",
-    "@next/font": "^14.2.15",
     "@prisma/client": "6.16.2",
     "@radix-ui/react-slot": "1.2.3",
     "@types/nodemailer": "6.4.19",
