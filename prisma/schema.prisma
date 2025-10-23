@@ -1,13 +1,7 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
   binaryTargets = ["native", "debian-openssl-1.1.x"]
-  engineType = "binary"
+  engineType    = "binary"
 }
 
 datasource db {
@@ -21,14 +15,13 @@ model User {
   email         String    @unique
   emailVerified DateTime? @map("email_verified")
   password      String
-  role          String    @default("user") // 'user' or 'admin'
+  role          String    @default("user")
   image         String?
   createdAt     DateTime  @default(now()) @map("created_at")
   updatedAt     DateTime  @updatedAt @map("updated_at")
-
-  accounts Account[]
-  sessions Session[]
-  reviews  Review[]
+  accounts      Account[]
+  reviews       Review[]
+  sessions      Session[]
 
   @@map("users")
 }
@@ -46,8 +39,7 @@ model Account {
   scope             String?
   id_token          String?
   session_state     String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
   @@map("accounts")
@@ -72,59 +64,34 @@ model VerificationToken {
   @@map("verification_tokens")
 }
 
-model OrderProduct {
-  id          String   @id @default(cuid())
-  productId   String   @map("product_id")
-  name        String
-  quantity    Int
-  priceNaira  Float    @map("price_naira")
-  orderId     String   @map("order_id")
-  createdAt   DateTime @default(now()) @map("created_at")
-
-  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
-
-  @@map("order_products")
-}
-
 model Order {
-  id              String   @id @default(cuid())
-  customerName    String   @map("customer_name")
-  customerEmail   String   @map("customer_email")
-  customerPhone   String   @map("customer_phone")
-  orderType       String   @default("pickup") @map("order_type")
-  scheduledDate   String   @map("scheduled_date")
-  scheduledTime   String?  @map("scheduled_time")
-  deliveryAddress String?  @map("delivery_address")
-  notes           String?
-  totalAmount     Float    @map("total_amount")
-  status          String   @default("new")
-  createdAt       DateTime @default(now()) @map("created_at")
-  updatedAt       DateTime @updatedAt @map("updated_at")
-
-  products OrderProduct[]
+  id            String   @id @default(cuid())
+  user_id       String
+  totalAmount   Float    @default(0) @map("total_amount")
+  status        String   @default("pending")
+  items         Json
+  shipping_info Json
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
 
   @@map("orders")
 }
 
 model Product {
-  id              String   @id @default(cuid())
-  name            String
-  description     String
-  priceNaira      Float    @map("price")
-  basePriceNaira  Float    @default(0) @map("base_price")
-  stock           Int      @default(0)
-  image           String?
-  images          String[] @default([])
-  category        String
-  slug            String   @unique
-  featured        Boolean  @default(false) @map("is_featured")
-  available       Boolean  @default(true)
-  rating          Float?   @default(0)
-  numReviews      Int      @default(0) @map("num_reviews")
-  createdAt       DateTime @default(now()) @map("created_at")
-  updatedAt       DateTime @updatedAt @map("updated_at")
-
-  reviews Review[]
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  priceNaira  Float    @map("price")
+  stock       Int      @default(0)
+  image       String?
+  category    String
+  slug        String   @unique
+  featured    Boolean  @default(false) @map("is_featured")
+  rating      Float?   @default(0)
+  numReviews  Int      @default(0) @map("num_reviews")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  reviews     Review[]
 
   @@map("products")
 }
@@ -136,9 +103,8 @@ model Review {
   rating    Int
   comment   String?
   createdAt DateTime @default(now()) @map("created_at")
-
-  product Product @relation(fields: [productId], references: [id])
-  user    User    @relation(fields: [userId], references: [id])
+  product   Product  @relation(fields: [productId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
 
   @@map("reviews")
 }
