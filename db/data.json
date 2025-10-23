@@ -1232,24 +1232,21 @@
     },
     {
       "id": "team-heritage",
-      "name": "PoshPOULE Heritage Team",
-      "position": "Cultural Preservation",
-      "description": "Our heritage team works to preserve and promote traditional West African farming practices and indigenous crops.",
-      "image": "/optimized-images/team/JoshuaTeam2.webp"
+      "name": "PoshPOULE TeamALPHA Supervisor",
+      "position": "Team Leadership & Quality Control",
+      "description": "Our TeamALPHA supervisors oversee all farm operations, ensuring the highest standards of quality, safety, and efficiency across our organic poultry and crop production. They lead our skilled workforce with expertise in sustainable farming practices and team coordination."
     },
     {
       "id": "team-science",
       "name": "PoshPOULE Science Team",
       "position": "Research & Development",
-      "description": "Our science team combines traditional knowledge with modern research to improve our farming practices.",
-      "image": "/optimized-images/team/EmmanuelTeam1-CEO.webp"
+      "description": "Our dedicated research and development team combines traditional agricultural knowledge with cutting-edge scientific methods to continuously improve our farming practices, develop new organic techniques, and ensure sustainable food production for future generations."
     },
     {
       "id": "team-poshpoule",
       "name": "PoshPOULE Team",
       "position": "Collective Wisdom",
-      "description": "Our dedicated team of farming experts, agronomists, and sustainability advocates working together to bring you the best organic produce.",
-      "image": "/optimized-images/team/mentorship-training.webp"
+      "description": "Our diverse team of agricultural experts, sustainability specialists, and dedicated professionals work in harmony to maintain the highest standards of organic farming. Together, we ensure every aspect of our operation reflects our commitment to quality, environmental stewardship, and community support."
     }
   ]
 }
