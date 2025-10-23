@@ -13,8 +13,7 @@ export async function PUT(
 
     const updatedOrder = await prisma.order.update({
       where: { id: params.id },
-      data: updateData,
-      include: { products: true }
+      data: updateData
     });
 
     return NextResponse.json(updatedOrder);
@@ -35,8 +34,7 @@ export async function GET(
     const params = await context.params;
 
     const order = await prisma.order.findUnique({
-      where: { id: params.id },
-      include: { products: true }
+      where: { id: params.id }
     });
 
     if (!order) {
@@ -56,10 +54,6 @@ export async function DELETE(
 ) {
   try {
     const params = await context.params;
-
-    await prisma.orderProduct.deleteMany({
-      where: { orderId: params.id }
-    });
 
     await prisma.order.delete({
       where: { id: params.id }
