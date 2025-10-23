@@ -148,7 +148,7 @@ export default function ProductsPage() {
                     <div className="h-16 w-16 flex-shrink-0 rounded-lg bg-gray-200 overflow-hidden">
                       <Image
                         src={product.image}
-                        alt={product.name}
+                        alt={`Product image for ${product.name}`}
                         width={64}
                         height={64}
                         className="h-16 w-16 object-cover"
@@ -183,12 +183,14 @@ export default function ProductsPage() {
                           <Link
                             href={`/admin/products/${product.id}/edit`}
                             className="p-2 text-indigo-600 hover:text-indigo-900 hover:bg-indigo-50 rounded-md touch-target-sm"
+                            aria-label={`Edit ${product.name}`}
                           >
                             <Edit className="h-4 w-4" />
                           </Link>
                           <button
                             onClick={() => handleDeleteProduct(product.id)}
                             className="p-2 text-red-600 hover:text-red-900 hover:bg-red-50 rounded-md touch-target-sm"
+                            aria-label={`Delete ${product.name}`}
                           >
                             <Trash2 className="h-4 w-4" />
                           </button>
@@ -203,25 +205,25 @@ export default function ProductsPage() {
 
           {/* Desktop Table Layout */}
           <div className="hidden lg:block overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
+            <table className="min-w-full divide-y divide-gray-200" role="table" aria-label="Products management table">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Product
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Category
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Price
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Stock
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Featured
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Actions
                   </th>
                 </tr>
@@ -235,7 +237,7 @@ export default function ProductsPage() {
                           <div className="h-10 w-10 rounded-lg bg-gray-200 overflow-hidden">
                             <Image
                               src={product.image}
-                              alt={product.name}
+                              alt={`Product image for ${product.name}`}
                               width={40}
                               height={40}
                               className="h-10 w-10 object-cover"
@@ -276,12 +278,14 @@ export default function ProductsPage() {
                         <Link
                           href={`/admin/products/${product.id}/edit`}
                           className="text-indigo-600 hover:text-indigo-900 touch-target-sm p-2 rounded-md hover:bg-indigo-50"
+                          aria-label={`Edit ${product.name}`}
                         >
                           <Edit className="h-4 w-4" />
                         </Link>
                         <button
                           onClick={() => handleDeleteProduct(product.id)}
                           className="text-red-600 hover:text-red-900 touch-target-sm p-2 rounded-md hover:bg-red-50"
+                          aria-label={`Delete ${product.name}`}
                         >
                           <Trash2 className="h-4 w-4" />
                         </button>

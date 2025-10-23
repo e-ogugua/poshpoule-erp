@@ -223,25 +223,30 @@ export default function ContactPage() {
                 <div className="p-8">
                   <h2 className="text-2xl font-bold text-gray-900 mb-6">Send Us a Message</h2>
                   
+                <div className="sr-only" aria-live="polite" aria-atomic="true" id="form-status">
+                  {submitStatus === 'success' && 'Message sent successfully. We will get back to you as soon as possible.'}
+                  {submitStatus === 'error' && 'Something went wrong. Please try again or contact us directly.'}
+                </div>
+
                   {submitStatus === 'success' && (
-                    <div className="mb-6 p-4 bg-green-50 text-green-700 rounded-lg flex items-start">
+                    <div className="mb-6 p-4 bg-green-50 text-green-700 rounded-lg flex items-start" role="alert" aria-labelledby="success-message">
                       <svg className="h-5 w-5 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                       </svg>
                       <div>
-                        <p className="font-medium">Message sent successfully!</p>
+                        <p className="font-medium" id="success-message">Message sent successfully!</p>
                         <p className="text-sm">We&#39;ll get back to you as soon as possible.</p>
                       </div>
                     </div>
                   )}
 
                   {submitStatus === 'error' && (
-                    <div className="mb-6 p-4 bg-red-50 text-red-700 rounded-lg flex items-start">
+                    <div className="mb-6 p-4 bg-red-50 text-red-700 rounded-lg flex items-start" role="alert" aria-labelledby="error-message">
                       <svg className="h-5 w-5 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
                       </svg>
                       <div>
-                        <p className="font-medium">Something went wrong</p>
+                        <p className="font-medium" id="error-message">Something went wrong</p>
                         <p className="text-sm">Please try again or contact us directly.</p>
                       </div>
                     </div>
@@ -251,7 +256,7 @@ export default function ContactPage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
                         <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                          Full Name *
+                          Full Name <span className="text-red-500">*</span>
                         </label>
                         <input
                           type="text"
@@ -260,13 +265,16 @@ export default function ContactPage() {
                           value={formData.name}
                           onChange={handleChange}
                           required
+                          aria-required="true"
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition"
                           placeholder="John Doe"
+                          aria-describedby="name-help"
                         />
+                        <div id="name-help" className="sr-only">Enter your full name as it appears on official documents</div>
                       </div>
                       <div>
                         <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                          Email Address *
+                          Email Address <span className="text-red-500">*</span>
                         </label>
                         <input
                           type="email"
@@ -275,9 +283,12 @@ export default function ContactPage() {
                           value={formData.email}
                           onChange={handleChange}
                           required
+                          aria-required="true"
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition"
                           placeholder="your@email.com"
+                          aria-describedby="email-help"
                         />
+                        <div id="email-help" className="sr-only">We will use this email to respond to your inquiry</div>
                       </div>
                     </div>
 
@@ -294,11 +305,13 @@ export default function ContactPage() {
                           onChange={handleChange}
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition"
                           placeholder="+234 800 000 0000"
+                          aria-describedby="phone-help"
                         />
+                        <div id="phone-help" className="sr-only">Optional: Include country code for international numbers</div>
                       </div>
                       <div>
                         <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
-                          Subject *
+                          Subject <span className="text-red-500">*</span>
                         </label>
                         <select
                           id="subject"
@@ -306,7 +319,9 @@ export default function ContactPage() {
                           value={formData.subject}
                           onChange={handleChange}
                           required
+                          aria-required="true"
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition bg-white"
+                          aria-describedby="subject-help"
                         >
                           <option value="">Select a subject</option>
                           <option value="general">General Inquiry</option>
@@ -315,12 +330,13 @@ export default function ContactPage() {
                           <option value="farm-tour">Farm Tour Request</option>
                           <option value="partnership">Partnership Opportunities</option>
                         </select>
+                        <div id="subject-help" className="sr-only">Choose the topic that best describes your inquiry</div>
                       </div>
                     </div>
 
                     <div>
                       <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-                        Your Message *
+                        Your Message <span className="text-red-500">*</span>
                       </label>
                       <textarea
                         id="message"
@@ -329,9 +345,12 @@ export default function ContactPage() {
                         value={formData.message}
                         onChange={handleChange}
                         required
+                        aria-required="true"
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition resize-none"
                         placeholder="How can we help you?"
+                        aria-describedby="message-help"
                       />
+                      <div id="message-help" className="sr-only">Provide details about your inquiry or request</div>
                     </div>
 
                     <div>
