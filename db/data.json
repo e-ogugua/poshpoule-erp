@@ -1232,21 +1232,24 @@
     },
     {
       "id": "team-heritage",
-      "name": "PoshPOULE TeamALPHA Supervisor",
-      "position": "Team Leadership & Quality Control",
-      "description": "Our TeamALPHA supervisors oversee all farm operations, ensuring the highest standards of quality, safety, and efficiency across our organic poultry and crop production. They lead our skilled workforce with expertise in sustainable farming practices and team coordination."
+      "name": "Joshua O. Ogugua",
+      "position": "TeamALPHA Supervisor",
+      "description": "As TeamALPHA Supervisor, Joshua O. Ogugua oversees our specialized training programs and mentorship initiatives, ensuring the next generation of farmers receives comprehensive education in sustainable agriculture practices.",
+      "image": "/optimized-images/team/JoshuaTeam2.webp"
     },
     {
       "id": "team-science",
       "name": "PoshPOULE Science Team",
       "position": "Research & Development",
-      "description": "Our dedicated research and development team combines traditional agricultural knowledge with cutting-edge scientific methods to continuously improve our farming practices, develop new organic techniques, and ensure sustainable food production for future generations."
+      "description": "Our science team combines traditional knowledge with modern research to improve our farming practices.",
+      "image": "/optimized-images/team/EmmanuelTeam1-CEO.webp"
     },
     {
       "id": "team-poshpoule",
       "name": "PoshPOULE Team",
       "position": "Collective Wisdom",
-      "description": "Our diverse team of agricultural experts, sustainability specialists, and dedicated professionals work in harmony to maintain the highest standards of organic farming. Together, we ensure every aspect of our operation reflects our commitment to quality, environmental stewardship, and community support."
+      "description": "Our dedicated team of farming experts, agronomists, and sustainability advocates working together to bring you the best organic produce.",
+      "image": "/optimized-images/team/mentorship-training.webp"
     }
   ]
 }
