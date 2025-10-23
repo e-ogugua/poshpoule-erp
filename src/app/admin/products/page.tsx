@@ -59,21 +59,24 @@ export default function ProductsPage() {
 
   if (isLoading) {
     return (
-      <div className="flex-1 p-8">
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-2xl font-bold text-gray-900">Products</h1>
+      <div className="flex-1 p-4 sm:p-6 lg:p-8">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 lg:mb-8 gap-4">
+          <div>
+            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Products</h1>
+            <div className="h-4 bg-gray-200 rounded w-48 animate-pulse mt-2"></div>
+          </div>
           <div className="h-10 w-32 bg-gray-200 rounded-md animate-pulse"></div>
         </div>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {[1, 2, 3].map((i) => (
             <div key={i} className="bg-white rounded-lg shadow overflow-hidden">
-              <div className="h-48 bg-gray-200 animate-pulse"></div>
-              <div className="p-4">
-                <div className="h-6 bg-gray-200 rounded w-3/4 mb-2 animate-pulse"></div>
-                <div className="h-4 bg-gray-100 rounded w-1/2 mb-4 animate-pulse"></div>
+              <div className="aspect-[4/3] bg-gray-200 animate-pulse"></div>
+              <div className="p-3 sm:p-4">
+                <div className="h-5 bg-gray-200 rounded w-3/4 mb-2 animate-pulse"></div>
+                <div className="h-3 bg-gray-100 rounded w-1/2 mb-3 sm:mb-4 animate-pulse"></div>
                 <div className="flex justify-between items-center">
-                  <div className="h-6 bg-gray-200 rounded w-16 animate-pulse"></div>
-                  <div className="h-4 bg-gray-100 rounded w-20 animate-pulse"></div>
+                  <div className="h-5 bg-gray-200 rounded w-16 animate-pulse"></div>
+                  <div className="h-3 bg-gray-100 rounded w-20 animate-pulse"></div>
                 </div>
               </div>
             </div>
@@ -85,8 +88,8 @@ export default function ProductsPage() {
 
   if (error) {
     return (
-      <div className="flex-1 p-8">
-        <div className="bg-red-50 border-l-4 border-red-400 p-4">
+      <div className="flex-1 p-4 sm:p-6 lg:p-8">
+        <div className="bg-red-50 border-l-4 border-red-400 p-4 rounded-lg">
           <div className="flex">
             <div className="flex-shrink-0">
               <svg className="h-5 w-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -97,9 +100,9 @@ export default function ProductsPage() {
               <p className="text-sm text-red-700">{error}</p>
               <button
                 onClick={fetchProducts}
-                className="mt-2 text-sm font-medium text-red-700 hover:text-red-600"
+                className="mt-2 text-sm font-medium text-red-700 hover:text-red-600 touch-target-sm"
               >
-                Try again <span aria-hidden="true">&rarr;</span>
+                Try again →
               </button>
             </div>
           </div>
@@ -109,24 +112,24 @@ export default function ProductsPage() {
   }
 
   return (
-    <div className="flex-1 p-8">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
+    <div className="flex-1 p-4 sm:p-6 lg:p-8">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 lg:mb-8 gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Products</h1>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900 font-heading">Products</h1>
           <p className="mt-1 text-sm text-gray-500">
-            Manage your farm&#39;s products and inventory ({products.length} products)
+            Manage your farm&apos;s products and inventory ({products.length} products)
           </p>
         </div>
-        <div className="flex gap-3">
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full sm:w-auto">
           <button
             onClick={fetchProducts}
-            className="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50"
+            className="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 touch-target"
           >
             Refresh
           </button>
           <Link
             href="/admin/products/new"
-            className="inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+            className="inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary touch-target"
           >
             <Plus className="-ml-1 mr-2 h-5 w-5" />
             Add Product
@@ -136,7 +139,70 @@ export default function ProductsPage() {
 
       {products.length > 0 ? (
         <div className="bg-white rounded-lg shadow overflow-hidden">
-          <div className="overflow-x-auto">
+          {/* Mobile Card Layout */}
+          <div className="block lg:hidden">
+            <div className="divide-y divide-gray-200">
+              {products.map((product) => (
+                <div key={product.id} className="p-4 hover:bg-gray-50">
+                  <div className="flex items-start gap-4">
+                    <div className="h-16 w-16 flex-shrink-0 rounded-lg bg-gray-200 overflow-hidden">
+                      <Image
+                        src={product.image}
+                        alt={product.name}
+                        width={64}
+                        height={64}
+                        className="h-16 w-16 object-cover"
+                      />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-start justify-between">
+                        <div className="flex-1">
+                          <h3 className="text-sm font-medium text-gray-900 truncate">{product.name}</h3>
+                          <p className="text-xs text-gray-500 truncate">{product.slug}</p>
+                          <div className="flex items-center gap-2 mt-2">
+                            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                              {product.category}
+                            </span>
+                            {product.featured && (
+                              <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                <Star className="h-3 w-3 mr-1" />
+                                Featured
+                              </span>
+                            )}
+                          </div>
+                          <div className="flex items-center justify-between mt-2">
+                            <span className="text-sm font-semibold text-gray-900">₦{product.priceNaira.toLocaleString()}</span>
+                            <span className={`text-xs font-medium px-2 py-1 rounded-full ${
+                              product.stock > 0 ? 'bg-blue-100 text-blue-800' : 'bg-red-100 text-red-800'
+                            }`}>
+                              {product.stock > 0 ? `${product.stock} in stock` : 'Out of stock'}
+                            </span>
+                          </div>
+                        </div>
+                        <div className="flex flex-col gap-2 ml-4">
+                          <Link
+                            href={`/admin/products/${product.id}/edit`}
+                            className="p-2 text-indigo-600 hover:text-indigo-900 hover:bg-indigo-50 rounded-md touch-target-sm"
+                          >
+                            <Edit className="h-4 w-4" />
+                          </Link>
+                          <button
+                            onClick={() => handleDeleteProduct(product.id)}
+                            className="p-2 text-red-600 hover:text-red-900 hover:bg-red-50 rounded-md touch-target-sm"
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Desktop Table Layout */}
+          <div className="hidden lg:block overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
@@ -209,13 +275,13 @@ export default function ProductsPage() {
                       <div className="flex space-x-2">
                         <Link
                           href={`/admin/products/${product.id}/edit`}
-                          className="text-indigo-600 hover:text-indigo-900"
+                          className="text-indigo-600 hover:text-indigo-900 touch-target-sm p-2 rounded-md hover:bg-indigo-50"
                         >
                           <Edit className="h-4 w-4" />
                         </Link>
                         <button
                           onClick={() => handleDeleteProduct(product.id)}
-                          className="text-red-600 hover:text-red-900"
+                          className="text-red-600 hover:text-red-900 touch-target-sm p-2 rounded-md hover:bg-red-50"
                         >
                           <Trash2 className="h-4 w-4" />
                         </button>
@@ -247,17 +313,17 @@ export default function ProductsPage() {
           <p className="mt-1 text-sm text-gray-500">
             Run the seed script to add initial products, or create a new product.
           </p>
-          <div className="mt-6 flex justify-center space-x-3">
+          <div className="mt-6 flex flex-col sm:flex-row justify-center gap-3">
             <Link
               href="/admin/products/new"
-              className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+              className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary touch-target"
             >
               <Plus className="-ml-1 mr-2 h-5 w-5" />
               New Product
             </Link>
             <button
               onClick={() => window.open('/prisma/seed-products.ts', '_blank')}
-              className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+              className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary touch-target"
             >
               Run Seed Script
             </button>

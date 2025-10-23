@@ -57,11 +57,11 @@ export default function AdminDashboard() {
       try {
         setIsLoading(true);
         const response = await fetch('/api/admin/stats');
-        
+
         if (!response.ok) {
           throw new Error('Failed to fetch stats');
         }
-        
+
         const data = await response.json();
         setStats(data);
       } catch (err) {
@@ -127,7 +127,7 @@ export default function AdminDashboard() {
           </p>
           <button
             onClick={() => window.location.reload()}
-            className="px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark transition-colors"
+            className="btn-primary"
           >
             Try Again
           </button>
@@ -138,121 +138,121 @@ export default function AdminDashboard() {
 
   return (
     <div className="min-h-screen bg-neutral-50">
-      <div className="flex">
-        <Suspense fallback={<div className="w-64 bg-white shadow-sm min-h-screen"></div>}>
+      <div className="flex flex-col lg:flex-row">
+        <Suspense fallback={<div className="w-full lg:w-64 bg-white shadow-sm min-h-screen lg:h-screen"></div>}>
           <Sidebar menuItems={menuItems} onLogout={handleLogout} />
         </Suspense>
 
         {/* Main Content */}
         <div className="flex-1">
-          <div className="p-8">
-            <div className="mb-8">
-              <h1 className="font-heading text-3xl font-heading-bold text-neutral-800">
+          <div className="p-4 sm:p-6 lg:p-8">
+            <div className="mb-6 lg:mb-8">
+              <h1 className="font-heading text-2xl sm:text-3xl font-heading-bold text-neutral-800">
                 Dashboard
               </h1>
-              <p className="text-neutral-600 mt-2">
+              <p className="text-neutral-600 mt-2 text-sm sm:text-base">
                 Welcome to your farm management dashboard
               </p>
             </div>
 
             {/* Stats Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-              <div className="card p-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-6 lg:mb-8">
+              <div className="card p-4 sm:p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-neutral-600 text-sm">Total Orders</p>
-                    <p className="text-2xl font-bold text-neutral-800">{stats.totalOrders}</p>
+                    <p className="text-neutral-600 text-xs sm:text-sm font-medium">Total Orders</p>
+                    <p className="text-xl sm:text-2xl font-bold text-neutral-800">{stats.totalOrders}</p>
                   </div>
-                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                    <ShoppingCartIcon className="h-6 w-6 text-blue-600" />
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                    <ShoppingCartIcon className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600" />
                   </div>
                 </div>
               </div>
 
-              <div className="card p-6">
+              <div className="card p-4 sm:p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-neutral-600 text-sm">Pending Orders</p>
-                    <p className="text-2xl font-bold text-orange-600">{stats.pendingOrders}</p>
+                    <p className="text-neutral-600 text-xs sm:text-sm font-medium">Pending Orders</p>
+                    <p className="text-xl sm:text-2xl font-bold text-orange-600">{stats.pendingOrders}</p>
                   </div>
-                  <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
-                    <PackageIcon className="h-6 w-6 text-orange-600" />
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+                    <PackageIcon className="h-5 w-5 sm:h-6 sm:w-6 text-orange-600" />
                   </div>
                 </div>
               </div>
 
-              <div className="card p-6">
+              <div className="card p-4 sm:p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-neutral-600 text-sm">Total Products</p>
-                    <p className="text-2xl font-bold text-green-600">{stats.totalProducts}</p>
+                    <p className="text-neutral-600 text-xs sm:text-sm font-medium">Total Products</p>
+                    <p className="text-xl sm:text-2xl font-bold text-green-600">{stats.totalProducts}</p>
                   </div>
-                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                    <PackageIcon className="h-6 w-6 text-green-600" />
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                    <PackageIcon className="h-5 w-5 sm:h-6 sm:w-6 text-green-600" />
                   </div>
                 </div>
               </div>
 
-              <div className="card p-6">
+              <div className="card p-4 sm:p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-neutral-600 text-sm">Revenue</p>
-                    <p className="text-2xl font-bold text-primary">₦{stats.totalRevenue.toLocaleString()}</p>
+                    <p className="text-neutral-600 text-xs sm:text-sm font-medium">Revenue</p>
+                    <p className="text-xl sm:text-2xl font-bold text-primary">₦{stats.totalRevenue.toLocaleString()}</p>
                   </div>
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <BarChart3Icon className="h-6 w-6 text-primary" />
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <BarChart3Icon className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Quick Actions */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <div className="card p-6">
-                <h2 className="font-heading text-xl font-heading-semibold mb-4">
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 lg:gap-8">
+              <div className="card p-4 sm:p-6">
+                <h2 className="font-heading text-lg sm:text-xl font-heading-semibold mb-4">
                   Recent Orders
                 </h2>
                 <div className="space-y-4">
                   <div className="text-center py-8 text-neutral-500">
-                    <ShoppingCartIcon className="h-12 w-12 mx-auto mb-4 opacity-50" />
-                    <p>No recent orders to display</p>
-                    <Link href="/admin/orders" className="btn-primary mt-4">
+                    <ShoppingCartIcon className="h-10 w-10 sm:h-12 sm:w-12 mx-auto mb-4 opacity-50" />
+                    <p className="text-sm sm:text-base">No recent orders to display</p>
+                    <Link href="/admin/orders" className="btn-primary mt-4 text-sm">
                       View All Orders
                     </Link>
                   </div>
                 </div>
               </div>
 
-              <div className="card p-6">
-                <h2 className="font-heading text-xl font-heading-semibold mb-4">
+              <div className="card p-4 sm:p-6">
+                <h2 className="font-heading text-lg sm:text-xl font-heading-semibold mb-4">
                   Quick Actions
                 </h2>
                 <div className="space-y-3">
                   <Link
                     href="/admin/orders"
-                    className="block p-4 border border-neutral-200 rounded-lg hover:bg-neutral-50 transition-colors"
+                    className="block p-3 sm:p-4 border border-neutral-200 rounded-lg hover:bg-neutral-50 transition-colors touch-target group"
                   >
                     <div className="flex items-center justify-between">
-                      <span>Manage Orders</span>
-                      <ShoppingCartIcon className="h-5 w-5 text-neutral-400" />
+                      <span className="font-medium">Manage Orders</span>
+                      <ShoppingCartIcon className="h-4 w-4 sm:h-5 sm:w-5 text-neutral-400 group-hover:text-primary transition-colors" />
                     </div>
                   </Link>
                   <Link
                     href="/admin/products"
-                    className="block p-4 border border-neutral-200 rounded-lg hover:bg-neutral-50 transition-colors"
+                    className="block p-3 sm:p-4 border border-neutral-200 rounded-lg hover:bg-neutral-50 transition-colors touch-target group"
                   >
                     <div className="flex items-center justify-between">
-                      <span>Update Products</span>
-                      <PackageIcon className="h-5 w-5 text-neutral-400" />
+                      <span className="font-medium">Update Products</span>
+                      <PackageIcon className="h-4 w-4 sm:h-5 sm:w-5 text-neutral-400 group-hover:text-primary transition-colors" />
                     </div>
                   </Link>
                   <Link
                     href="/admin/settings"
-                    className="block p-4 border border-neutral-200 rounded-lg hover:bg-neutral-50 transition-colors"
+                    className="block p-3 sm:p-4 border border-neutral-200 rounded-lg hover:bg-neutral-50 transition-colors touch-target group"
                   >
                     <div className="flex items-center justify-between">
-                      <span>Site Settings</span>
-                      <SettingsIcon className="h-5 w-5 text-neutral-400" />
+                      <span className="font-medium">Site Settings</span>
+                      <SettingsIcon className="h-4 w-4 sm:h-5 sm:w-5 text-neutral-400 group-hover:text-primary transition-colors" />
                     </div>
                   </Link>
                 </div>

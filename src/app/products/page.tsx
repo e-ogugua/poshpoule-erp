@@ -44,15 +44,15 @@ async function getProducts(category?: string) {
 // Category filter component
 function CategoryFilter({ categories, selectedCategory }: { categories: string[], selectedCategory: string | null }) {
   return (
-    <div className="mb-8">
-      <h3 className="font-heading text-lg font-heading-semibold mb-4">Filter by Category</h3>
-      <div className="flex flex-wrap gap-2">
+    <div className="mb-6 sm:mb-8">
+      <h3 className="font-heading text-lg sm:text-xl font-heading-semibold mb-4">Filter by Category</h3>
+      <div className="flex flex-wrap gap-2 sm:gap-3">
         <Link
           href="/products"
-          className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+          className={`px-4 py-2 rounded-full text-sm font-medium transition-colors touch-target-sm ${
             !selectedCategory
-              ? 'bg-primary text-white'
-              : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'
+              ? 'bg-primary text-white shadow-sm'
+              : 'bg-white text-neutral-600 hover:bg-neutral-100 border border-neutral-200'
           }`}
         >
           All Products
@@ -61,10 +61,10 @@ function CategoryFilter({ categories, selectedCategory }: { categories: string[]
           <Link
             key={category}
             href={`/products?category=${encodeURIComponent(category)}`}
-            className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors touch-target-sm ${
               selectedCategory === category
-                ? 'bg-primary text-white'
-                : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'
+                ? 'bg-primary text-white shadow-sm'
+                : 'bg-white text-neutral-600 hover:bg-neutral-100 border border-neutral-200'
             }`}
           >
             {category}
@@ -104,19 +104,19 @@ export default async function ProductsPage({
               sizes="100vw"
             />
           </div>
-          <div className="relative container mx-auto px-4 text-center py-16">
-            <h1 className="font-heading text-4xl md:text-5xl font-heading-bold mb-4">
+          <div className="relative container mx-auto container-spacing text-center section-spacing">
+            <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl font-heading-bold mb-4 sm:mb-6">
               Our Products
             </h1>
-            <p className="text-xl opacity-90">
+            <p className="text-lg sm:text-xl md:text-2xl opacity-90 max-w-3xl mx-auto leading-relaxed">
               Fresh, organic, and sustainably grown produce from our farm
             </p>
           </div>
         </div>
 
         {/* Products Section */}
-        <div className="py-16">
-          <div className="container mx-auto px-4">
+        <div className="section-spacing">
+          <div className="container mx-auto container-spacing">
             <CategoryFilter categories={categories} selectedCategory={selectedCategory} />
 
             <ProductsGrid products={products} />
@@ -124,16 +124,16 @@ export default async function ProductsPage({
         </div>
 
         {/* Call to Action */}
-        <div className="bg-neutral-50 py-16">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="font-heading text-3xl font-heading-bold mb-4">
+        <div className="bg-neutral-50 section-spacing">
+          <div className="container mx-auto container-spacing text-center">
+            <h2 className="font-heading text-2xl sm:text-3xl font-heading-bold mb-4 sm:mb-6">
               Ready to Place Your Order?
             </h2>
-            <p className="text-body text-lg mb-8 max-w-2xl mx-auto">
+            <p className="text-body text-base sm:text-lg mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed">
               Experience the freshness and quality of our organic products.
               Order now and taste the difference that sustainable farming makes.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <Link href="/preorder" className="btn-primary">
                 Start Your Order
               </Link>

@@ -15,31 +15,61 @@ html {
   scroll-behavior: smooth;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 body {
   font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
 }
 
+/* Focus styles for accessibility */
+*:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
 /* Component styles */
 .btn-primary {
-  @apply bg-[#1F6E3A] hover:bg-[#1a5c30] text-white px-6 py-3 rounded-lg font-medium transition-colors;
+  @apply bg-[#1F6E3A] hover:bg-[#1a5c30] text-white px-6 py-3 rounded-lg font-medium transition-colors min-h-[44px] flex items-center justify-center;
 }
 
 .btn-secondary {
-  @apply bg-[#D4AF37] hover:bg-[#c19d2e] text-white px-6 py-3 rounded-lg font-medium transition-colors;
+  @apply bg-[#D4AF37] hover:bg-[#c19d2e] text-white px-6 py-3 rounded-lg font-medium transition-colors min-h-[44px] flex items-center justify-center;
 }
 
 .btn-outline {
-  @apply border-2 border-[#1F6E3A] hover:bg-[#1F6E3A] hover:text-white px-6 py-3 rounded-lg font-medium transition-colors;
+  @apply border-2 border-[#1F6E3A] hover:bg-[#1F6E3A] hover:text-white px-6 py-3 rounded-lg font-medium transition-colors min-h-[44px] flex items-center justify-center;
 }
 
 .card {
-  @apply bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow;
+  @apply bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200;
 }
 
 .input-field {
-  @apply border border-neutral-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#1F6E3A] focus:border-transparent;
+  @apply border border-neutral-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#1F6E3A] focus:border-transparent min-h-[44px];
 }
 
+/* Typography utilities */
 .font-heading {
   font-family: var(--font-playfair-display), serif;
 }
@@ -56,4 +86,71 @@ body {
 .font-heading-semibold {
   font-family: var(--font-playfair-display), serif;
   font-weight: 600;
+}
+
+/* Responsive spacing utilities */
+.section-spacing {
+  @apply py-12 sm:py-16 lg:py-20;
+}
+
+.container-spacing {
+  @apply px-4 sm:px-6 lg:px-8;
+}
+
+.content-spacing {
+  @apply space-y-6 sm:space-y-8;
+}
+
+/* Touch-friendly utilities */
+.touch-target {
+  @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
+}
+
+.touch-target-sm {
+  @apply min-h-[40px] min-w-[40px] flex items-center justify-center;
+}
+
+/* Responsive grid utilities */
+.grid-responsive {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6;
+}
+
+.grid-responsive-lg {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8;
+}
+
+/* Animation utilities with reduced motion support */
+.hover-lift {
+  @apply transition-transform duration-200 hover:-translate-y-1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hover-lift {
+    @apply hover:transform-none;
+  }
+}
+
+.hover-scale {
+  @apply transition-transform duration-200 hover:scale-105;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hover-scale {
+    @apply hover:scale-100;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .card {
+    @apply border-2 border-neutral-400;
+  }
+
+  .btn-primary {
+    @apply border-2 border-[#1F6E3A];
+  }
+
+  .btn-outline {
+    @apply border-2 border-[#1F6E3A];
+  }
 }
