@@ -1,10 +1,10 @@
 {
-  "timestamp": "2025-09-30T18:34:26.806Z",
-  "totalImages": 160,
-  "totalOriginalSize": 132676097,
-  "totalOptimizedSize": 28562708,
-  "totalSaved": 104113389,
-  "percentageSaved": "78.47%",
+  "timestamp": "2025-10-23T18:47:04.811Z",
+  "totalImages": 164,
+  "totalOriginalSize": 136722752,
+  "totalOptimizedSize": 28807854,
+  "totalSaved": 107914898,
+  "percentageSaved": "78.93%",
   "optimizedImages": [
     {
       "original": "public/images/blog/organic-eggs.jpg",
@@ -546,6 +546,13 @@
       "saved": 24558
     },
     {
+      "original": "public/images/products/FoodStallExportLinkTasteBox.png",
+      "optimized": "public/optimized-images/products/FoodStallExportLinkTasteBox.webp",
+      "originalSize": 1223270,
+      "optimizedSize": 48866,
+      "saved": 1174404
+    },
+    {
       "original": "public/images/products/OrganicEggs.JPG",
       "optimized": "public/optimized-images/products/OrganicEggs.JPG.webp",
       "originalSize": 1134212,
@@ -574,11 +581,25 @@
       "saved": 4936026
     },
     {
+      "original": "public/images/products/PremiumMentorshipProgram.png",
+      "optimized": "public/optimized-images/products/PremiumMentorshipProgram.webp",
+      "originalSize": 1460859,
+      "optimizedSize": 48138,
+      "saved": 1412721
+    },
+    {
       "original": "public/images/products/WhyOrganic.png",
       "optimized": "public/optimized-images/products/WhyOrganic.webp",
       "originalSize": 102714,
       "optimizedSize": 34508,
       "saved": 68206
+    },
+    {
+      "original": "public/images/products/WorkshopTraining3Months.jpeg",
+      "optimized": "public/optimized-images/products/WorkshopTraining3Months.webp",
+      "originalSize": 130084,
+      "optimizedSize": 123582,
+      "saved": 6502
     },
     {
       "original": "public/images/products/chicken/GrowingBroilers.JPG",
@@ -712,6 +733,13 @@
       "originalSize": 105182,
       "optimizedSize": 81742,
       "saved": 23440
+    },
+    {
+      "original": "public/images/shortAboutSideimage1.png",
+      "optimized": "public/optimized-images/shortAboutSideimage1.webp",
+      "originalSize": 1232442,
+      "optimizedSize": 24560,
+      "saved": 1207882
     },
     {
       "original": "public/images/team/ChideraTeam3.JPG",

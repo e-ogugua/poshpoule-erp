@@ -7,7 +7,7 @@ import { readDatabase } from '@/lib/database-server';
 
 export default function AboutPage() {
   const data = readDatabase();
-  const teamMembers = data.teamMembers || []; // Show all team members, not just featured
+  const teamMembers = data.authors || []; // Use authors data instead of teamMembers
 
   const values = [
     {
@@ -151,7 +151,9 @@ export default function AboutPage() {
                       src={member.image}
                       alt={member.name}
                       fill
-                      className="object-cover"
+                      className={`object-cover transition-transform duration-300 hover:scale-110 ${
+                        member.name === 'Chikwado Ezike' ? 'object-cover scale-125' : 'object-cover'
+                      }`}
                       sizes="(max-width: 768px) 160px, 200px"
                       quality={90}
                       priority={index < 4} // Load first 4 images with higher priority
@@ -159,7 +161,7 @@ export default function AboutPage() {
                   </div>
                   <h3 className="font-heading text-xl font-heading-semibold mb-2">{member.name}</h3>
                   <p className="text-primary font-medium mb-3">{member.position}</p>
-                  <p className="text-body text-sm">{member.bio}</p>
+                  <p className="text-body text-sm">{member.description}</p>
                 </div>
               ))}
             </div>

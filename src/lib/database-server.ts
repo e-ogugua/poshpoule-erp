@@ -90,6 +90,14 @@ export interface PickupSlot {
   maxOrders: number;
 }
 
+export interface Author {
+  id: string;
+  name: string;
+  position: string;
+  description: string;
+  image: string;
+}
+
 export interface TeamMember {
   id: string;
   name: string;
@@ -125,6 +133,7 @@ export interface Database {
   blogPosts: BlogPost[];
   galleryImages: GalleryImage[];
   teamMembers: TeamMember[];
+  authors: Author[];
   pickupSlots: PickupSlot[];
   leads: Lead[];
   whyChooseUs: WhyChooseUsItem[];

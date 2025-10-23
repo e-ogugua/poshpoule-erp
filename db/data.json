@@ -1214,42 +1214,42 @@
       "name": "Emmanuel Ogugua",
       "position": "Founder & CEO",
       "description": "With over 15 years of experience in sustainable agriculture, Emmanuel leads PoshPOULE's vision for organic farming and community development.",
-      "image": "/images/team/emmanuel-ogugua.jpg"
+      "image": "/optimized-images/shortAboutSideimage1.webp"
     },
     {
       "id": "author-chidera",
       "name": "Chidera Ogugua",
       "position": "Head of Poultry Operations",
       "description": "Chidera specializes in organic poultry farming and sustainable livestock management, ensuring our chickens are raised in the healthiest environment.",
-      "image": "/images/team/chidera-ogugua.jpg"
+      "image": "/optimized-images/team/ChideraTeam3.webp"
     },
     {
       "id": "author-chikwado",
       "name": "Chikwado Ezike",
       "position": "Farm Manager",
       "description": "With expertise in crop rotation and sustainable farming techniques, Chikwado oversees our day-to-day farming operations.",
-      "image": "/images/team/chikwado-ezike.jpg"
+      "image": "/optimized-images/team/ChikwadoTeam4.webp"
     },
     {
       "id": "team-heritage",
       "name": "PoshPOULE Heritage Team",
       "position": "Cultural Preservation",
       "description": "Our heritage team works to preserve and promote traditional West African farming practices and indigenous crops.",
-      "image": "/images/team/heritage-team.jpg"
+      "image": "/optimized-images/team/JoshuaTeam2.webp"
     },
     {
       "id": "team-science",
       "name": "PoshPOULE Science Team",
       "position": "Research & Development",
       "description": "Our science team combines traditional knowledge with modern research to improve our farming practices.",
-      "image": "/images/team/science-team.jpg"
+      "image": "/optimized-images/team/EmmanuelTeam1-CEO.webp"
     },
     {
       "id": "team-poshpoule",
       "name": "PoshPOULE Team",
       "position": "Collective Wisdom",
       "description": "Our dedicated team of farming experts, agronomists, and sustainability advocates working together to bring you the best organic produce.",
-      "image": "/images/team/poshpoule-team.jpg"
+      "image": "/optimized-images/team/mentorship-training.webp"
     }
   ]
 }
