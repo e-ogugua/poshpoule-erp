@@ -64,7 +64,7 @@ export function NewsletterSignup() {
     } finally {
       setIsSubmitting(false);
     }
-  }, [email, error]);
+  }, []);
 
   if (isSuccess) {
     return (

@@ -169,10 +169,10 @@ export default function CareersPage() {
               {/* General Application */}
               <div className="mt-16 bg-neutral-50 rounded-lg p-8 text-center">
                 <h3 className="font-heading text-2xl font-heading-semibold mb-4">
-                  Don't See a Perfect Match?
+                  Don&apos;t See a Perfect Match?
                 </h3>
                 <p className="text-neutral-600 mb-6 max-w-2xl mx-auto">
-                  We're always looking for passionate individuals to join our team. Send us your resume and tell us why you'd be a great fit.
+                  We&apos;re always looking for passionate individuals to join our team. Send us your resume and tell us why you&apos;d be a great fit.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                   <a

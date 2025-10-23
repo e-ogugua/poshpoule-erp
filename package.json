@@ -1,8 +1,8 @@
 {
   "name": "poshpoule-farms-website",
   "version": "1.0.0",
-  "description": "Complete e-commerce and ERP website for PoshPOULE Farms Ltd - Organic poultry, fresh eggs, vegetables, and farm-fresh produce with multi-currency support and admin dashboard",
-  "author": "Emmanuel Ogugua <ceo@poshpoule.com>",
+  "description": "E-commerce and ERP platform for PoshPOULE Farms Ltd featuring organic poultry, fresh eggs, vegetables, and farm produce with multi-currency support and comprehensive admin dashboard",
+  "author": "PoshPOULE® Farms ERP Suite — Developed by CEO – Chukwuka Emmanuel Ogugua",
   "homepage": "https://poshpoule-farms.vercel.app",
   "repository": {
     "type": "git",
@@ -19,7 +19,7 @@
     "build:prod": "NODE_ENV=production prisma generate && next build",
     "postbuild": "next-sitemap",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "next lint --fix",
     "format": "prettier --write .",
     "optimize-images": "node scripts/optimize-images.js",
     "db:generate": "prisma generate",

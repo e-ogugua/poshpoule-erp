@@ -54,6 +54,7 @@ export default function ProductCard({ product }: { product: Product }) {
           fill
           className="object-cover group-hover:scale-105 transition-transform duration-200"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          // Responsive image loading with WebP support and proper sizing for performance
         />
         {product.featured && (
           <div className="absolute top-2 left-2 bg-yellow-500 text-white px-2 py-1 rounded-full text-xs font-medium">

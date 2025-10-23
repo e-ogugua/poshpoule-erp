@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { FormInput, FormTextarea, FormSelect } from '@/components/FormComponents';
@@ -79,7 +79,7 @@ export default function PreorderPageContent({
     fetchProducts();
   }, []);
 
-  const handleProductChange = (productId: string, quantity: number) => {
+  const handleProductChange = useCallback((productId: string, quantity: number) => {
     const product = products.find(p => p.id === productId);
     if (!product) return;
 
@@ -104,7 +104,7 @@ export default function PreorderPageContent({
         }
       });
     }
-  };
+  }, [products]);
 
   // Initialize form with selected products from URL params
   const [selectedProducts, setSelectedProducts] = useState<any[]>([]);
@@ -130,7 +130,7 @@ export default function PreorderPageContent({
         handleProductChange(product.id, quantity);
       }
     }
-  }, [searchParams, products]);
+  }, [searchParams, products, handleProductChange]);
 
   const totalAmount = selectedProducts.reduce((sum: number, product: any) =>
     sum + (product.priceNaira * product.quantity), 0

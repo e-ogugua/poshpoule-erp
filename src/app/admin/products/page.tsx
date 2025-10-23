@@ -114,7 +114,7 @@ export default function ProductsPage() {
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Products</h1>
           <p className="mt-1 text-sm text-gray-500">
-            Manage your farm's products and inventory ({products.length} products)
+            Manage your farm&#39;s products and inventory ({products.length} products)
           </p>
         </div>
         <div className="flex gap-3">

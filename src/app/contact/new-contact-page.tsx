@@ -121,7 +121,7 @@ export default function ContactPage() {
                 Get In Touch
               </h1>
               <p className="mt-6 text-xl text-white/90 max-w-3xl mx-auto">
-                We're here to help and answer any questions you might have about our products, 
+                We&apos;re here to help and answer any questions you might have about our products, 
                 farm visits, or partnership opportunities.
               </p>
               <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
@@ -190,7 +190,7 @@ export default function ContactPage() {
                     Send Us a Message
                   </h2>
                   <p className="mt-2 text-gray-600">
-                    Fill out the form below and we'll get back to you as soon as possible.
+                    Fill out the form below and we&apos;ll get back to you as soon as possible.
                   </p>
                 </div>
 
@@ -201,7 +201,7 @@ export default function ContactPage() {
                     </svg>
                     <div>
                       <p className="font-medium">Message sent successfully!</p>
-                      <p className="text-sm">We'll get back to you as soon as possible.</p>
+                      <p className="text-sm">We&apos;ll get back to you as soon as possible.</p>
                     </div>
                   </div>
                 )}

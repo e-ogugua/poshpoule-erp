@@ -181,7 +181,7 @@ export default function ContactPage() {
                     Send Us a Message
                   </h2>
                   <p className="mt-2 text-gray-600">
-                    Fill out the form below and we'll get back to you as soon as possible.
+                    Fill out the form below and we&#39;ll get back to you as soon as possible.
                   </p>
                 </div>
 
@@ -192,7 +192,7 @@ export default function ContactPage() {
                     </svg>
                     <div>
                       <p className="font-medium">Message sent successfully!</p>
-                      <p className="text-sm">We'll get back to you as soon as possible.</p>
+                      <p className="text-sm">We&#39;ll get back to you as soon as possible.</p>
                     </div>
                   </div>
                 )}

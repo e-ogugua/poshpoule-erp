@@ -62,7 +62,7 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
             <span suppressHydrationWarning>
               {formattedDate}
             </span>
-            <span className="mx-2">•</span>
+            <span className="mx-2">-</span>
             <User className="h-4 w-4 mr-1" />
             <span>{post.author}</span>
           </div>

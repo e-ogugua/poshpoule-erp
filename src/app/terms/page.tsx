@@ -38,7 +38,7 @@ export default function TermsPage() {
 
               <h2 className="font-heading text-2xl font-heading-semibold mb-4">1. Acceptance of Terms</h2>
               <p className="text-neutral-600 mb-6">
-                By accessing and using PoshPOULE Farms' services, you accept and agree to be bound by the terms and provision of this agreement.
+                By accessing and using PoshPOULE Farms&apos; services, you accept and agree to be bound by the terms and provision of this agreement.
               </p>
 
               <h2 className="font-heading text-2xl font-heading-semibold mb-4">2. Use License</h2>
@@ -70,7 +70,7 @@ export default function TermsPage() {
 
               <h2 className="font-heading text-2xl font-heading-semibold mb-4">6. Returns and Refunds</h2>
               <p className="text-neutral-600 mb-6">
-                Fresh products like eggs and produce are non-returnable for health and safety reasons. If you're not satisfied with your order, please contact us within 24 hours for assistance.
+                Fresh products like eggs and produce are non-returnable for health and safety reasons. If you&apos;re not satisfied with your order, please contact us within 24 hours for assistance.
               </p>
 
               <h2 className="font-heading text-2xl font-heading-semibold mb-4">7. Limitation of Liability</h2>

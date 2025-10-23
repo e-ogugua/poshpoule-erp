@@ -71,7 +71,7 @@ export default function FAQPage() {
                 Still have questions?
               </h3>
               <p className="text-neutral-600 mb-6">
-                Can't find the answer you're looking for? Get in touch with our team.
+                Can&apos;t find the answer you&apos;re looking for? Get in touch with our team.
               </p>
               <Link href="/contact" className="btn-primary">
                 Contact Us

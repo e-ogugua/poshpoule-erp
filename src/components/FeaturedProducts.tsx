@@ -3,10 +3,12 @@
 import dynamic from 'next/dynamic';
 import { Product } from '@/types/product';
 
+// Dynamic import for ProductCard - reduces initial page load by deferring product card rendering
+// Uses skeleton loading for better perceived performance
 const ProductCard = dynamic(
   () => import('@/components/ProductCard').then(mod => mod.default),
-  { 
-    ssr: false, 
+  {
+    ssr: false,
     loading: () => (
       <div className="card p-6">
         <div className="w-full h-48 bg-gray-200 animate-pulse rounded-lg mb-4"></div>

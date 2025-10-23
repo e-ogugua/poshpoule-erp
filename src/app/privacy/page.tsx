@@ -102,7 +102,7 @@ export default function PrivacyPage() {
                 We use cookies and similar technologies to enhance your browsing experience, analyze site traffic, and understand where our visitors are coming from.
               </p>
 
-              <h2 className="font-heading text-2xl font-heading-semibold mb-4">7. Children's Privacy</h2>
+              <h2 className="font-heading text-2xl font-heading-semibold mb-4">7. Children&apos;s Privacy</h2>
               <p className="text-neutral-600 mb-6">
                 Our services are not intended for children under 13. We do not knowingly collect personal information from children under 13.
               </p>

@@ -1,5 +1,7 @@
 "use client";
 
+import Image from 'next/image';
+
 interface Product {
   id: string;
   name: string;
@@ -21,10 +23,12 @@ export default function ProductsPageClient({ products }: ProductsPageClientProps
           <div key={product.id} className="border rounded-lg p-4">
             {product.images?.[0] && (
               <div className="aspect-square relative mb-4">
-                <img
+                <Image
                   src={product.images[0]}
                   alt={product.name}
-                  className="w-full h-full object-cover rounded"
+                  fill
+                  className="object-cover rounded"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </div>
             )}

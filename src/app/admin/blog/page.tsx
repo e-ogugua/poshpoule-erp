@@ -135,7 +135,7 @@ export default function BlogPage() {
                       </div>
                       <div className="mt-2 flex items-center text-sm text-gray-500 sm:mt-0">
                         <p>
-                          {post.publishedAt} • {post.author}
+                          {post.publishedAt} - {post.author}
                         </p>
                       </div>
                     </div>

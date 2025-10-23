@@ -33,10 +33,10 @@ export function validateEnvironment(): void {
 
   if (missingVars.length > 0) {
     const errorMessage = `
-❌ Environment Validation Failed
+Environment Validation Failed
 
 Missing required environment variables:
-${missingVars.map(varName => `  • ${varName}`).join('\n')}
+${missingVars.map(varName => `  - ${varName}`).join('\n')}
 
 Please set these variables in your .env file or Vercel environment settings:
 
@@ -70,5 +70,5 @@ For Gmail SMTP:
     throw new Error('NEXTAUTH_URL must be a valid URL (e.g., https://your-domain.vercel.app)');
   }
 
-  console.log('✅ Environment validation passed - all required variables are set');
+  console.log('Environment validation passed - all required variables are set');
 }

@@ -53,7 +53,7 @@ export default function AboutPage() {
               About PoshPOULE Farms
             </h1>
             <p className="text-xl opacity-90 max-w-3xl mx-auto">
-              We're passionate about sustainable farming and providing our community with the freshest, healthiest organic products.
+              We&apos;re passionate about sustainable farming and providing our community with the freshest, healthiest organic products.
             </p>
           </div>
         </div>

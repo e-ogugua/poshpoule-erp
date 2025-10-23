@@ -1,8 +1,8 @@
 # PoshPOULE Farms Ltd - Website & Admin Dashboard
 
-A complete, production-ready website and admin dashboard for PoshPOULE Farms Ltd, featuring organic poultry, fresh eggs, vegetables, and farm-fresh produce.
+A comprehensive e-commerce and ERP platform for PoshPOULE Farms Ltd, providing complete farm-to-consumer operations management including organic poultry, fresh eggs, vegetables, and farm-fresh produce.
 
-## 🌟 Features
+## Features
 
 ### Public Website
 - **Responsive Design**: Mobile-first design with TailwindCSS
@@ -38,10 +38,10 @@ A complete, production-ready website and admin dashboard for PoshPOULE Farms Ltd
   - Efficient state management
   - Server-side rendering for better SEO
 
-## 🚀 Quick Start
+## Getting Started
 
 ### Prerequisites
-- Node.js 18+ 
+- Node.js 18+
 - npm or yarn
 
 ### Installation
@@ -64,12 +64,12 @@ A complete, production-ready website and admin dashboard for PoshPOULE Farms Ltd
 
 - **Admin Email**: `admin@poshpoule.com`
 - **Admin Password**: `DemoPass123!`
-- **Staff Email**: `staff@poshpoule.com` 
+- **Staff Email**: `staff@poshpoule.com`
 - **Staff Password**: `StaffPass123!`
 
 Visit `/admin` to access the admin dashboard.
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 ├── src/
@@ -88,7 +88,7 @@ Visit `/admin` to access the admin dashboard.
 └── package.json               # Dependencies and scripts
 ```
 
-## 🎨 Design System
+## Design System
 
 ### Colors
 - **Primary**: `#1F6E3A` (Earthy Green)
@@ -104,7 +104,7 @@ Visit `/admin` to access the admin dashboard.
 ### Brand Slogan
 *"Pure Goodness — eat fresh, eat healthy"*
 
-## 🛠️ Customization
+## Customization
 
 ### Adding Products
 
@@ -141,7 +141,7 @@ Visit `/admin` to access the admin dashboard.
 - Supported formats: JPG, PNG, WebP
 - Recommended dimensions: 800x600px for product images
 
-## 🔧 API Endpoints
+## API Endpoints
 
 ### Public APIs
 - `GET /api/products` - Fetch all products
@@ -156,7 +156,7 @@ Visit `/admin` to access the admin dashboard.
 - `POST /api/auth/login` - Admin login
 - `POST /api/auth/logout` - Admin logout
 
-## 🚀 Deployment
+## Deployment
 
 ### Prerequisites
 
@@ -187,7 +187,7 @@ npm run build
 npm run start
 ```
 
-## 🔒 Security Features
+## Security Features
 
 - **File-based authentication** with session cookies
 - **Input validation** on all forms and API endpoints
@@ -195,14 +195,14 @@ npm run start
 - **Database backup** system for data integrity
 - **No sensitive data** stored in client-side code
 
-## 📱 Mobile Optimization
+## Mobile Optimization
 
 - **Responsive design** works on all screen sizes
 - **Touch-friendly** interface elements
 - **Optimized images** with Next.js Image component
 - **Fast loading** with code splitting and lazy loading
 
-## 🔄 Data Management
+## Data Management
 
 ### Database
 - **File**: `db/data.json`
@@ -218,7 +218,7 @@ The application includes realistic demo data:
 - 4 blog posts
 - User accounts for admin and staff
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -248,17 +248,17 @@ The application includes realistic demo data:
 - Database changes require server restart in development
 - Images should be placed in `/public/images/` directory
 
-## 📞 Support
+## Support
 
 For technical support or questions:
 - **Email**: support@poshpoule.com
 - **Phone**: +234 800 000 0000
 
-## 📄 License
+## License
 
 This project is created for PoshPOULE Farms Ltd. All rights reserved.
 
 ---
 
-**Built with ❤️ for sustainable farming and healthy living**
+**PoshPOULE® Farms ERP Suite — Developed by CEO – Chukwuka Emmanuel Ogugua.**
 # Updated at Tue Sep 30 20:59:43 WAT 2025

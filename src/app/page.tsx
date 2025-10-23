@@ -1,12 +1,12 @@
 import Link from 'next/link';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
-import { readDatabase } from '@/lib/database-server';
-import { ArrowRight } from 'lucide-react';
 import { Metadata } from 'next';
 import Image from 'next/image';
+import { ArrowRight } from 'lucide-react';
+import { Header } from '@/components/Header';
+import { Footer } from '@/components/Footer';
 import { HeroCarousel } from '@/components/HeroCarousel';
 import FeaturedProducts from '@/components/FeaturedProducts';
+import { readDatabase } from '@/lib/database-server';
 import { Product } from '@/types/product';
 
 type Testimonial = {
@@ -77,7 +77,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
           </svg>
         ))}
       </div>
-      <p className="text-body mb-4 italic">"{testimonial.content}"</p>
+      <p className="text-body mb-4 italic">&ldquo;{testimonial.content}&rdquo;</p>
       <div className="flex items-center mt-4">
         {testimonial.image && (
           <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
@@ -207,7 +207,7 @@ export default async function Home() {
                 What Our Customers Say
               </h2>
               <p className="text-lg text-body max-w-2xl mx-auto">
-                Don't just take our word for it. Here's what our satisfied customers have to say.
+                Don&apos;t just take our word for it. Here&apos;s what our satisfied customers have to say.
               </p>
             </div>
 

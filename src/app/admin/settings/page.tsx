@@ -111,7 +111,7 @@ export default function SettingsPage() {
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-gray-900">Settings</h1>
         <p className="mt-1 text-sm text-gray-500">
-          Manage your farm's settings and preferences
+          Manage your farm&#39;s settings and preferences
         </p>
       </div>
 

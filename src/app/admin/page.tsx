@@ -1,13 +1,20 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState, Suspense } from 'react';
 
-// Components
-import { Sidebar } from '@/components/admin/Sidebar';
-import { AdminLoading } from '@/components/admin/AdminLoading';
-import { MenuItem } from '@/types/menu';
+// Dynamic imports for admin components - loads only when admin routes are accessed
+// This ensures admin-specific code doesn't bloat the main bundle
+const Sidebar = dynamic(() => import('@/components/admin/Sidebar').then(mod => ({ default: mod.Sidebar })), {
+  ssr: false,
+  loading: () => <div className="w-64 bg-gray-800 animate-pulse h-screen" />
+});
+
+const AdminLoading = dynamic(() => import('@/components/admin/AdminLoading').then(mod => ({ default: mod.AdminLoading })), {
+  ssr: false
+});
 
 // Icons
 import {
@@ -19,6 +26,8 @@ import {
   BarChart3 as BarChart3Icon,
   AlertCircle,
 } from 'lucide-react';
+
+import { MenuItem } from '@/types/menu';
 
 interface AdminStats {
   totalOrders: number;

@@ -17,7 +17,7 @@ export default function ProductsGrid({ products }: ProductsGridProps) {
           </div>
           <h3 className="text-lg font-medium text-gray-900 mb-2">No products found</h3>
           <p className="text-gray-500 mb-6">
-            We're working hard to bring you fresh, organic products. Check back soon or contact us for custom orders.
+            We&apos;re working hard to bring you fresh, organic products. Check back soon or contact us for custom orders.
           </p>
           <div className="space-y-3">
             <a

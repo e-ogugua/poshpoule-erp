@@ -28,7 +28,6 @@ declare module 'next' {
 
 // Extend the global NodeJS namespace for our custom types
 declare global {
-  // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace NodeJS {
     interface ProcessEnv {
       NODE_ENV: 'development' | 'production' | 'test';

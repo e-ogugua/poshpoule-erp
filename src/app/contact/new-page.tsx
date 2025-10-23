@@ -109,8 +109,8 @@ export default function ContactPage() {
                 Connect With Us
               </h1>
               <p className="mt-6 text-xl text-gray-100 max-w-3xl mx-auto">
-                We're here to help and answer any questions you might have. 
-                Reach out to us and we'll respond as soon as we can.
+                We&#39;re here to help and answer any questions you might have. 
+                Reach out to us and we&#39;ll respond as soon as we can.
               </p>
             </div>
           </div>
@@ -167,7 +167,7 @@ export default function ContactPage() {
                   >
                     {contactInfo.email}
                   </a>
-                  <p className="text-sm text-gray-500 mt-1">We'll respond within 24 hours</p>
+                  <p className="text-sm text-gray-500 mt-1">We&#39;ll respond within 24 hours</p>
                 </ContactCard>
 
                 <ContactCard 
@@ -230,7 +230,7 @@ export default function ContactPage() {
                       </svg>
                       <div>
                         <p className="font-medium">Message sent successfully!</p>
-                        <p className="text-sm">We'll get back to you as soon as possible.</p>
+                        <p className="text-sm">We&#39;ll get back to you as soon as possible.</p>
                       </div>
                     </div>
                   )}

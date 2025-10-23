@@ -73,7 +73,7 @@ export function CurrencyProvider({ children, session }: CurrencyProviderProps) {
         }
       }
     }
-  }, [currency, isBrowser]);
+  }, [currency]);
 
   // Memoize all derived values with proper dependencies
   const convertPrice = useCallback((priceNaira: number): number => {

@@ -67,7 +67,7 @@ export default function ShippingPage() {
               <div className="mt-12 p-6 bg-neutral-50 rounded-lg">
                 <h3 className="font-heading text-xl font-heading-semibold mb-4">Track Your Order</h3>
                 <p className="text-neutral-600 mb-4">
-                  Once your order is dispatched, you'll receive tracking information via SMS or email. For urgent inquiries, contact us directly.
+                  Once your order is dispatched, you&apos;ll receive tracking information via SMS or email. For urgent inquiries, contact us directly.
                 </p>
               </div>
             </div>
