@@ -46,7 +46,6 @@ async function main() {
       where: { slug: product.slug },
       update: {},
       create: {
-        id: product.id,
         name: product.name,
         description: product.description,
         priceNaira: product.priceNaira,

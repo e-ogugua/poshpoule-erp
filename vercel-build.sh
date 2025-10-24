@@ -18,6 +18,10 @@ npx prisma generate
 echo "[${TIMESTAMP}] Running database migrations..."
 NODE_ENV=production npx prisma migrate deploy || echo "[${TIMESTAMP}] Migrations skipped."
 
+# Seed the database with products
+echo "[${TIMESTAMP}] Seeding database with products..."
+NODE_ENV=production npx prisma db seed || echo "[${TIMESTAMP}] Seeding failed or skipped."
+
 # Build Next.js app
 echo "[${TIMESTAMP}] Building Next.js app..."
 pnpm run build
