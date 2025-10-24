@@ -4,6 +4,7 @@ import { Calendar, User, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { SocialShare } from '@/components/SocialShare';
 
 interface BlogPostCardProps {
   post: {
@@ -46,6 +47,16 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 priority={false}
               />
+              <div className="absolute top-2 right-2">
+                <SocialShare
+                  title={post.title}
+                  description={post.excerpt}
+                  image={post.image}
+                  url={`/blog/${post.slug}`}
+                  type="blog"
+                  className="opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                />
+              </div>
             </div>
           </Link>
         </div>

@@ -68,6 +68,10 @@ export function CurrencyProvider({ children, session }: CurrencyProviderProps) {
       if (isBrowser) {
         try {
           localStorage.setItem('poshpoule-currency', newCurrency);
+          // Dispatch custom event for instant updates across components
+          window.dispatchEvent(new CustomEvent('currencyChanged', {
+            detail: { currency: newCurrency }
+          }));
         } catch (error) {
           console.error('Failed to save currency preference:', error);
         }

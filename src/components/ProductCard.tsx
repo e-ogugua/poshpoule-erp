@@ -3,6 +3,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { useCurrency } from '@/contexts/CurrencyContext';
+import { SocialShare } from '@/components/SocialShare';
 
 interface Product {
   id: string;
@@ -20,6 +22,7 @@ interface Product {
 
 export default function ProductCard({ product }: { product: Product }) {
   const [isMounted, setIsMounted] = useState(false);
+  const { formatPrice } = useCurrency();
 
   useEffect(() => {
     setIsMounted(true);
@@ -62,6 +65,16 @@ export default function ProductCard({ product }: { product: Product }) {
             -{product.discountPercentage}%
           </div>
         )}
+        <div className="absolute top-2 right-2">
+          <SocialShare
+            title={product.name}
+            description={product.description}
+            image={product.image}
+            url={`/products/${product.slug}`}
+            type="product"
+            className="opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+          />
+        </div>
       </div>
 
       <div className="p-3 sm:p-4">
@@ -85,10 +98,10 @@ export default function ProductCard({ product }: { product: Product }) {
         </p>
 
         <div className="flex items-center justify-between mb-3 sm:mb-4">
-          <span className="font-bold text-primary text-lg">₦{product.priceNaira.toLocaleString()}</span>
+          <span className="font-bold text-primary text-lg">{formatPrice(product.priceNaira)}</span>
           {product.originalPrice && (
             <span className="text-xs text-gray-500 line-through">
-              ₦{product.originalPrice.toLocaleString()}
+              {formatPrice(product.originalPrice)}
             </span>
           )}
         </div>
