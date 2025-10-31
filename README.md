@@ -368,10 +368,22 @@ pnpm build --analyze
 - **Performance Monitoring**: Vercel Analytics for Core Web Vitals
 - **Database Monitoring**: Prisma logging and query optimization
 
+## Screenshots
+Add a hero screenshot here for quick visual context.
+![Hero Screenshot](./public/screenshot-hero.png)
+
+## Roadmap
+Track progress and upcoming work in the Roadmap:
+https://github.com/e-ogugua/poshpoule-erp/issues?q=is%3Aissue+Roadmap
+
 ## Ecosystem Links
 
 - EmmanuelOS: https://github.com/e-ogugua/emmanuelos
 - Portfolio Hub: https://ceodev.vercel.app/
+
+## Links
+- Releases: https://github.com/e-ogugua/poshpoule-erp/releases
+- Security Policy: ./SECURITY.md
 
 ---
 **Developed by CEO – Chukwuka Emmanuel Ogugua**  
