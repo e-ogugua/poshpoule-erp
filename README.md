@@ -2,6 +2,10 @@
 
 A full-stack e-commerce and enterprise resource planning platform built for agricultural operations, specifically designed for organic farming businesses. The application provides comprehensive farm-to-consumer operations management including inventory, orders, customer relationship management, and multi-channel sales capabilities.
 
+## Live Demo
+
+- https://poshpoule-farms.vercel.app
+
 ## Technical Overview
 
 ### Architecture
@@ -364,7 +368,11 @@ pnpm build --analyze
 - **Performance Monitoring**: Vercel Analytics for Core Web Vitals
 - **Database Monitoring**: Prisma logging and query optimization
 
----
+## Ecosystem Links
 
+- EmmanuelOS: https://github.com/e-ogugua/emmanuelos
+- Portfolio Hub: https://ceodev.vercel.app/
+
+---
 **Developed by CEO – Chukwuka Emmanuel Ogugua**  
 **PoshPOULE® Farms ERP Suite**
