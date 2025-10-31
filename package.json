@@ -27,6 +27,7 @@
     "db:studio": "prisma studio",
     "db:seed": "tsx prisma/seed.ts",
     "type-check": "tsc --noEmit",
+    "test:e2e": "playwright test",
     "vercel:build": "./vercel-build.sh"
   },
   "dependencies": {
@@ -66,6 +67,7 @@
     "zod": "^4.1.11"
   },
   "devDependencies": {
+    "@playwright/test": "^1.55.0",
     "@next/bundle-analyzer": "^15.5.4",
     "@types/bcryptjs": "^3.0.0",
     "@types/node": "20.11.25",
